@@ -20,8 +20,8 @@ function Login(){
     const sessionStatus = useSelector( state => state.session.status)
 
     const initialLoginState = {
-        email: '',
-        password: '' 
+        email: 'lvas248@gmail.com',
+        password: '123' 
     }
     const [ loginObj, setLoginObj ] = useState(initialLoginState)
 

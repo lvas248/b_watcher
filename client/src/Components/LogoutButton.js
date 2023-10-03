@@ -1,17 +1,24 @@
 import { logoutSession } from "../Redux/Slices/sessionSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import LoadingIcon from "./LoadingIcon";
+
 
 function LogoutButton(){
 
     const dispatch = useDispatch()
+    const history = useHistory()
+    const sessionStatus = useSelector( state => state.session.status)
 
     function logout(){
-        dispatch(logoutSession()).then(res => console.log(res))
+        dispatch(logoutSession()).then(res => {
+            if(res.meta.requestStatus === 'fulfilled') history.push('/login') 
+        })
     }
 
     return ( 
         <button onClick={logout}>
-            LOGOUT
+            { sessionStatus=== 'pending' ? <LoadingIcon status={sessionStatus}/> : 'LOGOUT' }
         </button>
      );
 }

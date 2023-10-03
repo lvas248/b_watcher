@@ -1,16 +1,18 @@
 import './Styles/App.css';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { refreshSession } from './Redux/Slices/sessionSlice';
 import Navbar from './Layout/Navbar';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup'
 function App() {
 
+  const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   dispatch(refreshSession())
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshSession())
+  }, [dispatch]);
 
   const session = useSelector( state => state.session)
 

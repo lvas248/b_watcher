@@ -53,7 +53,6 @@ export const logoutSession = createAsyncThunk(
         })
 
         const data = await response
-
         if(response.ok){
             dispatch(removeUser())
             return
