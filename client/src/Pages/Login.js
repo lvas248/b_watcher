@@ -7,14 +7,14 @@ import SubmitButton from '../Components/SubmitButton'
 
 function Login(){
 
+    const dispatch = useDispatch()
+    const history = useHistory()
+
     useEffect( ()=>{
         return ()=>{
             dispatch(clearSessionErrors())
         }
-    },[])
-
-    const dispatch = useDispatch()
-    const history = useHistory()
+    },[dispatch])
 
     const error = useSelector( state => state.session.error)
     const sessionStatus = useSelector( state => state.session.status)

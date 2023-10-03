@@ -8,14 +8,14 @@
   }
 
   .page{
-    @apply max-w-[1050px] m-auto
+    @apply max-w-[1050px] m-auto 
   }
   .bgBlue{
     @apply bg-[#3A9BDC]
   }
 
   .form{
-    @apply w-[80vw] max-w-[500px] grid gap-2 p-5  m-auto
+    @apply w-[80vw] max-w-[500px] grid gap-2 p-5  m-auto mt-[10vh]
   }
 
   .formInput{

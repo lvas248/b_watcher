@@ -1,7 +1,7 @@
 import './Styles/App.css';
 import { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { refreshSession } from './Redux/Slices/sessionSlice';
 import Navbar from './Layout/Navbar';
 import Login from './Pages/Login';
@@ -14,14 +14,8 @@ function App() {
     dispatch(refreshSession())
   }, [dispatch]);
 
-  const session = useSelector( state => state.session)
-
-  console.log('session: ', session)
-
-  
-
   return (
-    <div>
+    <div className=''>
 
       <Navbar />
 

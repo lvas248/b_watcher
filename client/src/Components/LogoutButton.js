@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import LoadingIcon from "./LoadingIcon";
 
 
-function LogoutButton(){
+function LogoutButton({toggleOpen}){
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -12,7 +12,10 @@ function LogoutButton(){
 
     function logout(){
         dispatch(logoutSession()).then(res => {
-            if(res.meta.requestStatus === 'fulfilled') history.push('/login') 
+            if(res.meta.requestStatus === 'fulfilled'){ 
+            history.push('/login')
+            toggleOpen()
+        } 
         })
     }
 
