@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .error{
+    @apply text-red-500 block text-xs
+  }
+
+  .page{
+    @apply max-w-[1050px] m-auto
+  }
+  .bgBlue{
+    @apply bg-[#3A9BDC]
+  }
+
+  .form{
+    @apply w-[80vw] max-w-[500px] grid gap-2 p-5  m-auto
+  }
+
+  .formInput{
+    @apply border-2 border-black p-1
+  }
+
+  .formButton{
+    @apply bgBlue border-black border-2 p-2 
+  }
+
+  .formLabel{
+    @apply text-xs font-bold
+  }
+}
+
+
+

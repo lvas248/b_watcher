@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addUser, removeUser } from './user/userSlice'
+import { addUser, removeUser } from './userSlice'
 
 
 //create signup async
@@ -11,7 +11,7 @@ export const signupUser = createAsyncThunk(
             headers: {
                 'Content-type':'application/json'
             },
-            body: JSON.stringify(obj)
+            body: JSON.stringify({ user: obj})
         })
         const data = await response.json()
 
@@ -31,7 +31,7 @@ export const loginuser = createAsyncThunk(
             headers: {
                 'Content-type':'application/json'
             },
-            body: JSON.stringify(obj)
+            body: JSON.stringify({ user: obj})
         })
 
         const data = await response.json()
@@ -40,6 +40,7 @@ export const loginuser = createAsyncThunk(
             dispatch(addUser(data))
             return data
         }
+
         return rejectWithValue(data)
     }
 )
@@ -118,7 +119,7 @@ const sessionSlice = createSlice({
                 state.status = 'pending'
                 state.error = null
             })
-            .addCase( loginuser.rejected, (state,action) => {
+            .addCase( loginuser.rejected, ( state, action ) => {
                 state.loggedIn = false
                 state.status = 'idle'
                 state.error = action.payload
