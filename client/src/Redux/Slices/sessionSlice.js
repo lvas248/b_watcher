@@ -93,7 +93,10 @@ const sessionSlice = createSlice({
         },
         logout: ( state )=>{
             state.loggedIn = false
-        }
+        },
+        clearSessionErrors: ( state )=>{
+            state.error = null
+        },
 
     }, 
     extraReducers: ( builder ) =>{
@@ -161,5 +164,5 @@ const sessionSlice = createSlice({
     }
 })
 
-export const { login, logout } = sessionSlice.actions
+export const { login, logout, clearSessionErrors } = sessionSlice.actions
 export default sessionSlice.reducer

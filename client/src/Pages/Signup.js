@@ -1,10 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { signupUser } from '../Redux/Slices/sessionSlice'
+import { clearSessionErrors, signupUser } from '../Redux/Slices/sessionSlice'
 import SubmitButton from '../Components/SubmitButton'
 
 function Login(){
+
+    useEffect( ()=>{
+        return ()=>{
+            dispatch(clearSessionErrors())
+        }
+    },[])
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -33,12 +39,14 @@ function Login(){
     function submitSignup(e){
         e.preventDefault()
         dispatch(signupUser(submitObj)).then(res => {
-            if(res.meta.requestStatus === 'fulfilled') history.push('/feed')
+            if(res.meta.requestStatus === 'fulfilled') navigateTo('feed')
             else clearSubmitObj()
         })
     }
 
-    console.log(error)
+    function navigateTo(path){
+        history.push(`/${path}`)
+    }
 
     return (    
         <form 
@@ -84,7 +92,7 @@ function Login(){
 
             <SubmitButton label='SIGN UP' status={sessionStatus}/>
 
-            <p className={`${!error && 'invisible'} error`}>{error?.error}</p>
+            <button onClick={()=>navigateTo('login')} type='button' className='text-xs underline text-right'>or login</button>
 
             
         </form> 
