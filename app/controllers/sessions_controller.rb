@@ -3,12 +3,12 @@ class SessionsController < ApplicationController
     #login
     def create
         # binding.pry
-        user = User.find_by( email: params[:email])
-        if user&.authenticate(params[:password])
+        user = User.find_by( email: user_params[:email])
+        if user&.authenticate(user_params[:password])
             session[:user_id] = user.id
             render json: user, status: :ok
         else 
-            render json: { error: 'Invalid username or password'}, status: :unauthorized
+            render json: { error: 'Invalid email or password'}, status: :unauthorized
         end
   
     end
@@ -21,6 +21,10 @@ class SessionsController < ApplicationController
     end
 
     private
+
+    def user_params
+        params.require(:user).permit(:email, :password)
+    end
 
 
 

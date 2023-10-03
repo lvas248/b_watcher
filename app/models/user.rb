@@ -4,13 +4,8 @@ class User < ApplicationRecord
 
     has_secure_password
 
-    has_many :verifications
-    
-    after_create :send_new_user_email_verif
 
     private
 
-    def send_new_user_email_verif
-        #send email with verification code
-    end
+ 
 end
