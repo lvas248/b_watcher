@@ -29,6 +29,10 @@
   .formLabel{
     @apply text-xs font-bold
   }
+
+  .skeleton-text{
+    @apply w-[100%] h-[20px] bg-[#ccc] 
+  }
 }
 
 

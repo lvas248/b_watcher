@@ -6,6 +6,7 @@ import { refreshSession } from './Redux/Slices/sessionSlice';
 import Navbar from './Layout/Navbar';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup'
+import Post from './Pages/Post/Post';
 function App() {
 
   const dispatch = useDispatch()
@@ -23,6 +24,8 @@ function App() {
         <Route path='/login'><Login /></Route>
         <Route path='/signup'><Signup /></Route>
         <Route path='/feed'>feed</Route>
+        <Route path='/post'><Post /></Route>
+
         <Route path='/account'>account</Route>
       </Switch>
 

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
 
 
+  post '/post', to: 'posts#create'
 
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'

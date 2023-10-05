@@ -5,7 +5,6 @@ class CreateImages < ActiveRecord::Migration[6.1]
       t.string :public_id
       t.references :imageable, polymorphic: true, index: true
 
-
       t.timestamps
     end
   end

@@ -1,6 +1,6 @@
-class Image < ApplicationRecord
+class Image < ApplicationRecord\
     
-    belongs_to :bird
-    belongs_to :post
-    
+    belongs_to :imageable, polymorphic: true
+
+
 end
