@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { addUser, removeUser } from './userSlice'
-
+import { addPosts, removePosts } from "./postSlice";
+import { addBirds, removeBirds } from "./birdSlice";
 
 //create signup async
 export const signupUser = createAsyncThunk(
@@ -37,7 +38,8 @@ export const loginuser = createAsyncThunk(
         const data = await response.json()
 
         if(response.ok){ 
-            dispatch(addUser(data))
+            dispatch(addPosts(data.posts))
+            dispatch(addBirds(data.birds))
             return data
         }
 
@@ -54,7 +56,8 @@ export const logoutSession = createAsyncThunk(
 
         const data = await response
         if(response.ok){
-            dispatch(removeUser())
+            dispatch(removePosts())
+            dispatch(removeBirds())
             return
         }
         return rejectWithValue(data)
@@ -70,7 +73,8 @@ export const refreshSession = createAsyncThunk(
         const data = await response.json()
 
         if(response.ok){ 
-            dispatch(addUser(data))
+            dispatch(addPosts(data.posts))
+            dispatch(addBirds(data.birds))
             return data
         }
         return rejectWithValue(data)
@@ -136,10 +140,9 @@ const sessionSlice = createSlice({
                 state.status = 'pending'
                 state.error = null
             })
-            .addCase( refreshSession.rejected, (state,action) => {
+            .addCase( refreshSession.rejected, (state) => {
                 state.loggedIn = false
                 state.status = 'idle'
-                // state.error = action.payload
             })
             .addCase( refreshSession.fulfilled, state => {
                 state.loggedIn = true

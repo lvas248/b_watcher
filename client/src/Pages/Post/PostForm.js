@@ -5,14 +5,14 @@ import { useHistory } from 'react-router-dom'
 import bird from '../../Assets/Icons/icons8-bird-100.png'
 import SubmitButton from "../../Components/SubmitButton";
 
-function Post() {
+function PostForm() {
 
     const dispatch = useDispatch()
     const history = useHistory()
 
+    const birds = useSelector( state => state.bird.entity)
     const postStatus = useSelector( state => state.post.status)
     const errors = useSelector( state => state.post.error)
-    console.log(errors?.errors)
 
     const [ radio, setRadio ] = useState('select')
     const [ imgFile, setImgFile ] = useState()
@@ -36,6 +36,7 @@ function Post() {
         setPostObj(copy)
     }
     function updateBirdAttributes(e){
+
         const copy = {...postObj.bird_attributes}
         copy[e.target.name] = e.target.value
         setPostObj({...postObj, bird_attributes: copy})
@@ -79,6 +80,10 @@ function Post() {
 
     }
 
+    const renderBirdOptions = birds?.map( b => {
+        return <option key={b.id} value={b.id}>{b.name}</option>
+    })
+
 
     return ( 
     
@@ -105,7 +110,7 @@ function Post() {
         <div id='select' 
             className='grid'>
             <select name='bird_id' onChange={updatePostObj} className={`${radio !== 'select' && 'hidden'} border-2 border-black  text-center text-xs p-1`}>
-                [<option value='0'>Bird Select</option>, <option value='1'>Bird Select</option>]
+                {[<option key='0' value=''>Bird Select</option>, ...renderBirdOptions]}
             </select>
         </div>
 
@@ -171,4 +176,4 @@ function Post() {
     </form> );
 }
 
-export default Post;
+export default PostForm;

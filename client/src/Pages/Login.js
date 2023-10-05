@@ -38,6 +38,7 @@ function Login(){
     function submitLogin(e){
         e.preventDefault()
         dispatch(loginuser(loginObj)).then(res => {
+            console.log(res)
             if(res.meta.requestStatus === 'fulfilled') navigateTo('feed')
             else clearLoginObj()
         })

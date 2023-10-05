@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
 
     #login
     def create
-        # binding.pry
         user = User.find_by( email: user_params[:email])
         if user&.authenticate(user_params[:password])
             session[:user_id] = user.id

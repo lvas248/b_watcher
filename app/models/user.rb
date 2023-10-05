@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
     has_many :posts
-    has_many :birds, through: :posts
+    has_many :birds, -> { distinct }, through: :posts
 
     validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 

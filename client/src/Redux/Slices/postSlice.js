@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { addToBirds } from "./birdSlice";
 
 export const submitPost = createAsyncThunk(
     'submit/post',
-    async(formData, { rejectWithValue })=>{
+    async(formData, { dispatch, rejectWithValue })=>{
         const response = await fetch('/post',{
             method:'POST',
             // headers: {
@@ -12,7 +13,10 @@ export const submitPost = createAsyncThunk(
         })
         const data = await response.json()
 
-        if(response.ok)return data
+        if(response.ok){
+            dispatch(addToBirds(data.filtered_bird))
+            return data
+        }
         
         return rejectWithValue(data)
     }
