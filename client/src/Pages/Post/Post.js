@@ -11,6 +11,8 @@ function Post() {
     const history = useHistory()
 
     const postStatus = useSelector( state => state.post.status)
+    const errors = useSelector( state => state.post.error)
+    console.log(errors?.errors)
 
     const [ radio, setRadio ] = useState('select')
     const [ imgFile, setImgFile ] = useState()
@@ -111,12 +113,18 @@ function Post() {
             className={`${ radio !== 'create' && 'hidden'} grid gap-4`}
         >
             <div className='flex flex-col gap-1'>
-                <label className='formLabel'>New Bird Name: </label>
+                <div className='flex justify-between'>
+                    <label className='formLabel'>New Bird Name: </label>
+                    <p className='error'>{errors?.errors['bird.name']}</p>
+                </div>
                 <input name='name' value={postObj.bird_attributes?.name} onChange={updateBirdAttributes} className='formInput text-xs border-2 border-black px-2'/>
             </div>
 
             <div className='flex flex-col gap-1'>
-                <label className='formLabel'>Description</label>
+                <div className='flex justify-between'>
+                    <label className='formLabel'>Description: </label>
+                    <p className='error'>{errors?.errors['bird.description']}</p>
+                </div>
                 <textarea name='description' value={postObj.bird_attributes?.description} onChange={updateBirdAttributes} className='formInput text-xs border-2 border-black px-2 h-[5vh]'/>
             </div>
         </div>
@@ -124,16 +132,19 @@ function Post() {
         <div id='addressSearch'
             className='flex flex-col gap-1'>
 
-            <label className='formLabel'>Address:</label>
+                <div className='flex justify-between'>
+                    <label className='formLabel'>Address: </label>
+                    <p className='error'>{errors?.errors['location.address']}</p>
+                </div>
             
-            <div className='flex'>
-                <input name='address' value={postObj?.location_atttibutes?.address} onChange={updateAddress} className='formInput text-xs w-full px-2' />
-                <button className='px-2 underline' type='button'>search</button>
-            </div>
+            <input name='address' value={postObj?.location_atttibutes?.address} onChange={updateAddress} className='formInput text-xs w-full px-2' />
         </div>
 
         <div className='flex flex-col gap-1'>
-            <label className='formLabel'>Caption:</label>
+            <div className='flex justify-between'>
+                <label className='formLabel'>Caption: </label>
+                <p className='error'>{errors?.errors?.caption}</p>
+            </div>
             <textarea id='caption' name='caption' value={postObj.caption} onChange={updatePostObj} className='formInput text-xs px-2 w-full' />
         </div>
         

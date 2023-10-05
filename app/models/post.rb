@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   has_one :location
   has_one :image, as: :imageable
 
+  validates :caption, presence: true
+  
   accepts_nested_attributes_for :bird, :location
 
   def upload_and_create_image(image_file)
