@@ -7,6 +7,13 @@ class PostsController < ApplicationController
         render json: post, status: :created
     end
 
+    def update
+        user = get_user
+        post = user.posts.find(params[:id])
+        post.update!(update_params)
+        render json: post, status: :created
+    end
+
     private
 
     def get_user
@@ -21,6 +28,10 @@ class PostsController < ApplicationController
 
         post = JSON.parse(params[:post])
         permit_attributes(post, [:id, :location_attributes, :caption, :bird_id, :image_url, :bird_attributes])
+    end
+
+    def update_params
+        params.require(:post).permit(:bird_id, :caption, location_attributes: [ :id, :address ])
     end
 
     
