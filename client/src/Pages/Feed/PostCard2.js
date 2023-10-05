@@ -1,10 +1,13 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { updatePost } from '../../Redux/Slices/postSlice'
 import birdIcon from '../../Assets/Icons/icons8-bird-100.png'
 import pinIcon from '../../Assets/Icons/pin.png'
 import moreIcon from '../../Assets/Icons/icons8-dots-90.png'
 
 function PostCard2({post}) {
+
+    const dispatch = useDispatch()
 
     const [ moreBtnclicked, setMoreBtnClicked ] = useState(false)
     const [ edit, setEdit ] = useState(false)
@@ -46,6 +49,18 @@ function PostCard2({post}) {
         setMoreBtnClicked(!moreBtnclicked)
     }
 
+    function submitUpdate(){
+        dispatch(updatePost({
+            post_id: post.id,
+            post: editObj
+        })).then( res => {
+            if(res.meta.requestStatus === 'fulfilled'){
+                setEdit(false)
+                setMoreBtnClicked(false)
+            }
+        })
+    }
+
     return ( 
 
         <div className='py-2'>
@@ -81,7 +96,7 @@ function PostCard2({post}) {
                         
                         <button onClick={()=>console.log('deleted')} className={`${!edit && 'hidden'} text-red-500`}>delete</button>
                         
-                        <button className={`${!edit && 'hidden'} text-green-600`}>update</button>
+                        <button onClick={submitUpdate} className={`${!edit && 'hidden'} text-green-600`}>update</button>
 
                         <button onClick={toggleMoreBtn} className=''> { moreBtnclicked ? 'cancel' : <div className='h-[18px] w-[18px]'><img className='bg-cover' alt='more' src={moreIcon} /></div>} </button>
                         

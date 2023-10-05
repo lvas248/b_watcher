@@ -22,6 +22,28 @@ export const submitPost = createAsyncThunk(
     }
 )
 
+export const updatePost = createAsyncThunk(
+    'update/post',
+    async( obj, { dispatch, rejectWithValue })=>{
+        const response = await fetch(`/post/${obj.post_id}`,{
+            method:'PATCH',
+            headers: {
+                'Content-type':'application/json'
+            },
+            body: JSON.stringify({post: obj.post})
+        })
+        const data = await response.json()
+
+        if(response.ok){
+            dispatch(addToBirds(data.filtered_bird))
+            return data
+        }
+        
+        return rejectWithValue(data)
+    }
+)
+
+
 
 const initialState = {
     entity: [],
@@ -59,6 +81,23 @@ const postSlice = createSlice({
                 state.status = 'idle'
                 state.error = null
                 state.entity = [action.payload ,...state.entity]
+            })
+
+            .addCase(updatePost.pending, state =>{
+                state.status = 'pending'
+                state.error = null
+            })
+            .addCase(updatePost.rejected, ( state, action ) =>{
+                state.status = 'idle'
+                state.error = action.payload
+            })
+            .addCase(updatePost.fulfilled, ( state, action ) =>{
+                state.status = 'idle'
+                state.error = null
+                state.entity = state.entity.map( p =>{
+                    if(p.id === action.payload.id) return action.payload
+                    else return p
+                })
             })
     }
 

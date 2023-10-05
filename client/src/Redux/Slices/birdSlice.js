@@ -20,6 +20,7 @@ const birdSlice = createSlice({
         }, 
         addToBirds: ( state, action ) =>{
            const bird =  state.entity.find( b => b.id === action.payload.id)
+           
            if(!bird){
             state.entity = [action.payload, ...state.entity].sort((a,b)=> {
                if( a.name < b.name ) return -1
