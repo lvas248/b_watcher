@@ -11,7 +11,7 @@ class Post < ApplicationRecord
 
   def upload_and_create_image(image_file)
     result =  Cloudinary::Uploader.upload(image_file.tempfile.path, :transformation => 
-    {:width => 400, :height => 400, :crop=> :lfill})
+    {:width => 600, :height => 600, :crop=> :lfill})
     self.create_image(url: result['url'], public_id: result['public_id'])
   end
 

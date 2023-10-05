@@ -14,7 +14,7 @@ function Navbar(){
     }
 
     return ( 
-        <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 m-auto max-w-[1050px] bgBlue border-2 border-black w-full flex flex-col p-3  ${isOpen ? 'h-[25vh]' : 'h-[8vh]'} transform-h duration-300 overflow-hidden`}>
+        <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 m-auto max-w-[1050px] bgBlue border-2 border-black w-full flex flex-col p-3  ${isOpen ? 'h-[25vh]' : 'h-[8vh]'} transform-h duration-300 overflow-hidden z-50`}>
             
             <div className='flex justify-between items-center font-bold'>
 

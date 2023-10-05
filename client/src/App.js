@@ -1,7 +1,7 @@
 import './Styles/App.css';
 import { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { refreshSession } from './Redux/Slices/sessionSlice';
 import Navbar from './Layout/Navbar';
 import Login from './Pages/Login';
@@ -16,13 +16,13 @@ function App() {
     dispatch(refreshSession())
   }, [dispatch]);
 
-  const posts = useSelector( state => state.post.entity)
-  const birds = useSelector( state => state.bird.entity)
-  const loggedIn = useSelector( state => state.session.loggedIn)
+  // const posts = useSelector( state => state.post.entity)
+  // const birds = useSelector( state => state.bird.entity)
+  // const loggedIn = useSelector( state => state.session.loggedIn)
   
-  console.log('posts: ', posts) 
-  console.log('birds: ',birds)
-  console.log('LoggedIn: ',loggedIn)
+  // console.log('posts: ', posts) 
+  // console.log('birds: ',birds)
+  // console.log('LoggedIn: ',loggedIn)
   
   return (
     <div className=''>

@@ -38,7 +38,7 @@ export const loginuser = createAsyncThunk(
         const data = await response.json()
 
         if(response.ok){ 
-            dispatch(addPosts(data.posts))
+            dispatch(addPosts(data.posts.reverse()))
             dispatch(addBirds(data.birds))
             return data
         }
@@ -73,7 +73,7 @@ export const refreshSession = createAsyncThunk(
         const data = await response.json()
 
         if(response.ok){ 
-            dispatch(addPosts(data.posts))
+            dispatch(addPosts(data.posts.reverse()))
             dispatch(addBirds(data.birds))
             return data
         }
