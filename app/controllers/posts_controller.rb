@@ -14,6 +14,13 @@ class PostsController < ApplicationController
         render json: post, status: :created
     end
 
+    def destroy
+        user = get_user
+        post = user.posts.find(params[:id])
+        post.destroy
+        head :no_content
+    end
+
     private
 
     def get_user

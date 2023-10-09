@@ -1,9 +1,12 @@
 class Post < ApplicationRecord
+
+  after_destroy :destroy_bird_if_not_associated
+
   
   belongs_to :user
   belongs_to :bird
-  has_one :location
-  has_one :image, as: :imageable
+  has_one :location, dependent: :destroy
+  has_one :image, as: :imageable, dependent: :destroy
 
   validates :caption, presence: true
   
@@ -20,5 +23,18 @@ class Post < ApplicationRecord
       self.bird = Bird.create(bird_attributes)
     end
   end
+
+  private
+
+  def destroy_bird_if_not_associated
+    
+    unless self.bird.posts.count > 0
+      self.bird.destroy
+    end
+  end
+
+
+
+
 
 end

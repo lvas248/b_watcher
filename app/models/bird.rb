@@ -1,6 +1,6 @@
 class Bird < ApplicationRecord
 
-    has_many :posts
+    has_many :posts, dependent: :nullify # will dissassociate from post if post is destroyed, it will not be destroyed
     has_many :users, through: :posts
     has_one :image, as: :imageable
 
