@@ -22,14 +22,6 @@ function App() {
     dispatch(getAllBirds())
   }, [dispatch]);
 
-  const posts = useSelector( state => state.post.entity)
-  const birds = useSelector( state => state.bird.entity)
-  // const loggedIn = useSelector( state => state.session.loggedIn)
-  
-  console.log('posts: ', posts) 
-  console.log('birds: ',birds)
-  // console.log('LoggedIn: ',loggedIn)
-  
   return (
     <div className=''>
 
