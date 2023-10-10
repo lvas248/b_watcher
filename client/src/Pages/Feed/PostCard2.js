@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { updatePost } from '../../Redux/Slices/postSlice'
+import { updatePost, deletePost } from '../../Redux/Slices/postSlice'
 import birdIcon from '../../Assets/Icons/icons8-bird-100.png'
 import pinIcon from '../../Assets/Icons/pin.png'
 import moreIcon from '../../Assets/Icons/icons8-dots-90.png'
@@ -21,9 +21,9 @@ function PostCard2({post}) {
         }
     })
 
-    const birds = useSelector( state => state.bird.entity)
+    const allBirds = useSelector( state => state.bird.entity.allBirds)
    
-    const renderBirdOptions = birds?.map( b => {
+    const renderBirdOptions = allBirds?.map( b => {
         return <option key={b.id} value={b.id}>{b.name}</option>
     })  
 
@@ -61,10 +61,14 @@ function PostCard2({post}) {
         })
     }
 
+    function submitDelete(){
+        dispatch(deletePost({post_id: post.id, bird_id: post.filtered_bird.id})).then(res => console.log(res))
+    }
+
     return ( 
 
         <div className='py-2'>
-            <div className=''>
+            <div className='h-[600px] w-[600px] bg-slate-200'>
                 <img alt='' src={post?.image_url} />
             </div>
 
@@ -94,7 +98,7 @@ function PostCard2({post}) {
 
                         <button onClick={toggleEdit} className={`${( !moreBtnclicked || edit ) && 'hidden'}`} >edit</button>
                         
-                        <button onClick={()=>console.log('deleted')} className={`${!edit && 'hidden'} text-red-500`}>delete</button>
+                        <button onClick={submitDelete} className={`${!edit && 'hidden'} text-red-500`}>delete</button>
                         
                         <button onClick={submitUpdate} className={`${!edit && 'hidden'} text-green-600`}>update</button>
 

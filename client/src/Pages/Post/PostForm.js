@@ -10,7 +10,7 @@ function PostForm() {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    const birds = useSelector( state => state.bird.entity)
+    const allBirds = useSelector( state => state.bird.entity.allBirds)
     const postStatus = useSelector( state => state.post.status)
     const errors = useSelector( state => state.post.error)
 
@@ -75,12 +75,13 @@ function PostForm() {
         formData.append( 'post', JSON.stringify(postObj))
         formData.append( 'image', imgFile)
         dispatch(submitPost(formData)).then(res => {
+            console.log(res)
             if(res.meta.requestStatus === 'fulfilled') history.push('/feed')
         })
 
     }
 
-    const renderBirdOptions = birds?.map( b => {
+    const renderBirdOptions = allBirds?.map( b => {
         return <option key={b.id} value={b.id}>{b.name}</option>
     })
 

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
 
+  get '/birds', to: 'birds#index'
 
   post '/post', to: 'posts#create'
   patch '/post/:id', to: 'posts#update'

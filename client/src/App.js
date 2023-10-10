@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshSession } from './Redux/Slices/sessionSlice';
+import { getAllBirds } from './Redux/Slices/birdSlice';
+
 import Navbar from './Layout/Navbar';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup'
@@ -16,12 +18,16 @@ function App() {
     dispatch(refreshSession())
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(getAllBirds())
+  }, [dispatch]);
+
   const posts = useSelector( state => state.post.entity)
-  // const birds = useSelector( state => state.bird.entity)
+  const birds = useSelector( state => state.bird.entity)
   // const loggedIn = useSelector( state => state.session.loggedIn)
   
   console.log('posts: ', posts) 
-  // console.log('birds: ',birds)
+  console.log('birds: ',birds)
   // console.log('LoggedIn: ',loggedIn)
   
   return (

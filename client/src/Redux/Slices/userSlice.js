@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const initialState = {
     entity: {},
     status: 'idle',
@@ -23,8 +22,6 @@ const userSlice = createSlice({
         }
 
     },
-
-
 })
 
 export const { removeUser, addUser } = userSlice.actions
