@@ -5,7 +5,7 @@ function FilterBar({updateSelectedBird, resetSelectedBird}){
 
     const userBirds = useSelector( state => state.bird.entity.userBirds)
 
-    const renderBirds = userBirds.map( b => {
+    const renderBirds = userBirds?.map( b => {
         return  <button onClick={()=>updateSelectedBird(b.name)} key={b.id} className=' overflow-hidden inline-block align-middle mr-4 p-1'>
                     <img className='bg-cover h-[65px] w-[65px] bg-white rounded-full hover:sm:animate-scale-up' alt='bird' src={b.thumbnail} />
                     <p className='text-center text-[10px]'>{b.name}</p>
@@ -13,7 +13,7 @@ function FilterBar({updateSelectedBird, resetSelectedBird}){
     } )
 
     return ( 
-        <div className='p-2 bg-white h-[10vh] whitespace-nowrap overflow-x-auto drop-shadow-xl'>
+        <div className='p-2 bg-white h-[10vh] max-w-[1050px] whitespace-nowrap overflow-x-auto drop-shadow-xl'>
 
             {[ 
                 <button onClick={resetSelectedBird} key='0' className='overflow-hidden inline-block align-middle mr-4 ' >

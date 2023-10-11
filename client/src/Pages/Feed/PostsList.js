@@ -7,7 +7,7 @@ function PostsList({posts, postListRef}) {
         return <PostCard2 key={p.id} post={p} />
     })
     return ( 
-        <div id='postList' ref={postListRef} className='flex flex-wrap  bg-slate-100 h-[82vh] overflow-y-auto '>
+        <div id='postList' ref={postListRef} className='grid max-w-[1050px] bg-slate-100 h-[82vh] overflow-y-auto '>
             {renderPosts}
         </div>
      );

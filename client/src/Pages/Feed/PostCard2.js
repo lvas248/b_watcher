@@ -67,14 +67,14 @@ function PostCard2({post}) {
 
     return ( 
 
-        <div className=''>
+        <div className='max-w-[1050px]'>
 
-            <div className='max-h-[600px] max-w-[600px] bg-slate-200'>
+            <div className='max-h-[600px] max-w-[600px] bg-slate-200 m-auto'>
                 <img alt='' src={post?.image_url} />
             </div>
 
             <div id='rightPanel'
-                    className='flex flex-col gap-2 p-4 border-x-2 border-b-2 '
+                    className='flex flex-col gap-2 p-4 border-x-2 border-b-2 max-w-[600px] m-auto'
             >
                 <div  id='birdIconTitle'
                     className='flex justify-between items-center'>

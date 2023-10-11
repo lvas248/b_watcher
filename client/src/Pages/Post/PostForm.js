@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import bird from '../../Assets/Icons/icons8-bird-100.png'
 import SubmitButton from "../../Components/SubmitButton";
+import MyMap from "../../Components/MyMap";
 
 function PostForm() {
 
@@ -14,12 +15,14 @@ function PostForm() {
     const postStatus = useSelector( state => state.post.status)
     const errors = useSelector( state => state.post.error)
 
+    const [ displayMap, setDisplayMap ] = useState(false)
     const [ radio, setRadio ] = useState('select')
     const [ imgFile, setImgFile ] = useState()
     const [ imgPreview, setImgPreview ] = useState()
     const [ postObj, setPostObj ] = useState({
         location_attributes:{
-            address: ''
+            longitude: '',
+            latitude: ''
         },
         caption: '',
         bird_id: '', 
@@ -28,7 +31,6 @@ function PostForm() {
             description: ''
         }
     })
-
 
     function updatePostObj(e){
         const copy = {...postObj}
@@ -42,10 +44,13 @@ function PostForm() {
         setPostObj({...postObj, bird_attributes: copy})
 
     }
-    function updateAddress(e){
-        const copy = {...postObj.location_attributes}
-        copy[e.target.name] = e.target.value
-        setPostObj({...postObj, location_attributes: copy})
+  
+    function setLocation(coords){
+        setPostObj({...postObj, location_attributes: { ...postObj.location_attributes, latitude: coords.lat, longitude: coords.lng}})
+    }
+
+    function toggleMap(){
+        setDisplayMap(!displayMap)
     }
 
     function updateRadio(e){
@@ -138,12 +143,17 @@ function PostForm() {
         <div id='addressSearch'
             className='flex flex-col gap-1'>
 
-                <div className='flex justify-between'>
-                    <label className='formLabel'>Address: </label>
-                    <p className='error'>{errors?.errors['location.address']}</p>
-                </div>
+            <div className='flex justify-between'>
+                <label className='formLabel'>Address: </label>
+                <p className='error'>{errors?.errors['location.address']}</p>
+            </div>
+
+            <button onClick={toggleMap} type='button' className={`${displayMap && 'hidden'} formInput text-xs w-full px-2 hover:bg-black hover:text-white`}>{ postObj.location_attributes.latitude ? 'Location Selected' : 'Select Location'}</button>
             
-            <input name='address' value={postObj?.location_atttibutes?.address} onChange={updateAddress} className='formInput text-xs w-full px-2' />
+            <div>
+                <MyMap display={displayMap} toggleMap={toggleMap} setLocation={setLocation} />
+            </div>
+        
         </div>
 
         <div className='flex flex-col gap-1'>
@@ -170,8 +180,9 @@ function PostForm() {
 
         </div>
 
+
        
-        <SubmitButton label='Submit Post' status={postStatus} />
+        <SubmitButton label='Submit Post' status={postStatus}  />
 
 
     </form> );
