@@ -1,12 +1,13 @@
 import PostCard2 from './PostCard2'
 
+function PostsList({posts, postListRef}) {
 
-function PostsList({posts}) {
+
     const renderPosts = posts?.map( p =>{
         return <PostCard2 key={p.id} post={p} />
     })
     return ( 
-        <div className='flex flex-wrap place-content-center py-[2vh]'>
+        <div id='postList' ref={postListRef} className='flex flex-wrap  bg-slate-100 h-[82vh] overflow-y-auto '>
             {renderPosts}
         </div>
      );

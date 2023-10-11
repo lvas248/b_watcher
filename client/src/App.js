@@ -1,7 +1,7 @@
 import './Styles/App.css';
 import { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { refreshSession } from './Redux/Slices/sessionSlice';
 import { getAllBirds } from './Redux/Slices/birdSlice';
 

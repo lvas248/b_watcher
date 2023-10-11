@@ -2,7 +2,7 @@ class PostSerializer < ActiveModel::Serializer
   attributes :id, :caption, :location, :filtered_bird, :image_url, :created_date
 
   def filtered_bird
-    {id: self.object.bird.id ,name: self.object.bird.name, description: self.object.bird.description}
+    {id: self.object.bird.id ,name: self.object.bird.name, description: self.object.bird.description, thumbnail: self.object.bird.thumbnail}
   end
 
   def image_url

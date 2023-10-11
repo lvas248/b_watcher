@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { updatePost, deletePost } from '../../Redux/Slices/postSlice'
-import birdIcon from '../../Assets/Icons/icons8-bird-100.png'
+// import birdIcon from '../../Assets/Icons/icons8-bird-100.png'
 import pinIcon from '../../Assets/Icons/pin.png'
 import moreIcon from '../../Assets/Icons/icons8-dots-90.png'
 
@@ -67,8 +67,9 @@ function PostCard2({post}) {
 
     return ( 
 
-        <div className='py-2'>
-            <div className='h-[600px] w-[600px] bg-slate-200'>
+        <div className=''>
+
+            <div className='max-h-[600px] max-w-[600px] bg-slate-200'>
                 <img alt='' src={post?.image_url} />
             </div>
 
@@ -79,8 +80,8 @@ function PostCard2({post}) {
                     className='flex justify-between items-center'>
 
                     <div className='flex items-center gap-4'>
-                        <div className='h-[40px] w-[40px] p-1 rounded-full bg-slate-200 border-2 border-black '>
-                            <img className='bg-cover  ' alt='bird' src={birdIcon} />
+                        <div className='rounded-full bg-slate-200 border border-black '>
+                            <img className='bg-cover rounded-full h-[40px] w-[40px] ' alt='bird' src={post?.filtered_bird?.thumbnail} />
                         </div>
 
                         
@@ -94,7 +95,7 @@ function PostCard2({post}) {
                     </div>
 
                                         
-                    <div id='buttons container' className='flex gap-2 text-xs'>
+                    <div id='buttonscCntainer' className='flex gap-2 text-xs'>
 
                         <button onClick={toggleEdit} className={`${( !moreBtnclicked || edit ) && 'hidden'}`} >edit</button>
                         

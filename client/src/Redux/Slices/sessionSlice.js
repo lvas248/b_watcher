@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addUser, removeUser } from './userSlice'
+import { addUser } from './userSlice'
 import { addPosts, removePosts } from "./postSlice";
 import { addUserBirds, removeAllBirds } from "./birdSlice";
 
