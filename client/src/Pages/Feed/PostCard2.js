@@ -15,9 +15,9 @@ function PostCard2({post}) {
     const [ editObj, setEditObj ] = useState({
         bird_id: post?.filtered_bird?.id,
         caption: post?.caption,
-        location_attributes:{
-            id: post?.location?.id,
-            address: post?.location?.address
+        place_attributes:{
+            id: post?.place?.id,
+            address: post?.place?.address
         }
     })
 
@@ -34,10 +34,10 @@ function PostCard2({post}) {
         console.log(copy)
     }
 
-    function updateLocationAttributes(e){
-        const copy = {...editObj.location_attributes}
+    function updatePlaceAttributes(e){
+        const copy = {...editObj.place_attributes}
         copy[e.target.name] = e.target.value
-        setEditObj({...editObj, location_attributes: copy }) 
+        setEditObj({...editObj, place_attributes: copy }) 
     }
 
     function toggleEdit(){
@@ -119,9 +119,9 @@ function PostCard2({post}) {
 
                     
                     { edit ? (
-                            <input className='text-[10px] uppercase font-semibold border-black border px-2 w-[50%]' name='address' value={editObj?.location_attributes.address} onChange={updateLocationAttributes} />
+                            <input className='text-[10px] uppercase font-semibold border-black border px-2 w-[50%]' name='address' value={editObj?.place_attributes.address} onChange={updatePlaceAttributes} />
                         ) : (
-                            <p className='text-[10px] uppercase font-semibold underline'>{post?.location?.address}</p>
+                            <p className='text-[10px] uppercase font-semibold underline'>{post?.place?.address}</p>
                         )
                     }
 

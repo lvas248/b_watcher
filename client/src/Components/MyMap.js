@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import Map, { GeolocateControl, Marker, FullscreenControl } from 'react-map-gl'
 import "mapbox-gl/dist/mapbox-gl.css";
 
-function MyMap({display, toggleMap, setLocation}){
+function MyMap({display, toggleMap, setPlace}){
 
     const mapboxApiKey = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 
@@ -14,7 +14,7 @@ function MyMap({display, toggleMap, setLocation}){
     }
 
     function handleLocationSelect(){
-        setLocation(marker)
+        setPlace(marker)
         toggleMap()
     }
 

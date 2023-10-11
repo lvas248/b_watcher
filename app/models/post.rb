@@ -2,12 +2,13 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :bird
-  has_one :location, dependent: :destroy
+  has_one :post, dependent: :destroy
   has_one :image, as: :imageable, dependent: :destroy
+  has_one :place
 
   validates :caption, presence: true
   
-  accepts_nested_attributes_for :bird, :location
+  accepts_nested_attributes_for :bird, :place
 
   def upload_and_create_image(image_file)
     result =  Cloudinary::Uploader.upload(image_file.tempfile.path, :transformation => 

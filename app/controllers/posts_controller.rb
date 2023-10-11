@@ -34,11 +34,11 @@ class PostsController < ApplicationController
         end
 
         post = JSON.parse(params[:post])
-        permit_attributes(post, [:id, :location_attributes, :caption, :bird_id, :image_url, :bird_attributes])
+        permit_attributes(post, [:id, :place_attributes, :caption, :bird_id, :image_url, :bird_attributes])
     end
 
     def update_params
-        params.require(:post).permit(:bird_id, :caption, location_attributes: [ :id, :address ])
+        params.require(:post).permit(:bird_id, :caption, place_attributes: [ :id, :latitude, :longitude ])
     end
 
     

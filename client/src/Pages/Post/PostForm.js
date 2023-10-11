@@ -20,7 +20,7 @@ function PostForm() {
     const [ imgFile, setImgFile ] = useState()
     const [ imgPreview, setImgPreview ] = useState()
     const [ postObj, setPostObj ] = useState({
-        location_attributes:{
+        place_attributes:{
             longitude: '',
             latitude: ''
         },
@@ -45,8 +45,8 @@ function PostForm() {
 
     }
   
-    function setLocation(coords){
-        setPostObj({...postObj, location_attributes: { ...postObj.location_attributes, latitude: coords.lat, longitude: coords.lng}})
+    function setPlace(coords){
+        setPostObj({...postObj, place_attributes: { ...postObj.place_attributes, latitude: coords.lat, longitude: coords.lng}})
     }
 
     function toggleMap(){
@@ -145,13 +145,13 @@ function PostForm() {
 
             <div className='flex justify-between'>
                 <label className='formLabel'>Address: </label>
-                <p className='error'>{errors?.errors['location.address']}</p>
+                <p className='error'>{errors?.errors['place.address']}</p>
             </div>
 
-            <button onClick={toggleMap} type='button' className={`${displayMap && 'hidden'} formInput text-xs w-full px-2 hover:bg-black hover:text-white`}>{ postObj.location_attributes.latitude ? 'Location Selected' : 'Select Location'}</button>
+            <button onClick={toggleMap} type='button' className={`${displayMap && 'hidden'} formInput text-xs w-full px-2 hover:bg-black hover:text-white`}>{ postObj.place_attributes.latitude ? 'Location Selected' : 'Select Location'}</button>
             
             <div>
-                <MyMap display={displayMap} toggleMap={toggleMap} setLocation={setLocation} />
+                <MyMap display={displayMap} toggleMap={toggleMap} setPlace={setPlace} />
             </div>
         
         </div>

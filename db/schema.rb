@@ -33,14 +33,14 @@ ActiveRecord::Schema.define(version: 2023_10_04_195607) do
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable"
   end
 
-  create_table "locations", force: :cascade do |t|
+  create_table "places", force: :cascade do |t|
     t.string "address"
     t.float "latitude"
     t.float "longitude"
     t.bigint "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_locations_on_post_id"
+    t.index ["post_id"], name: "index_places_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2023_10_04_195607) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "locations", "posts"
+  add_foreign_key "places", "posts"
   add_foreign_key "posts", "birds"
   add_foreign_key "posts", "users"
 end
