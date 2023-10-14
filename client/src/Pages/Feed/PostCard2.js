@@ -1,13 +1,14 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { useSelector, useDispatch } from 'react-redux'
 import { updatePost, deletePost } from '../../Redux/Slices/postSlice'
-// import birdIcon from '../../Assets/Icons/icons8-bird-100.png'
 import pinIcon from '../../Assets/Icons/pin.png'
 import moreIcon from '../../Assets/Icons/icons8-dots-90.png'
 
 function PostCard2({post}) {
 
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const [ moreBtnclicked, setMoreBtnClicked ] = useState(false)
     const [ edit, setEdit ] = useState(false)
@@ -26,6 +27,10 @@ function PostCard2({post}) {
     const renderBirdOptions = allBirds?.map( b => {
         return <option key={b.id} value={b.id}>{b.name}</option>
     })  
+
+    function navigateTo(path){
+        history.push(path)
+    }
 
     function updateEditObj(e){
         const copy = {...editObj}
@@ -121,7 +126,7 @@ function PostCard2({post}) {
                     { edit ? (
                             <input className='text-[10px] uppercase font-semibold border-black border px-2 w-[50%]' name='address' value={editObj?.place_attributes.address} onChange={updatePlaceAttributes} />
                         ) : (
-                            <p className='text-[10px] uppercase font-semibold underline'>{post?.place?.address}</p>
+                            <button onClick={()=>navigateTo(`/map/${post.id}`)} className='text-[10px] uppercase font-semibold underline'>{post?.place?.address}</button>
                         )
                     }
 

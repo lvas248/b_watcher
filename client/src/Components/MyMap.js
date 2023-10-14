@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Map, { GeolocateControl, Marker, FullscreenControl } from 'react-map-gl'
 import "mapbox-gl/dist/mapbox-gl.css";
 

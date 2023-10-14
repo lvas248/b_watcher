@@ -10,6 +10,7 @@ import Login from './Pages/Login';
 import Signup from './Pages/Signup'
 import PostForm from './Pages/Post/PostForm';
 import Feed from './Pages/Feed/Feed';
+import BirdMap from './Pages/BirdMap/BirdMap';
 function App() {
 
   const dispatch = useDispatch()
@@ -31,6 +32,7 @@ function App() {
         <Route path='/login'><Login /></Route>
         <Route path='/signup'><Signup /></Route>
         <Route path='/feed'><Feed /></Route>
+        <Route path='/map/:id?'><BirdMap /></Route>
         <Route path='/post'><PostForm /></Route>
 
         <Route path='/account'>account</Route>
