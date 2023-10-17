@@ -1,41 +1,37 @@
 import FilterBar from './FilterBar';
 import PostsList from './PostsList'
 import { useSelector } from 'react-redux';
-import { useState, useRef } from 'react'
+import { useParams, useLocation } from 'react-router-dom' 
+import { useEffect, useRef } from 'react'
 
 function Feed(){
 
-    const [ selectedBird, setSelectedBird ] = useState('')
     const postListRef = useRef()
+    const { search } = useLocation()
+    const { id } = useParams()
+    const searchParams = new URLSearchParams(search)
 
-    function scrollToTop(){
-        postListRef.current.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        })
-    }
-
-    function updateSelectedBird(value){
-        setSelectedBird(value)
-        scrollToTop()
-
-    }
-
-    function resetSelectedBird(){
-        setSelectedBird('')
-        scrollToTop()
-
-    }
+    const bird = searchParams.get('filter')
 
     const posts = useSelector( state => state.post.entity)
 
-    const filteredPosts = posts.filter( p => p.filtered_bird.name.includes(selectedBird))
+    const filteredPosts = posts.filter( p => p.filtered_bird.name.includes(bird||''))
 
+
+    useEffect( ()=>{
+        const post = document.getElementById(id)
+        if(post && postListRef){
+            setTimeout(()=>{
+                post.scrollIntoView({ behavior: 'smooth'})           
+            }, 100)
+        }
+    },[id, posts])
   
+
 
     return ( 
         <div className='relative max-w-[1050px] mt-[8vh] mx-auto  h-[92vh] overflow-auto'>
-            <FilterBar updateSelectedBird={updateSelectedBird} resetSelectedBird={resetSelectedBird} />
+            <FilterBar postListRef={postListRef}/>
             <PostsList posts={filteredPosts} postListRef={postListRef}/>
         </div>
      );

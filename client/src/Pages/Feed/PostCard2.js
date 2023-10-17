@@ -72,7 +72,7 @@ function PostCard2({post}) {
 
     return ( 
 
-        <div className='max-w-[1050px]'>
+        <div id={post.id} className='max-w-[1050px]'>
 
             <div className='max-h-[600px] max-w-[600px] bg-slate-200 m-auto'>
                 <img alt='' src={post?.image_url} />

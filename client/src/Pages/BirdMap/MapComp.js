@@ -10,11 +10,11 @@ function MapComp({posts, bounds}) {
     const history = useHistory()
     const { id } = useParams()
 
-    const [ displayBlurb, setDisplayBlurb ] = useState(false)
+    const [ displayBlurb, setDisplayBlurb ] = useState( id ? true : false)
 
     const post = posts.find( p => p.id === parseInt(id))
 
-    const defaultLocation = { longitude: -98.5795, latitude: 39.8283,  zoom: 2.3 }
+    // const defaultLocation = { longitude: -98.5795, latitude: 39.8283,  zoom: 2.3 }
     const postLocation = { longitude: post?.place?.longitude, latitude: post?.place?.latitude, zoom: 13}  
 
     function zoomTo(place){
@@ -22,7 +22,6 @@ function MapComp({posts, bounds}) {
     }
 
     useEffect(()=>{
-        
             if(post){
                 zoomTo({
                     center: [post.place.longitude, post.place.latitude],
@@ -30,8 +29,6 @@ function MapComp({posts, bounds}) {
                     duration: 1000
                 })            
             }else if(!Number.isNaN(bounds.longitude)){
-                console.log('bound')
-
                 zoomTo(
                     {
                         center: [bounds.longitude, bounds.latitude],
@@ -54,7 +51,15 @@ function MapComp({posts, bounds}) {
     }
 
     function zoomeToBounds(){
+        setDisplayBlurb(false)
         zoomTo({center: [bounds.longitude, bounds.latitude], zoom: 9.5 })
+    }
+
+    function navigateToFeed(){
+        history.push(`/feed/${post.id}`)
+    }
+    function navigateToFeedAndAddFilter(){
+        history.push(`/feed?filter=${post.filtered_bird.name}`)
     }
 
     const mapboxApiKey = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
@@ -66,11 +71,13 @@ function MapComp({posts, bounds}) {
                     longitude={p.place.longitude}
                     onClick={()=>selectPost(p)}
                 >
-                    <button  className='hover:animate-scale-large hover:z-50'>
-                        <img className='h-[30px] rounded-full border border-black' alt='marker' src={p?.filtered_bird?.thumbnail} />
+                    <button  className='hover:animate-scale-large '>
+                        <img className='h-[30px] rounded-full border border-black hover:z-50' alt='marker' src={p?.filtered_bird?.thumbnail} />
                     </button>
                 </Marker>
     })
+
+    
 
 
 
@@ -80,7 +87,8 @@ function MapComp({posts, bounds}) {
             <Map
                 ref={mapRef}
                 mapboxAccessToken={mapboxApiKey}
-                initialViewState={postLocation || defaultLocation}
+                initialViewState={postLocation.longitude ? postLocation : bounds}
+
                 mapStyle="mapbox://styles/mapbox/streets-v11"
                 style={{ 
                     height: '85vh', 
@@ -92,20 +100,21 @@ function MapComp({posts, bounds}) {
                 <GeolocateControl
                     positionOptions={{ enableHighAccuracy: true }}
                     trackUserLocation={true}
+                    onGeolocate={()=>setDisplayBlurb(false)}
+
                 />
                 <NavigationControl />
 
                 <div id='customButtons' 
-                    className='absolute bottom-10 right-2 flex flex-col gap-2 z-10 font-bold'>
-                    <button onClick={zoomeToBounds} className='border p-1 bg-white rounded' >out</button>
-                    <button onClick={zoomInOnSelection} className='border p-1 bg-white rounded'>in</button>
-                
+                    className='absolute top-2 right-20 flex gap-2 z-10 font-bold '>
+                    <button onClick={zoomeToBounds} className='border p-1 bg-white rounded drop-shadow-md' >View All Birds</button>
+                    <button onClick={zoomInOnSelection} className={`${!post && 'hidden'} border p-1 bg-white rounded drop-shadow-md`}>Zoom on Selected</button>
                 </div>
 
                 {renderMarkers}
 
                 <div id='blurb'
-                    className={`${( !displayBlurb || (post === undefined) ) && 'hidden'} absolute bottom-[30%] left-[50%] transform -translate-x-1/2 w-[50%] text-xs bg-white p-2 border-2 border-black rounded-lg animate-fade-in`}
+                    className={`${( !displayBlurb || (post === undefined) ) && 'hidden'} absolute bottom-[5%] left-[50%] transform -translate-x-1/2 w-[80%] text-xs bg-white p-2 rounded-lg animate-fade-in drop-shadow-md`}
                 >
                     <button onClick={()=>setDisplayBlurb(false)} className='float-right w-fit h-fit p-2 text-center'>X</button>
                     
@@ -113,8 +122,8 @@ function MapComp({posts, bounds}) {
                     <p>Posted On: {post?.created_date}</p>
 
                     <div className='flex gap-2'>
-                        <button className='text-left underline'>view post</button>         
-                        <button  className='text-left underline'>view all {post?.filtered_bird?.name} posts</button>             
+                        <button onClick={navigateToFeed} className='text-left underline'>view post</button>         
+                        <button  onClick={navigateToFeedAndAddFilter} className='text-left underline'>view all {post?.filtered_bird?.name} posts</button>             
                     </div>
 
                 </div>

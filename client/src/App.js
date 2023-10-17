@@ -31,9 +31,9 @@ function App() {
       <Switch>
         <Route path='/login'><Login /></Route>
         <Route path='/signup'><Signup /></Route>
-        <Route path='/feed'><Feed /></Route>
+        <Route path='/feed/:id?'><Feed /></Route>
         <Route path='/map/:id?'><BirdMap /></Route>
-        <Route path='/post'><PostForm /></Route>
+        <Route path='/post/'><PostForm /></Route>
 
         <Route path='/account'>account</Route>
       </Switch>
