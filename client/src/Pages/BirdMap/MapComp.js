@@ -47,6 +47,7 @@ function MapComp({posts, bounds}) {
     }
 
     function zoomInOnSelection(){
+        setDisplayBlurb(true)
         zoomTo({center: [post?.place?.longitude,  post?.place?.latitude ], zoom: 16})
     }
 
@@ -71,15 +72,11 @@ function MapComp({posts, bounds}) {
                     longitude={p.place.longitude}
                     onClick={()=>selectPost(p)}
                 >
-                    <button  className='hover:animate-scale-large '>
-                        <img className='h-[30px] rounded-full border border-black hover:z-50' alt='marker' src={p?.filtered_bird?.thumbnail} />
+                    <button  className={` ${(post?.id !== p.id )&& 'hover:animate-scale-large'} `}>
+                        <img className={`${post?.id === p.id ? 'h-[50px] border-4 border-[#3A9BDC]' : 'h-[30px]'  }  rounded-full border border-black hover:z-50`} alt='marker' src={p?.filtered_bird?.thumbnail} />
                     </button>
                 </Marker>
     })
-
-    
-
-
 
     return ( 
         <div className='p-5 max-w-[1050px] m-auto'>

@@ -13,7 +13,7 @@ module.exports = {
       },      
       scaleLarge: {
         '0%': { transform: 'scale(1)'},
-        '100%': { transform: 'scale(5)'},
+        '100%': { transform: 'scale(1.7)'},
       },
       fadeIn: {
         '0%': { opacity: 0 },
