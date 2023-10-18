@@ -151,7 +151,7 @@ function PostForm() {
             <button onClick={toggleMap} type='button' className={`${displayMap && 'hidden'} formInput text-xs w-full px-2 hover:bg-black hover:text-white`}>{ postObj.place_attributes.latitude ? 'Location Selected' : 'Select Location'}</button>
             
             <div>
-                <MyMap display={displayMap} toggleMap={toggleMap} setPlace={setPlace} />
+                <MyMap display={displayMap} toggleMap={toggleMap} setPlace={setPlace} currentLocation/>
             </div>
         
         </div>

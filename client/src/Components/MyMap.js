@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState} from "react";
 import Map, { GeolocateControl, Marker, FullscreenControl } from 'react-map-gl'
 import "mapbox-gl/dist/mapbox-gl.css";
 
-function MyMap({display, toggleMap, setPlace}){
+function MyMap({display, toggleMap, setPlace, currentLocation=false}){
 
     const mapboxApiKey = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 
-    const [ marker, setMarker ] = useState({lng: -73.9712,
-        lat: 40.7831})
+    const [ marker, setMarker ] = useState({ longitude: currentLocation.longitude || -73.9712,
+        latitude: currentLocation.latitude || 40.7831})
 
     function handleMarkerChange(e){
-        setMarker({ lng: e.lngLat.lng, lat: e.lngLat.lat})
+        setMarker({ longitude: e.lngLat.lng, latitude: e.lngLat.lat})
     }
 
     function handleLocationSelect(){
@@ -24,14 +24,14 @@ function MyMap({display, toggleMap, setPlace}){
             <Map
                 mapboxAccessToken={mapboxApiKey}
                 initialViewState={{
-                    longitude: -73.9712,
-                    latitude: 40.7831,
+                    longitude: marker.longitude,
+                    latitude: marker.latitude,
                     zoom: 10
                   }}
                 mapStyle="mapbox://styles/mapbox/streets-v11"
                 style={{ 
                     height: '300px', 
-                    width: 'auto',
+                    width: '300px',
                     margin: 'auto',
                     border: '2px solid black'
                 }}                
@@ -44,13 +44,13 @@ function MyMap({display, toggleMap, setPlace}){
                         console.error('Geolocation error:', error);
                       }}
                     onGeolocate={(p)=>{
-                        setMarker({lng: p.coords.longitude, lat: p.coords.latitude}, )
+                        setMarker({longitude: p.coords.longitude, latitude: p.coords.latitude}, )
                     }}
                 />
 
                 <Marker 
-                    longitude={marker.lng}
-                    latitude={marker.lat}
+                    longitude={marker.longitude}
+                    latitude={marker.latitude}
                     draggable
                     onDragEnd={handleMarkerChange}
                 />

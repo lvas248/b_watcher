@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { useSelector, useDispatch } from 'react-redux'
 import { updatePost, deletePost } from '../../Redux/Slices/postSlice'
+import MyMap from '../../Components/MyMap'
 import pinIcon from '../../Assets/Icons/pin.png'
 import moreIcon from '../../Assets/Icons/icons8-dots-90.png'
 
@@ -12,21 +13,30 @@ function PostCard2({post}) {
 
     const [ moreBtnclicked, setMoreBtnClicked ] = useState(false)
     const [ edit, setEdit ] = useState(false)
+    const [ displayMap, setDisplayMap ] = useState(false)
     
     const [ editObj, setEditObj ] = useState({
         bird_id: post?.filtered_bird?.id,
         caption: post?.caption,
         place_attributes:{
             id: post?.place?.id,
-            address: post?.place?.address
+            address: post?.place?.address,
+            longitude: post?.place?.longitude,
+            latitude: post?.place?.latitude,
         }
     })
+
+    console.log(editObj)
 
     const allBirds = useSelector( state => state.bird.entity.allBirds)
    
     const renderBirdOptions = allBirds?.map( b => {
         return <option key={b.id} value={b.id}>{b.name}</option>
     })  
+
+    function toggleMap(){
+        setDisplayMap(!displayMap)
+    }
 
     function navigateTo(path){
         history.push(path)
@@ -39,10 +49,10 @@ function PostCard2({post}) {
         console.log(copy)
     }
 
-    function updatePlaceAttributes(e){
-        const copy = {...editObj.place_attributes}
-        copy[e.target.name] = e.target.value
-        setEditObj({...editObj, place_attributes: copy }) 
+
+    function updatePlaceAttributes(coords){
+        const copy = {...editObj.place_attributes, longitude: coords.longitude, latitude: coords.latitude}
+        setEditObj({...editObj, place_attributes: copy })
     }
 
     function toggleEdit(){
@@ -116,19 +126,25 @@ function PostCard2({post}) {
                 </div>
 
                 <div id='location'
-                    className='flex items-center place-content-left'
+                    className='flex flex-col gap-5 items-center'
                 >
-                    <div className='h-[18px] w-[18px] '>
-                        <img className='bg-cover' alt='bird' src={pinIcon} />
+                    <div className='flex place-self-start items-center'>
+
+                        <div className='h-[18px] w-[18px] '>
+                            <img className='bg-cover' alt='bird' src={pinIcon} />
+                        </div>
+
+                        { edit ? (
+                                    <button onClick={toggleMap} className={'text-xs underline'}>change location</button>                      
+                                ) : (
+                                    <button onClick={()=>navigateTo(`/map/${post.id}`)} className='text-[10px] uppercase font-semibold underline'>{post?.place?.address}</button>
+                                )
+                        }
+
                     </div>
 
-                    
-                    { edit ? (
-                            <input className='text-[10px] uppercase font-semibold border-black border px-2 w-[50%]' name='address' value={editObj?.place_attributes.address} onChange={updatePlaceAttributes} />
-                        ) : (
-                            <button onClick={()=>navigateTo(`/map/${post.id}`)} className='text-[10px] uppercase font-semibold underline'>{post?.place?.address}</button>
-                        )
-                    }
+                    <MyMap display={displayMap} toggleMap={toggleMap} setPlace={updatePlaceAttributes} currentLocation={{longitude: editObj.place_attributes.longitude, latitude: editObj.place_attributes.latitude}} />
+       
 
                 
                 </div>
