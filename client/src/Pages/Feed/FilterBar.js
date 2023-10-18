@@ -15,9 +15,9 @@ function FilterBar({postListRef}){
         })       
     }
 
-    const userBirds = useSelector( state => state.bird.entity.userBirds)
+    const birds = useSelector( state => state.bird.entity)
 
-    const renderBirds = userBirds?.map( b => {
+    const renderBirds = birds.userBirds?.map( b => {
         return  <button onClick={()=>filterBirds(b.name)} key={b.id} className=' overflow-hidden inline-block align-middle mr-4 p-1 drop-shadow-md'>
                     <img className='bg-cover h-[65px] w-[65px] bg-white rounded-full hover:sm:animate-scale-up drop-shadow-md' alt='bird' src={b.thumbnail} />
                     <p className='text-center text-[10px]'>{b.name}</p>
@@ -27,11 +27,14 @@ function FilterBar({postListRef}){
     return ( 
         <div className='p-2 bg-white h-[10vh] max-w-[1050px] whitespace-nowrap overflow-x-auto drop-shadow-xl'>
 
-            {[ 
-                <button onClick={()=>history.push('/feed')} key='0' className='overflow-hidden inline-block align-middle mr-4 ' >
-                    <img className='bg-cover h-[65px] w-[65px] rounded-full bg-slate-100 hover:sm:animate-scale-up' alt='bird' src={bird} />
-                    <p className='text-center text-[10px]'>All Birds</p>
-                </button>,...renderBirds]}
+            {
+                birds && [ 
+                    <button onClick={()=>history.push('/feed')} key='0' className='overflow-hidden inline-block align-middle mr-4 ' >
+                        <img className='bg-cover h-[65px] w-[65px] rounded-full bg-slate-100 hover:sm:animate-scale-up' alt='bird' src={bird} />
+                        <p className='text-center text-[10px]'>All Birds</p>
+                    </button>,...renderBirds
+                ]
+            }
 
         </div> 
     );

@@ -30,7 +30,7 @@ const birdSlice = createSlice({
             state.entity.userBirds = action.payload
         },
         removeAllBirds: ( state )=>{
-            state.entity = {}
+            state.entity = initialState.entity
         }, 
         addToBirds: ( state, action ) =>{
             //Add to userBirds if it doesn't exist

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { clearSessionErrors, signupUser } from '../Redux/Slices/sessionSlice'
-import SubmitButton from '../Components/SubmitButton'
+import { clearSessionErrors, signupUser } from '../../Redux/Slices/sessionSlice'
+import SubmitButton from '../../Components/SubmitButton'
 
-function Login(){
+function Login({toggle}){
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -92,7 +92,7 @@ function Login(){
 
             <SubmitButton label='SIGN UP' status={sessionStatus}/>
 
-            <button onClick={()=>navigateTo('login')} type='button' className='text-xs underline text-right'>or login</button>
+            <button onClick={toggle} type='button' className='text-xs underline text-right'>or login</button>
 
             
         </form> 

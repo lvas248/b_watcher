@@ -13,7 +13,7 @@ function LogoutButton({toggleOpen}){
     function logout(){
         dispatch(logoutSession()).then(res => {
             if(res.meta.requestStatus === 'fulfilled'){ 
-            history.push('/login')
+            history.push('/')
             toggleOpen()
         } 
         })

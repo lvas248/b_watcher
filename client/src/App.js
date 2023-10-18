@@ -5,19 +5,22 @@ import { useDispatch } from 'react-redux';
 import { refreshSession } from './Redux/Slices/sessionSlice';
 import { getAllBirds } from './Redux/Slices/birdSlice';
 
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Navbar from './Layout/Navbar';
-import Login from './Pages/Login';
-import Signup from './Pages/Signup'
 import PostForm from './Pages/Post/PostForm';
 import Feed from './Pages/Feed/Feed';
 import BirdMap from './Pages/BirdMap/BirdMap';
+import Landing from './Pages/Landing/Landing';
 function App() {
 
   const dispatch = useDispatch()
+  const history = useHistory()
 
   useEffect(() => {
-    dispatch(refreshSession())
-  }, [dispatch]);
+    dispatch(refreshSession()).then(res => {
+      if(res.meta.requestStatus === 'fulfilled') history.push('/feed')
+    })
+  }, [dispatch, history]);
 
   useEffect(() => {
     dispatch(getAllBirds())
@@ -29,8 +32,7 @@ function App() {
       <Navbar />
 
       <Switch>
-        <Route path='/login'><Login /></Route>
-        <Route path='/signup'><Signup /></Route>
+        <Route exact path='/'><Landing /></Route>
         <Route path='/feed/:id?'><Feed /></Route>
         <Route path='/map/:id?'><BirdMap /></Route>
         <Route path='/post/'><PostForm /></Route>
