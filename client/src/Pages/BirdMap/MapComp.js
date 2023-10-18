@@ -53,7 +53,7 @@ function MapComp({posts, bounds}) {
 
     function zoomeToBounds(){
         setDisplayBlurb(false)
-        zoomTo({center: [bounds.longitude, bounds.latitude], zoom: 9.5 })
+        zoomTo({center: [bounds.longitude, bounds.latitude], zoom: bounds.zoom })
     }
 
     function navigateToFeed(){
@@ -104,8 +104,8 @@ function MapComp({posts, bounds}) {
 
                 <div id='customButtons' 
                     className='absolute top-2 right-20 flex gap-2 z-10 font-bold '>
-                    <button onClick={zoomeToBounds} className='border p-1 bg-white rounded drop-shadow-md' >View All Birds</button>
-                    <button onClick={zoomInOnSelection} className={`${!post && 'hidden'} border p-1 bg-white rounded drop-shadow-md`}>Zoom on Selected</button>
+                    <button onClick={zoomeToBounds} className=' border p-1 rounded bgBlue text-white drop-shadow-md' >View All Birds</button>
+                    <button onClick={zoomInOnSelection} className={`${!post && 'hidden'} border p-1 rounded drop-shadow-md bgBlue text-white`}>Zoom on Selected</button>
                 </div>
 
                 {renderMarkers}

@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
-import calculateBounds from "../../Helpers/calculateBounds";
 import MapComp from "./MapComp";
+import getBounds from "../../Helpers/getBounds";
 
 function BirdMap() {
 
     const posts = useSelector(state => state.post.entity)
-    const bounds = calculateBounds(posts)
+    const bounds = getBounds(posts)
 
  
     return ( 
