@@ -1,4 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { logout } from "./sessionSlice";
+import { removeUserBirds } from "./birdSlice";
+import { removePosts } from "./postSlice";
 
 export const updateUserInfo = createAsyncThunk(
     'updateEmail/user',
@@ -13,6 +16,24 @@ export const updateUserInfo = createAsyncThunk(
         const data = await response.json()
 
         if(response.ok) return data.email
+        return rejectWithValue(data)
+    }
+)
+
+export const deleteAccount = createAsyncThunk(
+    'delete/user',
+    async( obj,{ dispatch, rejectWithValue })=>{
+        const response = await fetch('/delete_account',{
+            method:'DELETE',
+        })
+        const data = await response
+
+        if(response.ok){
+            dispatch(logout())
+            dispatch(removeUserBirds())
+            dispatch(removePosts())
+            return 
+        }
         return rejectWithValue(data)
     }
 )
@@ -54,6 +75,18 @@ const userSlice = createSlice({
                 state.error = null
                 state.entity.email = action.payload
             })
+            .addCase( deleteAccount.pending, ( state )=>{
+                state.status = 'pending'
+            })
+            .addCase( deleteAccount.rejected, ( state, action )=>{
+                state.status = 'idle'
+                state.error = action.payload
+            })
+            .addCase( deleteAccount.fulfilled, ( state, action ) => {
+                state.status = 'idle'
+                state.error = null
+                state.entity.email = ''
+            } )
     }
 })
 

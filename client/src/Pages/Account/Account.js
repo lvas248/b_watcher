@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from 'react'
 import { updateUserInfo } from "../../Redux/Slices/userSlice";
 import { deletePost } from "../../Redux/Slices/postSlice";
+import { deleteAccount } from "../../Redux/Slices/userSlice";
 import LoadingIcon from "../../Components/LoadingIcon";
 
 function Account(){
@@ -41,6 +42,7 @@ function Account(){
     function updateEmail(e){
         setUserObj({...userObj, email: e.target.value})
     }
+
     function submitUserUpdate(e){
         e.preventDefault()
         dispatch(updateUserInfo(userObj)).then(res => {
@@ -50,6 +52,12 @@ function Account(){
 
     function submitDeletePost(id){
         dispatch(deletePost({post_id: id}))
+    }
+
+    function submitDeleteAccount(){
+        dispatch(deleteAccount()).then(res => {
+            if(res.meta.requestStatus === 'fulfilled') history.push('/')
+        })
     }
 
 
@@ -67,14 +75,11 @@ function Account(){
                     
                     <label>Username: </label>
 
-                    <div className={`${user.status !== 'pending' && 'hidden'}`}>
-                        <LoadingIcon />
-                    </div>
-                    
-
                     { 
                         edit ? (
+
                             <form onSubmit={submitUserUpdate} className='flex gap-2'>
+
                                 <input value={userObj.email} onChange={updateEmail} className={`${!edit && 'hidden'} px-1 w-fit border`}  /> 
 
                                 <div className={`${user.status !== 'pending' && 'hidden'}`}>
@@ -85,6 +90,7 @@ function Account(){
                                 <button className={`${user.status === 'pending' && 'hidden'}`} type='button' onClick={toggleEdit}>cancel</button>
                    
                             </form>
+
                         ):(
                             <p className={`${edit && 'hidden' } px-1`}>{userObj.email}</p> 
                         )
@@ -118,7 +124,7 @@ function Account(){
 
                 <div className={`${!deleteCheck && 'hidden'} flex`}>
                     <button onClick={toggleDelete} className='w-full bg-yellow-300 border-2 border-black font-bold p-2' >Cancel</button>
-                    <button className='place-self-center w-full bg-red-600 border-2 border-black font-bold p-2' > Delete Account</button>
+                    <button onClick={submitDeleteAccount} className='place-self-center w-full bg-red-600 border-2 border-black font-bold p-2' >{ user.status === 'pending' ? <LoadingIcon /> : "DELETE ACOUNT"}</button>
                 </div>
 
                 <button onClick={toggleDelete} className={`${deleteCheck && 'hidden'} text-center text-white w-full p-2 bg-red-600 border-2 border-black font-bold`}>DELETE ACCOUNT</button>

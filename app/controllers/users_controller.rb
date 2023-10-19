@@ -22,8 +22,8 @@ class UsersController < ApplicationController
 
     def destroy
         user = get_user
-        binding.pry
         user.destroy
+        session.delete :user_id
         head :no_content
     end
 
