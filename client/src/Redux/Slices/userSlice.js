@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    entity: {},
+    entity: { email: ''},
     status: 'idle',
     error: null
 }
@@ -16,7 +16,7 @@ const userSlice = createSlice({
             state.status = 'idle'
         },
         addUser: ( state, action )=>{
-            state.entity = action.payload
+            state.entity.email = action.payload
             state.error = null
             state.status = 'idle'
         }

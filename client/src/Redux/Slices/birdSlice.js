@@ -29,8 +29,8 @@ const birdSlice = createSlice({
         addUserBirds: ( state, action )=>{
             state.entity.userBirds = action.payload
         },
-        removeAllBirds: ( state )=>{
-            state.entity = initialState.entity
+        removeUserBirds: ( state )=>{
+            state.entity.userBirds = []
         }, 
         addToBirds: ( state, action ) =>{
             //Add to userBirds if it doesn't exist
@@ -76,5 +76,5 @@ const birdSlice = createSlice({
 
 })
 
-export const { addUserBirds, removeAllBirds, addToBirds, removeBird } = birdSlice.actions
+export const { addUserBirds, removeUserBirds, addToBirds, removeBird } = birdSlice.actions
 export default birdSlice.reducer;

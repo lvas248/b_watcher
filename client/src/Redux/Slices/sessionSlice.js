@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addUser } from './userSlice'
+import { addUser, removeUser } from './userSlice'
 import { addPosts, removePosts } from "./postSlice";
-import { addUserBirds, removeAllBirds } from "./birdSlice";
+import { addUserBirds, removeUserBirds } from "./birdSlice";
 
 //create signup async
 export const signupUser = createAsyncThunk(
@@ -17,7 +17,7 @@ export const signupUser = createAsyncThunk(
         const data = await response.json()
 
         if(response.ok){
-            dispatch(addUser(data))
+            dispatch(addUser(data.email))
             return data
         }
         return rejectWithValue(data)
@@ -38,6 +38,7 @@ export const loginuser = createAsyncThunk(
         const data = await response.json()
 
         if(response.ok){ 
+            dispatch(addUser(data.email))
             dispatch(addPosts(data.posts.reverse()))
             dispatch(addUserBirds(data.birds))
             return data
@@ -56,8 +57,10 @@ export const logoutSession = createAsyncThunk(
 
         const data = await response
         if(response.ok){
+            dispatch(removeUser(data.email))
+
             dispatch(removePosts())
-            dispatch(removeAllBirds())
+            dispatch(removeUserBirds())
             return
         }
         return rejectWithValue(data)
@@ -73,6 +76,7 @@ export const refreshSession = createAsyncThunk(
         const data = await response.json()
 
         if(response.ok){ 
+            dispatch(addUser(data.email))
             dispatch(addPosts(data.posts.reverse()))
             dispatch(addUserBirds(data.birds))
             return data

@@ -11,6 +11,7 @@ import PostForm from './Pages/Post/PostForm';
 import Feed from './Pages/Feed/Feed';
 import BirdMap from './Pages/BirdMap/BirdMap';
 import Landing from './Pages/Landing/Landing';
+import Account from './Pages/Account/Account';
 function App() {
 
   const dispatch = useDispatch()
@@ -37,7 +38,7 @@ function App() {
         <Route path='/map/:id?'><BirdMap /></Route>
         <Route path='/post/'><PostForm /></Route>
 
-        <Route path='/account'>account</Route>
+        <Route path='/account'><Account /></Route>
       </Switch>
 
     </div>
