@@ -1,20 +1,25 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useState } from 'react'
+import { updateUserInfo } from "../../Redux/Slices/userSlice";
+// import { deletePost } from "../../Redux/Slices/postSlice";
+import LoadingIcon from "../../Components/LoadingIcon";
 
 function Account(){
 
     const history = useHistory()
-    const userInfo = useSelector( state => state.user.entity )
+    const dispatch = useDispatch()
+
+    const user = useSelector( state => state.user )
     const userBirds = useSelector( state => state.bird.entity.userBirds)
     const posts = useSelector( state => state.post.entity)
     
-    const [ userObj, setUserObj ] = useState(userInfo)
+    const [ userObj, setUserObj ] = useState(user.entity)
     const [ edit, setEdit ] = useState(false)
     const [ deleteCheck, setDeleteCheck ] = useState(false)
 
     const renderPosts = posts.map( p => {
-        return <div  className='grid grid-cols-4 border p-1 items-center'>
+        return <div key={p.id} className='grid grid-cols-4 border p-1 items-center'>
             <p className='border-r'>{p.created_date}</p>
             <p className='border-r text-center'>{p.filtered_bird.name}</p>
             <button onClick={()=>navigateTo(p.id)} className='border-r underline'>view post</button>
@@ -37,6 +42,14 @@ function Account(){
     function updateEmail(e){
         setUserObj({...userObj, email: e.target.value})
     }
+    function submitUserUpdate(e){
+        e.preventDefault()
+        dispatch(updateUserInfo(userObj)).then(res => {
+            if(res.meta.requestStatus === 'fulfilled') toggleEdit()
+        })
+    }
+
+  
 
     return ( 
         <div className='page mt-[8vh] relative p-10'>
@@ -52,12 +65,23 @@ function Account(){
                     
                     <label>Username: </label>
 
+                    <div className={`${user.status !== 'pending' && 'hidden'}`}>
+                        <LoadingIcon />
+                    </div>
+                    
+
                     { 
                         edit ? (
-                            <form className='flex gap-2'>
+                            <form onSubmit={submitUserUpdate} className='flex gap-2'>
                                 <input value={userObj.email} onChange={updateEmail} className={`${!edit && 'hidden'} px-1 w-fit border`}  /> 
-                                <button>submit</button>
-                                <button onClick={toggleEdit}>cancel</button>
+
+                                <div className={`${user.status !== 'pending' && 'hidden'}`}>
+                                    <LoadingIcon />
+                                </div>  
+
+                                <button className={`${user.status === 'pending' && 'hidden'}`} >submit</button>
+                                <button className={`${user.status === 'pending' && 'hidden'}`} type='button' onClick={toggleEdit}>cancel</button>
+                   
                             </form>
                         ):(
                             <p className={`${edit && 'hidden' } px-1`}>{userObj.email}</p> 

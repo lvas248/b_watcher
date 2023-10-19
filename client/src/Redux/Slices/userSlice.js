@@ -1,4 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+export const updateUserInfo = createAsyncThunk(
+    'updateEmail/user',
+    async( obj,{ rejectWithValue })=>{
+        const response = await fetch('/update_user',{
+            method:'PATCH',
+            headers: {
+                'Content-type':'application/json'
+            },
+            body: JSON.stringify({ user: obj})
+        })
+        const data = await response.json()
+
+        if(response.ok) return data.email
+        return rejectWithValue(data)
+    }
+)
 
 const initialState = {
     entity: { email: ''},
@@ -22,6 +39,22 @@ const userSlice = createSlice({
         }
 
     },
+    extraReducers: (builder) => {
+        builder
+            .addCase( updateUserInfo.pending, ( state ) =>{
+                state.status = 'pending'
+                state.error = null
+            } )
+            .addCase( updateUserInfo.rejected, ( state, action) =>{
+                state.status = 'idle'
+                state.error = action.payload
+            })
+            .addCase( updateUserInfo.fulfilled, ( state, action ) =>{
+                state.status = 'idle'
+                state.error = null
+                state.entity.email = action.payload
+            })
+    }
 })
 
 export const { removeUser, addUser } = userSlice.actions
