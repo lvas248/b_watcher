@@ -6,9 +6,6 @@ export const submitPost = createAsyncThunk(
     async(formData, { dispatch, rejectWithValue })=>{
         const response = await fetch('/post',{
             method:'POST',
-            // headers: {
-            //     'Content-type':'application/json'
-            // },
             body: formData
         })
         const data = await response.json()

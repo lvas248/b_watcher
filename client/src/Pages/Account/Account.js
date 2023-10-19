@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useState } from 'react'
 import { updateUserInfo } from "../../Redux/Slices/userSlice";
-// import { deletePost } from "../../Redux/Slices/postSlice";
+import { deletePost } from "../../Redux/Slices/postSlice";
 import LoadingIcon from "../../Components/LoadingIcon";
 
 function Account(){
@@ -12,19 +12,19 @@ function Account(){
 
     const user = useSelector( state => state.user )
     const userBirds = useSelector( state => state.bird.entity.userBirds)
-    const posts = useSelector( state => state.post.entity)
+    const posts = useSelector( state => state.post)
     
     const [ userObj, setUserObj ] = useState(user.entity)
     const [ edit, setEdit ] = useState(false)
     const [ deleteCheck, setDeleteCheck ] = useState(false)
 
-    const renderPosts = posts.map( p => {
+    const renderPosts = posts.entity.map( p => {
         return <div key={p.id} className='grid grid-cols-4 border p-1 items-center'>
-            <p className='border-r'>{p.created_date}</p>
-            <p className='border-r text-center'>{p.filtered_bird.name}</p>
-            <button onClick={()=>navigateTo(p.id)} className='border-r underline'>view post</button>
-            <button className='text-red-600 underline'>delete</button>
-        </div>
+                    <p className='border-r'>{p.created_date}</p>
+                    <p className='border-r text-center'>{p.filtered_bird.name}</p>
+                    <button onClick={()=>navigateTo(p.id)} className='border-r underline'>view post</button>
+                    <button onClick={()=>submitDeletePost(p.id)}className='text-red-600 underline'>delete</button>
+                </div>
     })
 
     function navigateTo(post_id){
@@ -49,7 +49,10 @@ function Account(){
         })
     }
 
-  
+    function submitDeletePost(id){
+        dispatch(deletePost({post_id: id}))
+    }
+
 
     return ( 
         <div className='page mt-[8vh] relative p-10'>
@@ -94,23 +97,13 @@ function Account(){
 
             </div>
 
-            <div id='stats'
-                className='flex flex-col gap-2 py-4'>
-                <p className='font-bold '>Stats: </p>
-                <div className='px-2'>
-                    <p>Posts: {posts.length} </p>
-                    <p>Birds: {userBirds.length}</p>
-
-                </div>
-
-            </div>
 
             <div id='posts' 
                 className='flex flex-col gap-2 py-4 '>
 
                 <div className='flex gap-2'>
                     <p className='font-bold'>Posts</p>
-                    <button className='underline text-xs'>Delete All</button>
+                    <div className={`${posts.status !== 'pending' && 'hidden'}`}><LoadingIcon /></div>
                 </div>
 
 
