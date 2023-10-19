@@ -5,6 +5,7 @@ import { updatePost, deletePost } from '../../Redux/Slices/postSlice'
 import MyMap from '../../Components/MyMap'
 import pinIcon from '../../Assets/Icons/pin.png'
 import moreIcon from '../../Assets/Icons/icons8-dots-90.png'
+import LoadingIcon from '../../Components/LoadingIcon'
 
 function PostCard2({post}) {
 
@@ -26,10 +27,10 @@ function PostCard2({post}) {
         }
     })
 
-    console.log(editObj)
-
     const allBirds = useSelector( state => state.bird.entity.allBirds)
-   
+    
+    const postStatus = useSelector( state => state.post.status)
+
     const renderBirdOptions = allBirds?.map( b => {
         return <option key={b.id} value={b.id}>{b.name}</option>
     })  
@@ -95,7 +96,7 @@ function PostCard2({post}) {
                     className='flex justify-between items-center'>
 
                     <div className='flex items-center gap-4'>
-                        <div className='rounded-full bg-slate-200 border border-black '>
+                        <div className='rounded-full bg-slate-200 border border-black '> 
                             <img className='bg-cover rounded-full h-[40px] w-[40px] ' alt='bird' src={post?.filtered_bird?.thumbnail} />
                         </div>
 
@@ -109,16 +110,17 @@ function PostCard2({post}) {
 
                     </div>
 
+                    <button onClick={toggleMoreBtn} className={`${ moreBtnclicked && 'hidden' } h-[18px] w-[18px]`}> <img className='bg-cover' alt='more' src={moreIcon} /> </button>
+
                                         
-                    <div id='buttonscCntainer' className='flex gap-2 text-xs'>
+                    <div id='buttonscCntainer' className={`${!moreBtnclicked && 'hidden'} flex gap-2 text-xs`}>
 
-                        <button onClick={toggleEdit} className={`${( !moreBtnclicked || edit ) && 'hidden'}`} >edit</button>
                         
-                        <button onClick={submitDelete} className={`${!edit && 'hidden'} text-red-500`}>delete</button>
+                        <button onClick={submitDelete} className={`${!edit && 'hidden'} text-white border p-2 rounded-xl bg-red-400`}>delete</button>
                         
-                        <button onClick={submitUpdate} className={`${!edit && 'hidden'} text-green-600`}>update</button>
+                        <button onClick={submitUpdate} className={`${!edit && 'hidden'} text-white border p-2 rounded-xl bg-green-600`}>update</button>
 
-                        <button onClick={toggleMoreBtn} className=''> { moreBtnclicked ? 'cancel' : <div className='h-[18px] w-[18px]'><img className='bg-cover' alt='more' src={moreIcon} /></div>} </button>
+                        <button onClick={toggleMoreBtn} className=''>{ postStatus === 'pending' ? <LoadingIcon /> : 'cancel' }</button>
                         
                     </div>     
 

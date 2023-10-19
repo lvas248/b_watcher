@@ -72,8 +72,8 @@ function MapComp({posts, bounds}) {
                     longitude={p.place.longitude}
                     onClick={()=>selectPost(p)}
                 >
-                    <button  className={` ${(post?.id !== p.id )&& 'hover:animate-scale-large'} `}>
-                        <img className={`${post?.id === p.id ? 'h-[50px] border-4 border-[#3A9BDC]' : 'h-[30px]'  }  rounded-full border border-black hover:z-50`} alt='marker' src={p?.filtered_bird?.thumbnail} />
+                    <button  className={` ${(post?.id !== p.id ) && 'hover:animate-scale-large'} `}>
+                        <img className={`${post?.id === p.id ? 'h-[50px] border-4 border-[#3A9BDC]' : 'h-[30px]'  }  rounded-full border border-black hover:z-50`} alt='marker' src={p?.image_url} />
                     </button>
                 </Marker>
     })

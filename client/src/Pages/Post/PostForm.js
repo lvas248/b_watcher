@@ -46,7 +46,7 @@ function PostForm() {
     }
   
     function setPlace(coords){
-        setPostObj({...postObj, place_attributes: { ...postObj.place_attributes, latitude: coords.lat, longitude: coords.lng}})
+        setPostObj({...postObj, place_attributes: { ...postObj.place_attributes, latitude: coords.latitude, longitude: coords.longitude}})
     }
 
     function toggleMap(){
