@@ -11,7 +11,6 @@ function Account(){
     const dispatch = useDispatch()
 
     const user = useSelector( state => state.user )
-    const userBirds = useSelector( state => state.bird.entity.userBirds)
     const posts = useSelector( state => state.post)
     
     const [ userObj, setUserObj ] = useState(user.entity)
@@ -23,7 +22,7 @@ function Account(){
                     <p className='border-r'>{p.created_date}</p>
                     <p className='border-r text-center'>{p.filtered_bird.name}</p>
                     <button onClick={()=>navigateTo(p.id)} className='border-r underline'>view post</button>
-                    <button onClick={()=>submitDeletePost(p.id)}className='text-red-600 underline'>delete</button>
+                    <button onClick={()=>submitDeletePost(p.id)} className='text-red-600 underline' >delete</button>
                 </div>
     })
 
@@ -108,9 +107,9 @@ function Account(){
 
 
                 <div className=' text-[10px] sm:text-xs m-auto'>
-                    {renderPosts}
+                    {renderPosts} 
                 </div>
-                
+
             </div>
 
 
