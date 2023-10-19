@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-# signup 
+    # signup 
     def create
         user = User.create!(user_params)
         session[:user_id] = user.id        
@@ -10,6 +10,13 @@ class UsersController < ApplicationController
     #refresh
     def show
         user = get_user
+        render json: user, status: :ok
+    end
+
+    #edit email address
+    def update
+        user = get_user
+        user.update(user_params)
         render json: user, status: :ok
     end
 
