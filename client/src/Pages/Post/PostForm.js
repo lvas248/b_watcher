@@ -92,100 +92,106 @@ function PostForm() {
 
 
     return ( 
+
+        <div className='h-[92vh] mt-[8vh] w-full grid '>
+
     
-    <form onSubmit={submitForm} className='form gap-4 font-bold text-lg'>
+            <form onSubmit={submitForm} className='form gap-4 font-bold text-lg'>
 
-        <h3>New Post</h3>
+            <h3>New Post</h3>
 
-        <div id='radios' className='flex gap-10 '>
+            <div id='radios' className='flex gap-10 '>
 
-            <p className='formLabel text-lg'>Bird:</p>
-            
-            <div className='flex items-center gap-2'>
-                <input checked={radio === 'select'} type='radio' name='selectCreate' id='select'  onChange={updateRadio} />
-                <label className='text-xs'>Select</label>
+                <p className='formLabel text-lg'>Bird:</p>
+                
+                <div className='flex items-center gap-2'>
+                    <input checked={radio === 'select'} type='radio' name='selectCreate' id='select'  onChange={updateRadio} />
+                    <label className='text-xs'>Select</label>
+                </div>
+
+                <div className='flex items-center gap-2'>
+                    <input checked={radio === 'create'} type='radio' name='selectCreate' id='create'  onChange={updateRadio} />
+                    <label className='text-xs'>Create Bird</label>
+                </div>
+
             </div>
 
-            <div className='flex items-center gap-2'>
-                <input checked={radio === 'create'} type='radio' name='selectCreate' id='create'  onChange={updateRadio} />
-                <label className='text-xs'>Create Bird</label>
+            <div id='select' 
+                className='grid'>
+                <select name='bird_id' onChange={updatePostObj} className={`${radio !== 'select' && 'hidden'} border-2 border-black  text-center text-xs p-1`}>
+                    {[<option key='0' value=''>Bird Select</option>, ...renderBirdOptions]}
+                </select>
             </div>
 
-        </div>
+            <div id='createBirdForm' 
+                className={`${ radio !== 'create' && 'hidden'} grid gap-4`}
+            >
+                <div className='flex flex-col gap-1'>
+                    <div className='flex justify-between'>
+                        <label className='formLabel'>New Bird Name: </label>
+                        <p className='error'>{errors?.errors['bird.name']}</p>
+                    </div>
+                    <input name='name' value={postObj.bird_attributes?.name} onChange={updateBirdAttributes} className='formInput text-xs border-2 border-black px-2'/>
+                </div>
 
-        <div id='select' 
-            className='grid'>
-            <select name='bird_id' onChange={updatePostObj} className={`${radio !== 'select' && 'hidden'} border-2 border-black  text-center text-xs p-1`}>
-                {[<option key='0' value=''>Bird Select</option>, ...renderBirdOptions]}
-            </select>
-        </div>
+                <div className='flex flex-col gap-1'>
+                    <div className='flex justify-between'>
+                        <label className='formLabel'>Description: </label>
+                        <p className='error'>{errors?.errors['bird.description']}</p>
+                    </div>
+                    <textarea name='description' value={postObj.bird_attributes?.description} onChange={updateBirdAttributes} className='formInput text-xs border-2 border-black px-2 h-[5vh]'/>
+                </div>
+            </div>
 
-        <div id='createBirdForm' 
-            className={`${ radio !== 'create' && 'hidden'} grid gap-4`}
-        >
+            <div id='addressSearch'
+                className='flex flex-col gap-1'>
+
+                <div className='flex justify-between'>
+                    <label className='formLabel'>Address: </label>
+                    <p className='error'>{errors?.errors['place.address']}</p>
+                </div>
+
+                <button onClick={toggleMap} type='button' className={`${displayMap && 'hidden'} formInput text-xs w-full px-2 hover:bg-black hover:text-white`}>{ postObj.place_attributes.latitude ? 'Location Selected' : 'Select Location'}</button>
+                
+                <div>
+                    <MyMap display={displayMap} toggleMap={toggleMap} setPlace={setPlace} currentLocation/>
+                </div>
+
+            </div>
+
             <div className='flex flex-col gap-1'>
                 <div className='flex justify-between'>
-                    <label className='formLabel'>New Bird Name: </label>
-                    <p className='error'>{errors?.errors['bird.name']}</p>
+                    <label className='formLabel'>Caption: </label>
+                    <p className='error'>{errors?.errors?.caption}</p>
                 </div>
-                <input name='name' value={postObj.bird_attributes?.name} onChange={updateBirdAttributes} className='formInput text-xs border-2 border-black px-2'/>
+                <textarea id='caption' name='caption' value={postObj.caption} onChange={updatePostObj} className='formInput text-xs px-2 w-full' />
             </div>
 
-            <div className='flex flex-col gap-1'>
-                <div className='flex justify-between'>
-                    <label className='formLabel'>Description: </label>
-                    <p className='error'>{errors?.errors['bird.description']}</p>
+            <div id='addImage '
+                className=' p-1 flex flex-col gap-4'
+            >
+                <div className='col-span-2 w-[150px] h-[150px] aspect-w-1 aspect-h-1 border-2 m-auto'>
+                    <img alt='bird' src={ imgPreview || bird} className='col-span-2 object-cover object-center w-full h-full' />
                 </div>
-                <textarea name='description' value={postObj.bird_attributes?.description} onChange={updateBirdAttributes} className='formInput text-xs border-2 border-black px-2 h-[5vh]'/>
-            </div>
-        </div>
 
-        <div id='addressSearch'
-            className='flex flex-col gap-1'>
+                <div className='flex flex-col gap-1'>
+                    <label className='text-xs'>Image: </label>
 
-            <div className='flex justify-between'>
-                <label className='formLabel'>Address: </label>
-                <p className='error'>{errors?.errors['place.address']}</p>
-            </div>
+                    <input className='text-xs border-2 border-black p-1' type='file' onChange={handleFileChange}/>
 
-            <button onClick={toggleMap} type='button' className={`${displayMap && 'hidden'} formInput text-xs w-full px-2 hover:bg-black hover:text-white`}>{ postObj.place_attributes.latitude ? 'Location Selected' : 'Select Location'}</button>
-            
-            <div>
-                <MyMap display={displayMap} toggleMap={toggleMap} setPlace={setPlace} currentLocation/>
-            </div>
-        
-        </div>
-
-        <div className='flex flex-col gap-1'>
-            <div className='flex justify-between'>
-                <label className='formLabel'>Caption: </label>
-                <p className='error'>{errors?.errors?.caption}</p>
-            </div>
-            <textarea id='caption' name='caption' value={postObj.caption} onChange={updatePostObj} className='formInput text-xs px-2 w-full' />
-        </div>
-        
-        <div id='addImage '
-            className=' p-1 flex flex-col gap-4'
-        >
-            <div className='col-span-2 w-[150px] h-[150px] aspect-w-1 aspect-h-1 border-2 m-auto'>
-                <img alt='bird' src={ imgPreview || bird} className='col-span-2 object-cover object-center w-full h-full' />
-            </div>
-
-            <div className='flex flex-col gap-1'>
-                <label className='text-xs'>Image: </label>
-
-                <input className='text-xs border-2 border-black p-1' type='file' onChange={handleFileChange}/>
+                </div>
 
             </div>
+
+
+
+            <SubmitButton label='Submit Post' status={postStatus}  />
+
+
+            </form> 
 
         </div>
-
-
-       
-        <SubmitButton label='Submit Post' status={postStatus}  />
-
-
-    </form> );
+    )
 }
 
 export default PostForm;

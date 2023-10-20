@@ -10,7 +10,7 @@ function BirdMap() {
  
     return ( 
     
-        <div className='mt-[9vh]'>
+        <div className='mt-[8vh] h-[92vh]'>
             
             <MapComp posts={posts} bounds={bounds}/>
 

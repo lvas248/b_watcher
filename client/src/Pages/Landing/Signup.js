@@ -48,54 +48,58 @@ function Login({toggle}){
         history.push(`/${path}`)
     }
 
-    return (    
-        <form 
-            onSubmit={submitSignup}
-            className='form'>
+    return (  
+        <div className='h-[92vh] mt-[8vh] w-full flex'>
+  
+            <form 
+                onSubmit={submitSignup}
+                className='form' >
 
-            <div className='flex justify-between'>
-                <label className='formLabel'>EMAIL</label>
-                <p className='error'>{error?.email}</p>
-            </div>
+                <div className='flex justify-between'>
+                    <label className='formLabel'>EMAIL</label>
+                    <p className='error'>{error?.email}</p>
+                </div>
 
-            <input 
-                className='formInput' 
-                type='email' 
-                name='email' 
-                value={submitObj.email} 
-                onChange={updateSubmitObj}
-            />
+                <input 
+                    className='formInput' 
+                    type='email' 
+                    name='email' 
+                    value={submitObj.email} 
+                    onChange={updateSubmitObj}
+                />
 
-            <div className='flex justify-between'>
-                <label className='formLabel'>PASSWORD</label>
-                <p className='error'>{error?.password}</p>
-            </div>            
-            
-            <input 
-                className='formInput' 
-                type='password' 
-                name='password'
-                value={submitObj.password} 
-                onChange={updateSubmitObj}
-            />
+                <div className='flex justify-between'>
+                    <label className='formLabel'>PASSWORD</label>
+                    <p className='error'>{error?.password}</p>
+                </div>            
+                
+                <input 
+                    className='formInput' 
+                    type='password' 
+                    name='password'
+                    value={submitObj.password} 
+                    onChange={updateSubmitObj}
+                />
 
-            <div className='flex justify-between'>
-                <label className='formLabel'>PASSWORD CONFIRMATION</label>
-                <p className='error'>{error?.password_confirmation}</p>
-            </div>            <input 
-                className='formInput' 
-                type='password' 
-                name='password_confirmation'
-                value={submitObj.password_confirmation} 
-                onChange={updateSubmitObj}
-            />
+                <div className='flex justify-between'>
+                    <label className='formLabel'>PASSWORD CONFIRMATION</label>
+                    <p className='error'>{error?.password_confirmation}</p>
+                </div>            <input 
+                    className='formInput' 
+                    type='password' 
+                    name='password_confirmation'
+                    value={submitObj.password_confirmation} 
+                    onChange={updateSubmitObj}
+                />
 
-            <SubmitButton label='SIGN UP' status={sessionStatus}/>
+                <SubmitButton label='SIGN UP' status={sessionStatus}/>
 
-            <button onClick={toggle} type='button' className='text-xs underline text-right'>or login</button>
+                <button onClick={()=>navigateTo('login')} type='button' className='text-xs underline text-right'>or login</button>
 
-            
-        </form> 
+                
+            </form> 
+
+        </div>
     );
 }
 

@@ -7,9 +7,9 @@
     @apply text-red-500 block text-xs
   }
 
-  .page{
+  /* .page{
     @apply max-w-[1050px] m-auto 
-  }
+  } */
   .bgBlue{
     @apply bg-[#3A9BDC]
   }
@@ -32,6 +32,10 @@
 
   .skeleton-text{
     @apply w-[100%] h-[20px] bg-[#ccc] 
+  }
+
+  .image{
+    @apply h-full w-full object-cover
   }
 
 }

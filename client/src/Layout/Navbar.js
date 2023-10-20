@@ -19,11 +19,11 @@ function Navbar(){
     }
 
     return ( 
-        <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 m-auto max-w-[1050px] bgBlue border-2 border-black w-full flex flex-col p-3  ${isOpen ? 'h-[30vh]' : 'h-[8vh]'} transform-h duration-300 overflow-hidden z-50`}>
+        <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 m-auto bg-slate-200 border-2 border-black w-full flex flex-col p-3  ${isOpen ? 'h-[30vh]' : 'h-[8vh]'} transform-h duration-300 overflow-hidden z-50`}>
             
-            <div className='flex justify-between items-center font-bold'>
+            <div className='flex justify-between items-center font-bold px-[6vw]'>
 
-                <button onClick={()=>navigateTo('feed')} >BirdWatcher</button>
+                <button onClick={()=>navigateTo('')} >BirdWatcher</button>
                 
                 <div className=''>
                     <Hamburger toggled={isOpen} toggle={setIsOpen}  />
@@ -79,7 +79,6 @@ function Navbar(){
                 }
 
             </div>
-
 
         </div> 
     );

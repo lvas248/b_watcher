@@ -10,17 +10,21 @@ import Navbar from './Layout/Navbar';
 import PostForm from './Pages/Post/PostForm';
 import Feed from './Pages/Feed/Feed';
 import BirdMap from './Pages/BirdMap/BirdMap';
-import Landing from './Pages/Landing/Landing';
+import Landing2 from './Pages/Landing/Landing2';
 import Account from './Pages/Account/Account';
+import Login from './Pages/Landing/Login';
+import Signup from './Pages/Landing/Signup'
+
 function App() {
 
   const dispatch = useDispatch()
   const history = useHistory()
 
   useEffect(() => {
-    dispatch(refreshSession()).then(res => {
-      if(res.meta.requestStatus === 'fulfilled') history.push('/feed')
-    })
+    dispatch(refreshSession())
+    // .then(res => {
+    //   if(res.meta.requestStatus === 'fulfilled') history.push('/feed')
+    // })
   }, [dispatch, history]);
 
   useEffect(() => {
@@ -28,17 +32,23 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className=''>
+    <div className='bg-slate-200 '>
 
       <Navbar />
 
       <Switch>
-        <Route exact path='/'><Landing /></Route>
+
+        <Route exact path='/'><Landing2 /></Route>
+
         <Route path='/feed/:id?'><Feed /></Route>
         <Route path='/map/:id?'><BirdMap /></Route>
         <Route path='/post/'><PostForm /></Route>
-
         <Route path='/account'><Account /></Route>
+        <Route path='/login'><Login /></Route>
+        <Route path='/signup'><Signup /></Route>
+        
+        
+
       </Switch>
 
     </div>

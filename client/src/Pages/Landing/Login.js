@@ -48,34 +48,37 @@ function Login({toggle}){
     }
 
     return (    
-        <form 
-            onSubmit={submitLogin}
-            className='form'>
+        <div className='h-[92vh] mt-[8vh] w-full flex'>
+            <form 
+                onSubmit={submitLogin}
+                className='form' >
 
-            <label className='formLabel'>EMAIL</label>
-            <input 
-                className='formInput' 
-                type='email' 
-                name='email' 
-                value={loginObj.email} 
-                onChange={updateLoginObj}
-            />
-            <label className='formLabel'>PASSWORD</label>
-            <input 
-                className='formInput' 
-                type='password' 
-                name='password'
-                value={loginObj.password} 
-                onChange={updateLoginObj}
-            />
+                <label className='formLabel'>EMAIL</label>
+                <input 
+                    className='formInput' 
+                    type='email' 
+                    name='email' 
+                    value={loginObj.email} 
+                    onChange={updateLoginObj}
+                />
+                <label className='formLabel'>PASSWORD</label>
+                <input 
+                    className='formInput' 
+                    type='password' 
+                    name='password'
+                    value={loginObj.password} 
+                    onChange={updateLoginObj}
+                />
 
-            <SubmitButton label='Login' status={sessionStatus}/>
+                <SubmitButton label='Login' status={sessionStatus}/>
 
-            <p className={`${!error && 'invisible'} error`}>{error?.error}</p>
+                <p className={`${!error && 'invisible'} error`}>{error?.error}</p>
 
-            <button onClick={toggle} type='button' className='text-xs underline text-right'>or signup</button>
-            
-        </form> 
+                <button onClick={()=>navigateTo('signup')} type='button' className='text-xs underline text-right'>or signup</button>
+                
+            </form> 
+
+        </div>
     );
 }
 
