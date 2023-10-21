@@ -19,7 +19,7 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
     }
 
     return ( 
-        <div className={`${!display && 'hidden'} max-w-[400px] m-auto relative`}>
+        <div className={`${!display && 'hidden'} h-full m-auto relative`}>
 
             <Map
                 mapboxAccessToken={mapboxApiKey}
@@ -28,10 +28,11 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
                     latitude: marker.latitude,
                     zoom: 10
                   }}
+                
                 mapStyle="mapbox://styles/mapbox/streets-v11"
                 style={{ 
                     height: '300px', 
-                    width: '300px',
+                    width: '400px',
                     margin: 'auto',
                     border: '2px solid black'
                 }}                

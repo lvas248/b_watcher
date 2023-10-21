@@ -3,7 +3,7 @@ import LoadingIcon from "./LoadingIcon";
 function SubmitButton({label, status}) {
     return (           
     <button
-        className='formButton'
+        className='formButton w-full'
     >
         {status === 'pending' ? <LoadingIcon />: label.toUpperCase() }
     </button> );
