@@ -2,10 +2,12 @@ import card from '../../Assets/card.png'
 import map from '../../Assets/map.png'
 import bird from '../../Assets/bird.png'
 import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 function Landing2() {
 
     const history = useHistory()
+    const loggedIn = useSelector(state => state.session.loggedIn)
 
     const bottomCards = [
         {
@@ -87,11 +89,14 @@ function Landing2() {
                             >
                                 <p className='text-xs text-center m-auto w-3/4 py-5'>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint. </p>
                                
-                                <div className='flex flex-col gap-2'>
+                                <div className={` ${loggedIn && 'hidden'} flex flex-col gap-2`}>
+
                                     <button onClick={navigateTo} name='login' className='text-center w-3/4 lg:w-1/2 p-1 m-auto bg-black text-white'>Login</button>
                                     <button onClick={navigateTo} name='signup' className='text-center w-3/4 lg:w-1/2 p-1 m-auto bg-black text-white'>Signup</button>
 
                                 </div>
+
+                                <button onClick={navigateTo} name='feed' className={` ${!loggedIn && 'hidden'} text-center w-3/4 lg:w-1/2 p-1 m-auto bg-black text-white`}>Go to my feed</button>
 
                             </div>
                     </div>

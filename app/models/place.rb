@@ -10,7 +10,8 @@ class Place < ApplicationRecord\
 
 
     def reverse_geolocate
+
         result = Geocoder.search([self.latitude, self.longitude])
-        self.address = "#{result.first.data['address']['road']}, #{result.first.data['address']['city'] || result.first.data['address']['town'] || result.first.data['address']['village'] }, #{result.first.data['address']['state']}"
+        self.address = "#{result.first.data['address']['road']}, #{result.first.data['address']['city'] || result.first.data['address']['town']}, #{result.first.data['address']['state']}"
     end
 end
