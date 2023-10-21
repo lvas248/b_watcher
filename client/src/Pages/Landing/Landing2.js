@@ -88,8 +88,8 @@ function Landing2() {
                                 <p className='text-xs text-center m-auto w-3/4 py-5'>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint. </p>
                                
                                 <div className='flex flex-col gap-2'>
-                                    <button onClick={navigateTo} name='login' className='text-center w-3/4 lg:w-1/2 border border-black m-auto'>Login</button>
-                                    <button onClick={navigateTo} name='signup' className='text-center w-3/4 lg:w-1/2 border border-black m-auto'>Signup</button>
+                                    <button onClick={navigateTo} name='login' className='text-center w-3/4 lg:w-1/2 p-1 m-auto bg-black text-white'>Login</button>
+                                    <button onClick={navigateTo} name='signup' className='text-center w-3/4 lg:w-1/2 p-1 m-auto bg-black text-white'>Signup</button>
 
                                 </div>
 

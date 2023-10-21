@@ -22,20 +22,14 @@ function MapComp({posts, bounds}) {
     }
 
     useEffect(()=>{
-            if(post){
+            if( post ){
                 zoomTo({
-                    center: [post.place.longitude, post.place.latitude],
+                    center: [post?.place?.longitude, post?.place?.latitude],
                     zoom: 12,
                     duration: 1000
                 })            
             }else if(!Number.isNaN(bounds.longitude)){
-                zoomTo(
-                    {
-                        center: [bounds.longitude, bounds.latitude],
-                        zoom: 9.5,
-                        duration: 1000
-                    }
-                )
+                mapRef.current?.fitBounds(bounds)
             }
 
     },[post, bounds])
@@ -43,7 +37,6 @@ function MapComp({posts, bounds}) {
     function selectPost(p=''){
         history.push(`/map/${p?.id}`)
         setDisplayBlurb(true)
-
     }
 
     function zoomInOnSelection(){
@@ -53,7 +46,8 @@ function MapComp({posts, bounds}) {
 
     function zoomeToBounds(){
         setDisplayBlurb(false)
-        zoomTo({center: [bounds.longitude, bounds.latitude], zoom: bounds.zoom })
+        mapRef.current.fitBounds(bounds)
+        // zoomTo({center: [bounds.longitude, bounds.latitude], zoom: bounds.zoom })
     }
 
     function navigateToFeed(){
@@ -78,14 +72,14 @@ function MapComp({posts, bounds}) {
                 </Marker>
     })
 
+
     return ( 
         <div className='p-5 max-w-[1050px] m-auto'>
 
             <Map
                 ref={mapRef}
                 mapboxAccessToken={mapboxApiKey}
-                initialViewState={postLocation.longitude ? postLocation : bounds}
-
+                initialViewState={postLocation.longitude ? postLocation : { longitude: -98.5795, latitude: 39.8283,  zoom: 2.3 } }
                 mapStyle="mapbox://styles/mapbox/streets-v11"
                 style={{ 
                     height: '85vh', 
@@ -98,7 +92,6 @@ function MapComp({posts, bounds}) {
                     positionOptions={{ enableHighAccuracy: true }}
                     trackUserLocation={true}
                     onGeolocate={()=>setDisplayBlurb(false)}
-
                 />
                 <NavigationControl />
 
