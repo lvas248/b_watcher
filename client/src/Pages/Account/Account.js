@@ -62,74 +62,75 @@ function Account(){
 
 
     return ( 
-        <div className='page mt-[8vh] relative p-10'>
-            
-            <h1 className='text-3xl'>Account</h1>
+        <div className='mt-[8vh] min-h-[92vh] relative p-10'>
 
+            <div className='max-w-[750px] m-auto'>
+                <h1 className='text-3xl'>Account</h1>
 
-            <div id='userinfo' 
-                className='flex flex-col gap-2 py-4'>
-                <p className='font-bold'>User Info:</p>
-                
-                <div className='px-2 flex gap-2'>
+                <div id='userinfo' 
+                    className='flex flex-col gap-2 py-4'>
+                    <p className='font-bold'>User Info:</p>
                     
-                    <label>Username: </label>
+                    <div className='px-2 flex gap-2'>
+                        
+                        <label>Username: </label>
 
-                    { 
-                        edit ? (
+                        { 
+                            edit ? (
 
-                            <form onSubmit={submitUserUpdate} className='flex gap-2'>
+                                <form onSubmit={submitUserUpdate} className='flex gap-2'>
 
-                                <input value={userObj.email} onChange={updateEmail} className={`${!edit && 'hidden'} px-1 w-fit border`}  /> 
+                                    <input value={userObj.email} onChange={updateEmail} className={`${!edit && 'hidden'} px-1 w-fit border`}  /> 
 
-                                <div className={`${user.status !== 'pending' && 'hidden'}`}>
-                                    <LoadingIcon />
-                                </div>  
+                                    <div className={`${user.status !== 'pending' && 'hidden'}`}>
+                                        <LoadingIcon />
+                                    </div>  
 
-                                <button className={`${user.status === 'pending' && 'hidden'}`} >submit</button>
-                                <button className={`${user.status === 'pending' && 'hidden'}`} type='button' onClick={toggleEdit}>cancel</button>
-                   
-                            </form>
+                                    <button className={`${user.status === 'pending' && 'hidden'}`} >submit</button>
+                                    <button className={`${user.status === 'pending' && 'hidden'}`} type='button' onClick={toggleEdit}>cancel</button>
+                    
+                                </form>
 
-                        ):(
-                            <p className={`${edit && 'hidden' } px-1`}>{userObj.email}</p> 
-                        )
-                    }
+                            ):(
+                                <p className={`${edit && 'hidden' } px-1`}>{userObj.email}</p> 
+                            )
+                        }
 
-                    <button onClick={toggleEdit} className={` ${edit && 'hidden'} px-2 bgBlue rounded-xl border-2 border-black`}>edit</button>    
+                        <button onClick={toggleEdit} className={` ${edit && 'hidden'} px-2 bgBlue rounded-xl border-2 border-black`}>edit</button>    
+
+                    </div>
 
                 </div>
 
+                <div id='posts' 
+                    className='flex flex-col gap-2 py-4 '>
+
+                    <div className='flex gap-2'>
+                        <p className='font-bold'>Posts</p>
+                        <div className={`${posts.status !== 'pending' && 'hidden'}`}><LoadingIcon /></div>
+                    </div>
+
+
+                    <div className=' text-[10px] sm:text-xs m-auto'>
+                        {renderPosts} 
+                    </div>
+
+                </div>
+
+                <div id='deleteAccount' 
+                    className='grid items-center text-white mt-[5vh] max-w-[500px] m-auto'>
+
+                    <div className={`${!deleteCheck && 'hidden'} flex`}>
+                        <button onClick={toggleDelete} className='w-full bg-yellow-300 border-2 border-black font-bold p-2' >Cancel</button>
+                        <button onClick={submitDeleteAccount} className='place-self-center w-full bg-red-600 border-2 border-black font-bold p-2' >{ user.status === 'pending' ? <LoadingIcon /> : "DELETE ACOUNT"}</button>
+                    </div>
+
+                    <button onClick={toggleDelete} className={`${deleteCheck && 'hidden'} text-center text-white w-full p-2 bg-red-600 border-2 border-black font-bold`}>DELETE ACCOUNT</button>
+            
+                </div>
             </div>
+            
 
-
-            <div id='posts' 
-                className='flex flex-col gap-2 py-4 '>
-
-                <div className='flex gap-2'>
-                    <p className='font-bold'>Posts</p>
-                    <div className={`${posts.status !== 'pending' && 'hidden'}`}><LoadingIcon /></div>
-                </div>
-
-
-                <div className=' text-[10px] sm:text-xs m-auto'>
-                    {renderPosts} 
-                </div>
-
-            </div>
-
-
-            <div id='deleteAccount' 
-                className='grid items-center text-white mt-[5vh] max-w-[500px] m-auto'>
-
-                <div className={`${!deleteCheck && 'hidden'} flex`}>
-                    <button onClick={toggleDelete} className='w-full bg-yellow-300 border-2 border-black font-bold p-2' >Cancel</button>
-                    <button onClick={submitDeleteAccount} className='place-self-center w-full bg-red-600 border-2 border-black font-bold p-2' >{ user.status === 'pending' ? <LoadingIcon /> : "DELETE ACOUNT"}</button>
-                </div>
-
-                <button onClick={toggleDelete} className={`${deleteCheck && 'hidden'} text-center text-white w-full p-2 bg-red-600 border-2 border-black font-bold`}>DELETE ACCOUNT</button>
-           
-            </div>
 
 
 

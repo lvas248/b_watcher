@@ -17,6 +17,7 @@ function Feed(){
 
     const filteredPosts = posts.filter( p => p.filtered_bird.name.includes(bird||''))
 
+  
 
     useEffect( ()=>{
         const post = document.getElementById(id)
@@ -26,8 +27,6 @@ function Feed(){
             }, 100)
         }
     },[id, posts])
-  
-
 
     return ( 
         <div className='relative max-w-[1050px] mt-[8vh] mx-auto  h-[92vh] overflow-auto'>

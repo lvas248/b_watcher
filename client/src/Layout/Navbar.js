@@ -19,33 +19,35 @@ function Navbar(){
     }
 
     return ( 
-        <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 m-auto bg-slate-200 border-2 border-black w-full flex flex-col p-3  ${isOpen ? 'h-[30vh]' : 'h-[8vh]'} transform-h duration-300 overflow-hidden z-50`}>
+        <div className={`navbar verticalBar md:flex  md:flex-row transform-h px-[6vw] py-3 ${isOpen ? 'h-[30vh]' : 'h-[8vh]'}  md:h-[8vh] md:justify-between z-50`}>
             
-            <div className='flex justify-between items-center font-bold px-[6vw]'>
+
+            <div className='flex my-auto justify-between font-bold place'>
 
                 <button onClick={()=>navigateTo('')} >BirdWatcher</button>
                 
-                <div className=''>
+                <div className='md:hidden'>
                     <Hamburger toggled={isOpen} toggle={setIsOpen}  />
                 </div>
 
             </div>
 
-            <div
-                className={` ${!isOpen && 'hidden'} flex flex-col place-content-end gap-5 font-bold`}
+            <div 
+                className={` ${!isOpen && 'hidden md:flex'} flex flex-col md:flex-row  gap-5 font-bold `}
             >
+
                 <NavLink 
                     onClick={toggleOpen}
                     activeClassName='underline'
                     className='m-auto'
-                    to='/feed'
+                    to={loggedIn ? '/feed': '/login'}
                 >FEED</NavLink>
 
                 <NavLink 
                     onClick={toggleOpen}
                     activeClassName='underline'
                     className='m-auto'
-                    to='/map'
+                    to={loggedIn ? '/map': '/login'}
                 >MAP</NavLink>
 
                 
@@ -54,14 +56,14 @@ function Navbar(){
                     onClick={toggleOpen}
                     activeClassName='underline'
                     className='m-auto'
-                    to='/post'
+                    to={loggedIn ? '/post': '/login'}
                 >POST</NavLink>
 
                 <NavLink 
                     onClick={toggleOpen}
                     activeClassName='underline '
                     className='m-auto'
-                    to='/account'
+                    to={loggedIn ? '/account': '/login'}
                 >ACCOUNT</NavLink>
 
 

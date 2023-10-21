@@ -7,9 +7,13 @@
     @apply text-red-500 block text-xs
   }
 
-  /* .page{
-    @apply max-w-[1050px] m-auto 
-  } */
+  .verticalBar{
+    @apply  duration-300  flex-col overflow-hidden
+  }
+
+  .navbar{
+    @apply absolute top-0 left-1/2 transform -translate-x-1/2 m-auto bg-slate-200 border-b border-black w-full
+  }
   .bgBlue{
     @apply bg-[#3A9BDC]
   }
