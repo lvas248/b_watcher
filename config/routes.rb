@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
 
+  post '/locate', to: 'place#geolocate' 
   get '/birds', to: 'birds#index'
 
   post '/post', to: 'posts#create'

@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom'
 import bird from '../../Assets/Icons/icons8-bird-100.png'
 import SubmitButton from "../../Components/SubmitButton";
 import MyMap from "../../Components/MyMap";
-import PostCard2 from '../Feed/PostCard2'
 
 function PostForm() {
 

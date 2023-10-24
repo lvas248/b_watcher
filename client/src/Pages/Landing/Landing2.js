@@ -61,11 +61,14 @@ function Landing2() {
         history.push(`/${e.target.name}`)
     }
 
+
+
     return ( 
 
 
     <div className='mt-[8vh] h-[92vh] overflow-auto pb-[8vh] relative'>
-          
+
+
         <div id='topPanel'
             className='w-full bg-slate-200 flex max-h-[750px] '>
             <div id='leftPanel'
