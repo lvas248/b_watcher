@@ -36,7 +36,7 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
 
 
     return ( 
-        <div className={`${!display && 'hidden'} h-full m-auto relative`}>
+        <div className={`${!display && 'hidden'} h-full m-auto relative w-[400px]`}>
 
             <Geosearch mapboxApiKey={mapboxApiKey} zoomToSelectedResult={zoomToSelectedResult} />
 
@@ -51,7 +51,7 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
                 mapStyle="mapbox://styles/mapbox/streets-v11"
                 style={{ 
                     height: '300px', 
-                    width: '400px',
+                    width: 'auto',
                     margin: 'auto',
                     border: '2px solid black'
                 }}                
@@ -76,11 +76,6 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
                     onDragEnd={handleMarkerChange}
                 />
 
-                <FullscreenControl />
-
-   
-
-  
 
                 <div className='absolute bottom-2 z-50 w-full flex items-center'>
                     <button onClick={handleLocationSelect} type='button' className=' bg-white border border-black p-2 w-[50%] max-w-[200px] m-auto'>Select</button>

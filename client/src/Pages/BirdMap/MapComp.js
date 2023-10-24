@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Map, { GeolocateControl, Marker, NavigationControl } from 'react-map-gl'
 import "mapbox-gl/dist/mapbox-gl.css";
+import Geosearch from '../../Components/Geosearch';
 
 function MapComp({posts, bounds}) {
 
@@ -47,7 +48,6 @@ function MapComp({posts, bounds}) {
     function zoomeToBounds(){
         setDisplayBlurb(false)
         mapRef.current.fitBounds(bounds)
-        // zoomTo({center: [bounds.longitude, bounds.latitude], zoom: bounds.zoom })
     }
 
     function navigateToFeed(){
@@ -55,6 +55,10 @@ function MapComp({posts, bounds}) {
     }
     function navigateToFeedAndAddFilter(){
         history.push(`/feed?filter=${post.filtered_bird.name}`)
+    }
+
+    function zoomToSelectedResult(r){
+        r.bbox ? mapRef.current.fitBounds(r.bbox) : mapRef.current.flyTo({center: r.center, zoom: 15})
     }
 
     const mapboxApiKey = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
@@ -75,6 +79,8 @@ function MapComp({posts, bounds}) {
 
     return ( 
         <div className='p-5 max-w-[1050px] m-auto'>
+
+            <Geosearch mapboxApiKey={mapboxApiKey} zoomToSelectedResult={zoomToSelectedResult} />
 
             <Map
                 ref={mapRef}
