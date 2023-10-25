@@ -59,6 +59,7 @@ function MapComp({posts, bounds}) {
 
     function zoomToSelectedResult(r){
         r.bbox ? mapRef.current.fitBounds(r.bbox) : mapRef.current.flyTo({center: r.center, zoom: 15})
+        setDisplayBlurb(false)
     }
 
     const mapboxApiKey = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
@@ -76,11 +77,10 @@ function MapComp({posts, bounds}) {
                 </Marker>
     })
 
-
     return ( 
         <div className='p-5 max-w-[1050px] m-auto'>
 
-            <Geosearch mapboxApiKey={mapboxApiKey} zoomToSelectedResult={zoomToSelectedResult} />
+            {/* <Geosearch mapboxApiKey={mapboxApiKey} zoomToSelectedResult={zoomToSelectedResult} /> */}
 
             <Map
                 ref={mapRef}
@@ -101,8 +101,13 @@ function MapComp({posts, bounds}) {
                 />
                 <NavigationControl />
 
+                <div className='absolute top-2 left-2 w-[80%]'>
+                    <Geosearch mapboxApiKey={mapboxApiKey} zoomToSelectedResult={zoomToSelectedResult} />
+                </div>
+
+
                 <div id='customButtons' 
-                    className='absolute top-2 right-20 flex gap-2 z-10 font-bold '>
+                    className='absolute bottom-2 right-20 flex gap-2 z-10 font-bold '>
                     <button onClick={zoomeToBounds} className=' border p-1 rounded bgBlue text-white drop-shadow-md' >View All Birds</button>
                     <button onClick={zoomInOnSelection} className={`${!post && 'hidden'} border p-1 rounded drop-shadow-md bgBlue text-white`}>Zoom on Selected</button>
                 </div>

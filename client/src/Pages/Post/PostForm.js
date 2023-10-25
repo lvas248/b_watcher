@@ -191,7 +191,7 @@ function PostForm() {
 
                             <img className={` ${!imgPreview && 'hidden'} object-cover h-full w-full`} alt='bird' src={imgPreview} />
 
-                            <div className={`${imgPreview && 'hidden'} grid place-content-center h-full w-full`}>
+                            <div className={`${imgPreview && 'hidden'} grid place-content-center h-full w-full bg-white`}>
                                 <img alt='bird' src={ imgPreview || bird} className='col-span-2 object-cover object-center w-full h-full' />
                             </div>
 

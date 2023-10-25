@@ -11,7 +11,7 @@ import PostForm from './Pages/Post/PostForm';
 import Feed from './Pages/Feed/Feed';
 import BirdMap from './Pages/BirdMap/BirdMap';
 import Landing2 from './Pages/Landing/Landing2';
-import Account from './Pages/Account/Account';
+import Account2 from './Pages/Account/Account2';
 import Login from './Pages/Landing/Login';
 import Signup from './Pages/Landing/Signup'
 
@@ -43,7 +43,7 @@ function App() {
         <Route path='/feed/:id?'><Feed /></Route>
         <Route path='/map/:id?'><BirdMap /></Route>
         <Route path='/post/'><PostForm /></Route>
-        <Route path='/account'><Account /></Route>
+        <Route path='/account'><Account2 /></Route>
         <Route path='/login'><Login /></Route>
         <Route path='/signup'><Signup /></Route>
         

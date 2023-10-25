@@ -38,7 +38,6 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
     return ( 
         <div className={`${!display && 'hidden'} h-full m-auto relative w-[400px]`}>
 
-            <Geosearch mapboxApiKey={mapboxApiKey} zoomToSelectedResult={zoomToSelectedResult} />
 
             <Map
                 ref={mapRef}
@@ -57,6 +56,7 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
                 }}                
             >
 
+            
                 <GeolocateControl
                     positionOptions={{ enableHighAccuracy: true }}
                     trackUserLocation={true}
@@ -75,6 +75,10 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
                     draggable
                     onDragEnd={handleMarkerChange}
                 />
+
+                <div className='absolute top-1 left-1 w-[80%]'>
+                    <Geosearch mapboxApiKey={mapboxApiKey} zoomToSelectedResult={zoomToSelectedResult} />
+                </div>
 
 
                 <div className='absolute bottom-2 z-50 w-full flex items-center'>

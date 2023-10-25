@@ -47,7 +47,6 @@ function PostCard2({post}) {
         const copy = {...editObj}
         copy[e.target.name] = e.target.value
         setEditObj(copy)
-        console.log(copy)
     }
 
 
@@ -139,7 +138,7 @@ function PostCard2({post}) {
                         { edit ? (
                                     <button onClick={toggleMap} className={'text-xs underline'}>change location</button>                      
                                 ) : (
-                                    <button onClick={()=>navigateTo(`/map/${post.id}`)} className='text-[10px] uppercase font-semibold underline'>{post?.place?.address}</button>
+                                    <button onClick={()=>navigateTo(`/map/${post.id}`)} className='text-left text-[10px] uppercase font-semibold underline overflow-hidden truncate w-[85vw]'>{post?.place?.address}</button>
                                 )
                         }
 

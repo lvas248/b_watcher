@@ -25,12 +25,12 @@ function FilterBar({postListRef}){
     } )
 
     return ( 
-        <div className='p-2 bg-white h-[10vh] max-w-[1050px] whitespace-nowrap overflow-x-auto drop-shadow-xl'>
+        <div className='p-1 bg-white h-min max-w-[1050px] whitespace-nowrap overflow-x-auto drop-shadow-xl'>
 
             {
                 birds && [ 
                     <button onClick={()=>history.push('/feed')} key='0' className='overflow-hidden inline-block align-middle mr-4 ' >
-                        <img className='bg-cover h-[65px] w-[65px] rounded-full bg-slate-100 hover:sm:animate-scale-up' alt='bird' src={bird} />
+                        <img className='bg-cover h-[60px] w-[65px] rounded-full bg-slate-100 hover:sm:animate-scale-up' alt='bird' src={bird} />
                         <p className='text-center text-[10px]'>All Birds</p>
                     </button>,...renderBirds
                 ]

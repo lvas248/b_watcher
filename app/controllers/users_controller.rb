@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     #edit email address
     def update
         user = get_user
-        user.update(user_params)
+        user.update!(user_params)
         render json: user, status: :ok
     end
 
