@@ -52,7 +52,7 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
                     height: '300px', 
                     width: 'auto',
                     margin: 'auto',
-                    border: '2px solid black'
+                    border: '1px solid black'
                 }}                
             >
 

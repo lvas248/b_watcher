@@ -88,7 +88,7 @@ function Account2() {
 
                     <div className={`${!editBtnClicked && 'hidden'} flex flex-col gap-2 text-sm`}>
                         
-                        <input className='p-1 w-full border border-black' value={editEmailObj.email} onChange={updateEmailObj} />
+                        <input className='py-[6px] px-[12px] w-full border border-black' value={editEmailObj.email} onChange={updateEmailObj} />
                         
                         <div className='flex place-content-end m-auto w-full'>
                             <button onClick={toggleEdit} className='accountButton border-slate-300'>back</button>

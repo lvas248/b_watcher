@@ -33,14 +33,14 @@ function Geosearch({mapboxApiKey, zoomToSelectedResult}) {
 
     return ( 
     
-        <div className='border-2 border-black text-xs bg-white w-full m-auto'>
+        <div className='border border-black text-xs bg-white w-full m-auto'>
 
             <div className='flex justify-between'>
 
                 <input value={searchText} placeholder='address...' className='p-1 w-full' onChange={e => setSearchText(e.target.value)} />
                 
-                <div className=' border-l-2 border-black bg-white font-bold flex justify-between'>
-                    <button className='p-1 border-r-2 border-black text-center' onClick={clearSearchText} type='button' >Clear</button>
+                <div className=' border-l border-black bg-white font-bold flex justify-between'>
+                    <button className='p-1 border-r border-black text-center' onClick={clearSearchText} type='button' >Clear</button>
                     <button className='p-1' onClick={handleSearch} type='button'>Search</button>
                 </div>
             </div>

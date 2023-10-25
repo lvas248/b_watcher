@@ -97,112 +97,135 @@ function PostForm() {
         <div className='h-[92vh] mt-[8vh] w-full max-w-[1000px] mx-auto overflow-auto '>
 
     
-            <form onSubmit={submitForm} className='m-auto font-bold text-lg p-10 flex flex-col gap-10'>
+            <form onSubmit={submitForm} className='m-auto text-lg p-10 flex flex-col gap-5'>
 
                 <h3>New Post</h3>
 
-                <div className='flex flex-col md:flex-row  mx-auto w-full gap-5 '>
+                <div className='flex flex-col md:flex-row  gap-5'>
 
-                    <div className='w-full flex flex-col gap-2'
-                    >
+                    <div className='flex flex-col gap-5 md:w-[50%]'>
+                        <div id='birdSelect' 
+                            className='accountSection'>
 
-                        <div id='radios' className='flex  '>
+                            <div className='flex justify-between border-b border-slate-300 py-[12px] px-[20px]'>
 
-                            <p className='formLabel'>Bird:</p>
-                            
-                            <div className='flex items-center gap-2'>
-                                <input checked={radio === 'select'} type='radio' name='selectCreate' id='select'  onChange={updateRadio} />
-                                <label className='text-xs'>Select</label>
+                                <h3 className='text-2xl'>Bird</h3>
+
+                                <div id='radios' className='flex text-xs gap-5'>                            
+                                    <div className='flex items-center gap-2'>
+                                        <input checked={radio === 'select'} type='radio' name='selectCreate' id='select'  onChange={updateRadio} />
+                                        <label>Select</label>
+                                    </div>
+
+                                    <div className='flex items-center gap-2'>
+                                        <input checked={radio === 'create'} type='radio' name='selectCreate' id='create'  onChange={updateRadio} />
+                                        <label>Create Bird</label>
+                                    </div>
+
+                                </div>
+
                             </div>
 
-                            <div className='flex items-center gap-2'>
-                                <input checked={radio === 'create'} type='radio' name='selectCreate' id='create'  onChange={updateRadio} />
-                                <label className='text-xs'>Create Bird</label>
+                            <div className='p-[20px]'>
+
+                                <div id='select' 
+                                    className='grid'
+                                >
+                                    <select name='bird_id' onChange={updatePostObj} className={`${radio !== 'select' && 'hidden'} border border-black text-center text-xs py-[6px] px-[12px]`}>
+                                        {[<option key='0' value=''>Bird Select</option>, ...renderBirdOptions]}
+                                    </select>
+                                </div>
+
+                                <div id='createBirdForm' 
+                                    className={`${ radio !== 'create' && 'hidden'} grid gap-4`}
+                                >
+                                    <div className='flex flex-col gap-1'>
+                                        <div className='flex justify-between'>
+                                            <p className='text-sm'>New Bird Name: </p>
+                                            <p className='error'>{errors?.errors['bird.name']}</p>
+                                        </div>
+                                        <input name='name' value={postObj.bird_attributes?.name} onChange={updateBirdAttributes} className='formInput text-xs border border-black px-2'/>
+                                    </div>
+
+                                    <div className='flex flex-col gap-1'>
+                                        <div className='flex justify-between'>
+                                            <p className='text-sm'>Description: </p>
+                                            <p className='error'>{errors?.errors['bird.description']}</p>
+                                        </div>
+                                        <textarea name='description' value={postObj.bird_attributes?.description} onChange={updateBirdAttributes} className='formInput text-xs border border-black px-2 h-[5vh]'/>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
 
-                        <div id='select' 
-                            className='grid'>
-                            <select name='bird_id' onChange={updatePostObj} className={`${radio !== 'select' && 'hidden'} border-2 border-black  text-center text-xs p-1`}>
-                                {[<option key='0' value=''>Bird Select</option>, ...renderBirdOptions]}
-                            </select>
-                        </div>
-
-                        <div id='createBirdForm' 
-                            className={`${ radio !== 'create' && 'hidden'} grid gap-4`}
+                        <div id='address'
+                            className='accountSection'
                         >
-                            <div className='flex flex-col gap-1'>
-                                <div className='flex justify-between'>
-                                    <label className='formLabel'>New Bird Name: </label>
-                                    <p className='error'>{errors?.errors['bird.name']}</p>
-                                </div>
-                                <input name='name' value={postObj.bird_attributes?.name} onChange={updateBirdAttributes} className='formInput text-xs border-2 border-black px-2'/>
-                            </div>
+                            <div className='flex justify-between border-b border-slate-300 py-[12px] px-[20px]'>
 
-                            <div className='flex flex-col gap-1'>
-                                <div className='flex justify-between'>
-                                    <label className='formLabel'>Description: </label>
-                                    <p className='error'>{errors?.errors['bird.description']}</p>
-                                </div>
-                                <textarea name='description' value={postObj.bird_attributes?.description} onChange={updateBirdAttributes} className='formInput text-xs border-2 border-black px-2 h-[5vh]'/>
-                            </div>
-                        </div>
-
-                        <div id='addressSearch'
-                            className='flex flex-col gap-1'>
-
-                            <div className='flex justify-between'>
-                                <label className='formLabel'>Address: </label>
+                                <h3 className='text-2xl'>Address</h3>
                                 <p className='error'>{errors?.errors['place.address']}</p>
+
                             </div>
 
-                            <button onClick={toggleMap} type='button' className={`${displayMap && 'hidden'} bg-white formInput text-xs w-full px-2 hover:bg-black hover:text-white`}>{ postObj.place_attributes.latitude ? 'Location Selected' : 'Select Location'}</button>
+                            <div className='p-[20px]'>
+                                <button onClick={toggleMap} type='button' className={`${displayMap && 'hidden'} bg-white border border-black text-xs w-full px-[12px] py-[6px] hover:bg-black hover:text-white`}>{ postObj.place_attributes.latitude ? 'Location Selected' : 'Select Location'}</button>
                             
-                            <div>
                                 <MyMap display={displayMap} toggleMap={toggleMap} setPlace={setPlace} currentLocation/>
+                                
                             </div>
 
+                            
                         </div>
 
-                        <div className='flex flex-col gap-1'>
-                            <div className='flex justify-between'>
-                                <label className='formLabel'>Caption: </label>
+                        <div id='caption'
+                            className='accountSection'
+                        >
+                            <div className='flex justify-between items-center border-b border-slate-300 py-[12px] px-[20px]'>
+                                <h3 className='text-2xl'>Caption</h3>
                                 <p className='error'>{errors?.errors?.caption}</p>
                             </div>
-                            <textarea id='caption' name='caption' value={postObj.caption} onChange={updatePostObj} className='formInput text-xs px-2 w-full' />
+
+                            <div className='p-[20px]'>
+                                <textarea id='caption' name='caption' value={postObj.caption} onChange={updatePostObj} className='border border-black text-xs py-[6px] px-[12px] w-full min-h-[100px]' />
+                            </div>
+
+
                         </div>
+
 
                     </div>
 
-                    <div id='addImage '
-                        className='p-1 flex flex-col gap-2 w-full'
+                    <div id='image'
+                        className='accountSection md:w-[50%]'
                     >
-                        <div className='flex flex-col gap-1'>
+                        <div className='flex justify-between items-center border-b border-slate-300 py-[12px] px-[20px]'>
+                            <h3 className='text-2xl'>Image</h3>
+                            <p className='error'>{errors?.errors?.caption}</p>
+                        </div>
 
-                            <label className='text-xs'>Image: </label>
+                        <div className='p-[20px]'>
 
-                            <input className='text-xs border-2 border-black p-1 bg-white' type='file' onChange={handleFileChange}/>
+                            <input className='text-xs w-full border border-black py-[6px] px-[12px] bg-white' type='file' onChange={handleFileChange}/>
 
-                        </div>                   
-                        
-                        <div className='col-span-2 w-full aspect-square border-2 border-black m-auto '>
+                        </div>
+
+                        <div className='col-span-2 w-full aspect-square  m-auto p-[20px]'>
 
 
-                            <img className={` ${!imgPreview && 'hidden'} object-cover h-full w-full`} alt='bird' src={imgPreview} />
+                            <img className={` ${!imgPreview && 'hidden'} object-cover h-full w-full border border-black`} alt='bird' src={imgPreview} />
 
-                            <div className={`${imgPreview && 'hidden'} grid place-content-center h-full w-full bg-white`}>
+                            <div className={`${imgPreview && 'hidden'} grid place-content-center h-full w-full bg-white border border-black`}>
                                 <img alt='bird' src={ imgPreview || bird} className='col-span-2 object-cover object-center w-full h-full' />
                             </div>
 
                         </div>
 
 
-
                     </div>
 
                 </div>
-
 
 
                 <SubmitButton label='Submit Post' status={postStatus}  />
