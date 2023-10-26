@@ -1,9 +1,7 @@
-import { useState, useRef } from "react";
-import Map, { GeolocateControl, Marker, FullscreenControl } from 'react-map-gl'
+import { useState, useRef, useEffect } from "react";
+import Map, { GeolocateControl, Marker, NavigationControl } from 'react-map-gl'
 import Geosearch from "./Geosearch";
 import "mapbox-gl/dist/mapbox-gl.css";
-
-
 
 function MyMap({display, toggleMap, setPlace, currentLocation=false}){
 
@@ -12,7 +10,7 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
 
     const mapRef = useRef(null)
 
-    const [ marker, setMarker ] = useState({ longitude: currentLocation.longitude || -73.9712, latitude: currentLocation.latitude || 40.7831})
+    const [ marker, setMarker ] = useState({ longitude: -73.9712, latitude: 40.7831 })
 
     function zoomToSelectedResult(r){
 
@@ -20,7 +18,7 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
 
         setMarker({longitude: longitude, latitude: latitude})
 
-        r.bbox ? mapRef.current.fitBounds(r.bbox) : mapRef.current.flyTo({center: r.center, zoom: 15})
+        r.bbox ? mapRef.current?.fitBounds(r.bbox) : mapRef.current?.flyTo({center: r.center, zoom: 15})
    
     }
 
@@ -33,7 +31,11 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
         toggleMap()
     }
 
-
+    useEffect( ()=>{
+        if(currentLocation.longitude){
+            zoomToSelectedResult({center: [ currentLocation?.longitude, currentLocation?.latitude]})
+        } 
+    }, [currentLocation])
 
     return ( 
         <div className={`${!display && 'hidden'} h-full m-auto relative w-[400px]`}>
@@ -68,20 +70,24 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
                     }}
                 />
 
+                <NavigationControl />
+
 
                 <Marker 
-                    longitude={marker.longitude}
-                    latitude={marker.latitude}
+                    longitude={marker?.longitude}
+                    latitude={marker?.latitude}
                     draggable
                     onDragEnd={handleMarkerChange}
                 />
 
+                
                 <div className='absolute top-1 left-1 w-[80%]'>
                     <Geosearch mapboxApiKey={mapboxApiKey} zoomToSelectedResult={zoomToSelectedResult} />
                 </div>
 
 
                 <div className='absolute bottom-2 z-50 w-full flex items-center'>
+                    <button onClick={toggleMap} type='button' className=' bg-white border border-black p-2 w-[50%] max-w-[200px] m-auto'>Back</button>
                     <button onClick={handleLocationSelect} type='button' className=' bg-white border border-black p-2 w-[50%] max-w-[200px] m-auto'>Select</button>
                 </div>
 
