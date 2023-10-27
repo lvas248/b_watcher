@@ -1,8 +1,5 @@
-import { useState } from 'react'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-import { useSelector } from 'react-redux'
 import pinIcon from '../../Assets/Icons/pin.png'
-import moreIcon from '../../Assets/Icons/icons8-dots-90.png'
 
 function PostCard2({post}) {
 
@@ -14,14 +11,14 @@ function PostCard2({post}) {
 
     return ( 
 
-        <div id={post.id} className='max-w-[1050px]'>
+        <div id={post.id} className='max-w-[1050px] '>
 
-            <div className='max-h-[600px] max-w-[600px] bg-slate-200 m-auto'>
-                <img alt='' src={post?.image_url} />
+            <div className='max-h-[600px] max-w-[600px]  m-auto '>
+                <img className='sm:rounded-t-3xl' alt='' src={post?.image_url} />
             </div>
 
             <div id='rightPanel'
-                    className='flex flex-col gap-2 p-4 border-x-2 border-b-2 max-w-[600px] m-auto'
+                    className='flex flex-col gap-2 p-4 border-x-2 border-b-2 max-w-[600px] m-auto sm:rounded-b-3xl'
             >
                 <div  id='birdIconTitle'
                     className='flex justify-between items-center'>

@@ -103,7 +103,7 @@ function PostForm() {
 
                 <div className='flex flex-col md:flex-row  gap-5'>
 
-                    <div className='flex flex-col gap-5 lg:w-[50%]'>
+                    <div className='flex flex-col gap-5 md:w-[50%]'>
                         <div id='birdSelect' 
                             className='accountSection'>
 

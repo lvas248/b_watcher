@@ -10,7 +10,8 @@ import Navbar from './Layout/Navbar';
 import PostForm from './Pages/Post/PostForm';
 import Feed from './Pages/Feed/Feed';
 import BirdMap from './Pages/BirdMap/BirdMap';
-import Landing2 from './Pages/Landing/Landing2';
+// import Landing2 from './Pages/Landing/Landing2';
+import Landing from './Pages/Landing/Landing'
 import Account2 from './Pages/Account/Account2';
 import Login from './Pages/Landing/Login';
 import Signup from './Pages/Landing/Signup'
@@ -39,7 +40,7 @@ function App() {
 
       <Switch>
 
-        <Route exact path='/'><Landing2 /></Route>
+        <Route exact path='/'><Landing /></Route>
 
         <Route path='/feed/:id?'><Feed /></Route>
         <Route path='/map/:id?'><BirdMap /></Route>

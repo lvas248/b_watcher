@@ -3,7 +3,8 @@ import { useParams, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import MyMap from '../../Components/MyMap';
 import SubmitButton from '../../Components/SubmitButton';
-import { updatePost } from '../../Redux/Slices/postSlice';
+import { updatePost, deletePost } from '../../Redux/Slices/postSlice';
+import LoadingIcon from '../../Components/LoadingIcon';
 
 function PostEditForm(){
 
@@ -62,16 +63,25 @@ function PostEditForm(){
             }
         })
     }
+
+    function submitDelete(){
+        dispatch(deletePost({post_id: post.id})).then( res => {
+            if(res.meta.requestStatus === 'fulfilled') history.push('/feed')
+        })
+    }
    
     return ( 
     
         <form onSubmit={submitUpdate} className='mt-[8vh] p-[40px] h-[92vh]  gap-5 overflow-auto max-w-[1200px] m-auto'>
   
-           <h1 className='text-2xl font-bold underline mb-[5vh]'>Edit Post </h1>
+            <div className='flex justify-between mb-[5vh] items-center'>
+                <h1 className='text-2xl font-bold'>Edit Post </h1>
+                <button onClick={submitDelete} type='button' className='py-[6px] underline'>{postStatus === 'idle' ? 'delete post' : <LoadingIcon />} </button>
+            </div>
 
-            <div className='flex flex-col lg:flex-row  gap-5'>
+            <div className='flex flex-col md:flex-row  gap-5'>
 
-                <div className='accountSection lg:w-1/2'>
+                <div className='accountSection md:w-1/2'>
 
                     <div
                         className='py-[12px] px-[20px] border-b border-slate-300'
@@ -88,7 +98,7 @@ function PostEditForm(){
                 </div>
 
             
-                <div className='lg:w-1/2 flex flex-col gap-5'>
+                <div className='md:w-1/2 flex flex-col gap-5'>
 
                     <div id='bird'
                         className='accountSection'>
