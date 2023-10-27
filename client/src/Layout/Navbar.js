@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useState } from 'react'
 import LogoutButton from "../Components/LogoutButton";
 import { Squash as Hamburger } from 'hamburger-react'
+import bird from '../Assets/Icons/icons8-binocular-100.png'
 
 function Navbar(){
 
@@ -23,8 +24,14 @@ function Navbar(){
             
 
             <div className='flex my-auto justify-between font-bold place'>
+                
 
-                <button onClick={()=>navigateTo('')} >BirdWatcher</button>
+                <button onClick={()=>navigateTo('')} className='flex gap-1 items-center' >
+                    <p className='font-serif'>Bird</p>
+                    <img className='h-[30px]' alt='bird' src={bird} />
+                    <p className='font-serif'>Watcher</p>
+
+                </button>
                 
                 <div className='md:hidden'>
                     <Hamburger toggled={isOpen} toggle={setIsOpen}  />
