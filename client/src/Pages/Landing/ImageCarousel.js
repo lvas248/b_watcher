@@ -1,3 +1,4 @@
+import Image from "./Image";
 
 function ImageCarousel() {
 
@@ -13,10 +14,8 @@ function ImageCarousel() {
         'https://res.cloudinary.com/dfbe9u9zm/image/upload/v1698414079/Screenshot_2023-10-27_at_9.37.00_AM_h5dlre.png', //hummingbird map
     ]
 
-
     const renderImages = images.map( (image, index) => {
-        return <img key={index} className='bg-slate-400 w-[44vw] md:w-[40vw] lg:w-[30vw] rounded-3xl border border-black' alt='bird' src={image} />
-
+        return <Image key={index} src={image} />
     })
 
     return ( 

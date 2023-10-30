@@ -69,7 +69,7 @@ function Account2() {
     
     return ( 
 
-     <div className='mt-[8vh] min-h-[92vh] relative p-10 flex flex-col gap-5 max-w-[1200px] m-auto'>
+     <div className='h-screen pt-[10vh] relative p-10 flex flex-col gap-5 max-w-[1200px] m-auto'>
 
         <h1 className='uppercase font-bold text-xl'>Account</h1>
 

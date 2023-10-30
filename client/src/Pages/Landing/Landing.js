@@ -13,7 +13,7 @@ function Landing() {
     }
 
     return ( 
-        <div className='pt-[15vh] h-screen overflow-auto'>
+        <div className='py-[15vh] h-screen overflow-auto'>
 
             <div className='px-[24px] flex flex-col'>
 

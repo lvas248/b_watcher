@@ -34,7 +34,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className='bg-slate-200 '>
+    <div className='bg-slate-200 h-[100svh]'>
 
       <Navbar />
 

@@ -94,7 +94,7 @@ function PostForm() {
 
     return ( 
 
-        <div className='h-[92vh] mt-[8vh] w-full max-w-[1000px] mx-auto overflow-auto '>
+        <div className='h-screen pt-[8vh] w-full max-w-[1000px] mx-auto overflow-auto '>
 
     
             <form onSubmit={submitForm} className='m-auto text-lg p-10 flex flex-col gap-5'>

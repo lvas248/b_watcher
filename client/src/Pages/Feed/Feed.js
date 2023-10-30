@@ -29,7 +29,7 @@ function Feed(){
     },[id, posts])
 
     return ( 
-        <div className='relative max-w-[1050px] mt-[8vh] mx-auto  h-[92vh] overflow-auto'>
+        <div className='max-w-[1050px] pt-[8vh] h-screen mx-auto overflow-auto'>
             <FilterBar postListRef={postListRef}/>
             <PostsList posts={filteredPosts} postListRef={postListRef}/>
         </div>

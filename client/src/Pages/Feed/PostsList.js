@@ -7,7 +7,7 @@ function PostsList({posts, postListRef}) {
     })
 
     return ( 
-        <div id='postList' ref={postListRef} className='grid gap-5 py-5 max-w-[1050px] bg-slate-100 h-[81vh] overflow-y-auto '>
+        <div id='postList' ref={postListRef} className='py-[10vh] grid gap-5 max-w-[1050px] bg-slate-100 overflow-y-auto '>
             {renderPosts}
         </div>
      );
