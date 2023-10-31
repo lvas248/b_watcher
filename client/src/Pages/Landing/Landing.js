@@ -13,7 +13,7 @@ function Landing() {
     }
 
     return ( 
-        <div className='py-[15vh] h-screen overflow-auto'>
+        <div className='py-[15svh] h-screen overflow-auto'>
 
             <div className='px-[24px] flex flex-col'>
 
@@ -29,10 +29,10 @@ function Landing() {
 
                 <div className='m-auto flex gap-10'>
 
-                    <button onClick={()=>navigateTo('login')} className={`${loggedIn && 'hidden'} m-auto mt-[5vh] w-[150px] p-[20px] rounded-full text-sm border bg-black text-white`}>Login</button>
-                    <button onClick={()=>navigateTo('signup')} className={`${loggedIn && 'hidden'} m-auto mt-[5vh] w-[150px] p-[20px] rounded-full text-sm border bg-black text-white`}>Signup</button>
+                    <button onClick={()=>navigateTo('login')} className={`${loggedIn && 'hidden'} m-auto mt-[5svh] w-[150px] p-[20px] rounded-full text-sm border bg-black text-white`}>Login</button>
+                    <button onClick={()=>navigateTo('signup')} className={`${loggedIn && 'hidden'} m-auto mt-[5svh] w-[150px] p-[20px] rounded-full text-sm border bg-black text-white`}>Signup</button>
                 
-                    <button onClick={()=>navigateTo('feed')} className={`${!loggedIn && 'hidden'} m-auto mt-[5vh] w-[150px] p-[20px] rounded-full text-sm border bg-black text-white`}>Go To Feed</button>
+                    <button onClick={()=>navigateTo('feed')} className={`${!loggedIn && 'hidden'} m-auto mt-[5svh] w-[150px] p-[20px] rounded-full text-sm border bg-black text-white`}>Go To Feed</button>
                 
                 </div>
 

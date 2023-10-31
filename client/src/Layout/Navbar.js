@@ -20,7 +20,7 @@ function Navbar(){
     }
 
     return ( 
-        <div className={`navbar verticalBar md:flex  md:flex-row transform-h px-[6vw] py-3 ${isOpen ? 'h-[50vh]' : 'h-[8vh]'}  md:h-[8vh] md:justify-between z-50`}>
+        <div className={`navbar verticalBar md:flex  md:flex-row transform-h px-[6vw] py-3 ${isOpen ? 'h-[50svh]' : 'h-[8svh]'}  md:h-[8svh] md:justify-between z-50`}>
             
 
             <div className='flex my-auto justify-between font-bold place'>

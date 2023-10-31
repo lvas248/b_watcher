@@ -19,7 +19,7 @@ function ImageCarousel() {
     })
 
     return ( 
-        <div className=' py-[5vh] overflow-x-hidden'>
+        <div className=' py-[5svh] overflow-x-hidden'>
 
             <div className='flex gap-[6vw] md:gap-[10vw] lg:gap-[3.3333vw] animate-marquee lg:animate-marquee-lg '>
 

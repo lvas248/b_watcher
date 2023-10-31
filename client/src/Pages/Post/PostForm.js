@@ -94,7 +94,7 @@ function PostForm() {
 
     return ( 
 
-        <div className='h-screen pt-[8vh] w-full max-w-[1000px] mx-auto overflow-auto '>
+        <div className='h-screen pt-[8svh] w-full max-w-[1000px] mx-auto overflow-auto '>
 
     
             <form onSubmit={submitForm} className='m-auto text-lg p-10 flex flex-col gap-5'>
@@ -162,7 +162,7 @@ function PostForm() {
                                             <p className='text-sm'>Description: </p>
                                             <p className='error'>{errors?.errors['bird.description']}</p>
                                         </div>
-                                        <textarea name='description' value={postObj.bird_attributes?.description} onChange={updateBirdAttributes} className='formInput text-xs border border-black px-2 h-[5vh]'/>
+                                        <textarea name='description' value={postObj.bird_attributes?.description} onChange={updateBirdAttributes} className='formInput text-xs border border-black px-2 h-[5svh]'/>
                                     </div>
                                 </div>
                             </div>

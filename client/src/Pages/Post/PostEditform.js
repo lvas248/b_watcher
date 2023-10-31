@@ -72,9 +72,9 @@ function PostEditForm(){
    
     return ( 
     
-        <form onSubmit={submitUpdate} className='mt-[8vh] p-[40px] h-[92vh]  gap-5 overflow-auto max-w-[1200px] m-auto'>
+        <form onSubmit={submitUpdate} className='mt-[8svh] p-[40px] h-[92svh]  gap-5 overflow-auto max-w-[1200px] m-auto'>
   
-            <div className='flex justify-between mb-[5vh] items-center'>
+            <div className='flex justify-between mb-[5svh] items-center'>
                 <h1 className='text-2xl font-bold'>Edit Post </h1>
                 <button onClick={submitDelete} type='button' className='py-[6px] underline'>{postStatus === 'idle' ? 'delete post' : <LoadingIcon />} </button>
             </div>

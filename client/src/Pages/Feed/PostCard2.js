@@ -55,7 +55,7 @@ function PostCard2({post}) {
                 </div>
 
                 <div id='caption'
-                    className='text-sm grid  my-[2vh]'
+                    className='text-sm grid  my-[2svh]'
                 >
 
                     <p className='text-sm p-2 text-left'>{post?.caption}</p>
