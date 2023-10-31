@@ -107,20 +107,30 @@ function PostForm() {
                         <div id='birdSelect' 
                             className='accountSection'>
 
-                            <div className='flex justify-between border-b border-slate-300 py-[12px] px-[20px]'>
+                            <div className='flex justify-between items-center border-b border-slate-300 py-[12px] px-[20px]'>
 
                                 <h3 className='text-2xl'>Bird</h3>
 
-                                <div id='radios' className='flex text-xs gap-5'>                            
-                                    <div className='flex items-center gap-2'>
-                                        <input checked={radio === 'select'} type='radio' name='selectCreate' id='select'  onChange={updateRadio} />
-                                        <label>Select</label>
+
+
+                                <div id='radios' className='items-center'>   
+
+                                    <p className='error text-right'>{errors?.errors['bird.name'] && 'Must select or create bird'}</p>
+
+                                    <div className='flex items-center text-xs gap-5 '>
+
+                                        <div className='flex items-center gap-2'>
+                                            <input checked={radio === 'select'} type='radio' name='selectCreate' id='select' onChange={updateRadio} />
+                                            <label>Select</label>
+                                        </div>
+
+                                        <div className='flex items-center gap-2'>
+                                            <input checked={radio === 'create'} type='radio' name='selectCreate' id='create'  onChange={updateRadio} />
+                                            <label>Create Bird</label>
+                                        </div>
+
                                     </div>
 
-                                    <div className='flex items-center gap-2'>
-                                        <input checked={radio === 'create'} type='radio' name='selectCreate' id='create'  onChange={updateRadio} />
-                                        <label>Create Bird</label>
-                                    </div>
 
                                 </div>
 
@@ -162,10 +172,11 @@ function PostForm() {
                         <div id='address'
                             className='accountSection'
                         >
-                            <div className='flex justify-between border-b border-slate-300 py-[12px] px-[20px]'>
+                            <div className='flex justify-between items-center border-b border-slate-300 py-[12px] px-[20px]'>
 
                                 <h3 className='text-2xl'>Address</h3>
-                                <p className='error'>{errors?.errors['place.address']}</p>
+
+                                <p className='error'>{errors?.errors['place.longitude']}</p>
 
                             </div>
 
@@ -188,7 +199,7 @@ function PostForm() {
                             </div>
 
                             <div className='p-[20px]'>
-                                <textarea id='caption' name='caption' value={postObj.caption} onChange={updatePostObj} className='border border-black text-xs py-[6px] px-[12px] w-full min-h-[100px]' />
+                                <textarea  id='caption' name='caption' value={postObj.caption} onChange={updatePostObj} className='border border-black text-xs py-[6px] px-[12px] w-full min-h-[100px]' />
                             </div>
 
 
@@ -202,12 +213,12 @@ function PostForm() {
                     >
                         <div className='flex justify-between items-center border-b border-slate-300 py-[12px] px-[20px]'>
                             <h3 className='text-2xl'>Image</h3>
-                            <p className='error'>{errors?.errors?.caption}</p>
+                            {/* <p className='error'>{errors?.errors?.caption}</p> */}
                         </div>
 
                         <div className='p-[20px]'>
 
-                            <input className='text-xs w-full border border-black py-[6px] px-[12px] bg-white' type='file' onChange={handleFileChange}/>
+                            <input required className='text-xs w-full border border-black py-[6px] px-[12px] bg-white' type='file' onChange={handleFileChange}/>
 
                         </div>
 

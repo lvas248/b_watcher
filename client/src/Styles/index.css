@@ -23,11 +23,11 @@
   }
 
   .formInput{
-    @apply border-2 border-black p-1 text-black
+    @apply border border-black p-1 text-black
   }
 
   .formButton{
-    @apply bgBlue border-black border-2 p-2 
+    @apply bgBlue border-black border p-2 
   }
 
   .formLabel{

@@ -88,7 +88,7 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
 
                 <div className='absolute bottom-2 z-50 w-full flex items-center'>
                     <button onClick={toggleMap} type='button' className=' bg-white border border-black p-2 w-[50%] max-w-[200px] m-auto'>Back</button>
-                    <button onClick={handleLocationSelect} type='button' className=' bg-white border border-black p-2 w-[50%] max-w-[200px] m-auto'>Select</button>
+                    <button onClick={handleLocationSelect} type='button' className=' bg-slate-300 border border-black p-2 w-[50%] max-w-[200px] m-auto'>Select</button>
                 </div>
 
             </Map>

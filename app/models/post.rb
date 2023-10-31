@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   has_one :image, as: :imageable, dependent: :destroy
   has_one :place, dependent: :destroy
 
-  validates :caption, presence: true
+  validates :caption, presence: { message: 'Must include a caption'}
   
   accepts_nested_attributes_for :bird, :place
 

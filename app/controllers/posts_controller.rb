@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
     def create
+        # binding.pry
         user = get_user
         post = user.posts.create!(post_params)
         post.upload_and_create_image(params[:image])
