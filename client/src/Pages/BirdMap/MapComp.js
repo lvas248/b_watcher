@@ -88,7 +88,7 @@ function MapComp({posts, bounds}) {
                 initialViewState={postLocation.longitude ? postLocation : { longitude: -98.5795, latitude: 39.8283,  zoom: 2} }
                 mapStyle="mapbox://styles/mapbox/streets-v11"
                 style={{ 
-                    height: '85svh', 
+                    height: '80svh', 
                     width: 'auto',
                     margin: 'auto',
                     border: '2px solid black'

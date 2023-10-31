@@ -20,17 +20,16 @@ function Navbar(){
     }
 
     return ( 
-        <div className={`navbar verticalBar md:flex  md:flex-row transform-h px-[6vw] py-3 ${isOpen ? 'h-[50svh]' : 'h-[8svh]'}  md:h-[8svh] md:justify-between z-50`}>
+        <div className={`navbar verticalBar md:flex md:flex-row transform-h px-[6svw] py-3 md:justify-between z-50 ${ isOpen ? 'max-h-[80vh]' : 'max-h-[8vh]'}`}>
             
 
-            <div className='flex my-auto justify-between font-bold place'>
+            <div className='flex  justify-between items-center font-bold place'>
                 
 
                 <button onClick={()=>navigateTo('')} className='flex gap-1 items-center' >
                     <p className='font-serif'>Bird</p>
-                    <img className='h-[30px]' alt='bird' src={bird} />
+                    <img className='h-[25px]' alt='bird' src={bird} />
                     <p className='font-serif'>Watcher</p>
-
                 </button>
                 
                 <div className='md:hidden'>
