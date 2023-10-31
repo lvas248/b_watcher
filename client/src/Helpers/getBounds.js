@@ -18,7 +18,7 @@ function getBounds(posts) {
     maxY = Math.max(maxY, latitude);
   });
 
-  const padding = .5
+  const padding = 7
   
 
   return  [

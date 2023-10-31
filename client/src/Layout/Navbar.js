@@ -20,7 +20,7 @@ function Navbar(){
     }
 
     return ( 
-        <div className={`navbar verticalBar md:flex  md:flex-row transform-h px-[6vw] py-3 ${isOpen ? 'h-[100vh]' : 'h-[8vh]'}  md:h-[8vh] md:justify-between z-50`}>
+        <div className={`navbar verticalBar md:flex  md:flex-row transform-h px-[6vw] py-3 ${isOpen ? 'h-[50vh]' : 'h-[8vh]'}  md:h-[8vh] md:justify-between z-50`}>
             
 
             <div className='flex my-auto justify-between font-bold place'>
@@ -41,20 +41,20 @@ function Navbar(){
             </div>
 
             <div 
-                className={` ${!isOpen &&  'hidden md:flex'} pt-10 md:pt-0 flex flex-col md:flex-row md:gap-5 font-bold `}
+                className={` ${!isOpen &&  'hidden md:flex'} pt-10 md:pt-0 flex flex-col md:flex-row md:gap-5 font-bold ${isOpen && 'divide-y md:divide-none divide-slate-300 '} `}
             >
 
                 <NavLink 
                     onClick={toggleOpen}
                     activeClassName='underline'
-                    className={`m-auto py-5  ${!loggedIn && 'hidden'}`}
+                    className={`m-auto py-5 w-full text-center ${!loggedIn && 'hidden'}`}
                     to={loggedIn ? '/feed': '/login'}
-                >MY ENTIRIES</NavLink>
+                >ENTIRIES</NavLink>
 
                 <NavLink 
                     onClick={toggleOpen}
                     activeClassName='underline '
-                    className={`m-auto py-5 ${!loggedIn && 'hidden'}`}
+                    className={`m-auto py-5 w-full text-center ${!loggedIn && 'hidden'}`}
                     to={loggedIn ? '/map': '/login'}
                 >MAP</NavLink>
 
@@ -63,21 +63,21 @@ function Navbar(){
                 <NavLink 
                     onClick={toggleOpen}
                     activeClassName='underline'
-                    className={`m-auto py-5 ${!loggedIn && 'hidden'}`}
+                    className={`m-auto py-5 w-full text-center ${!loggedIn && 'hidden'}`}
                     to={loggedIn ? '/post': '/login'}
                 >POST</NavLink>
 
                 <NavLink 
                     onClick={toggleOpen}
                     activeClassName='underline'
-                    className={`m-auto py-5 ${!loggedIn && 'hidden'}`}
+                    className={`m-auto py-5 w-full text-center ${!loggedIn && 'hidden'}`}
                     to={loggedIn ? '/account': '/login'}
                 >ACCOUNT</NavLink>
 
 
                 {
                     loggedIn ? (
-                        <div className='m-auto py-5'>
+                        <div className='m-auto py-5 w-full text-center'>
                             <LogoutButton toggleOpen={toggleOpen}/>
                         </div>
                     ):(                

@@ -1,16 +1,15 @@
 import './Styles/App.css';
 import { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { refreshSession } from './Redux/Slices/sessionSlice';
 import { getAllBirds } from './Redux/Slices/birdSlice';
-
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 import Navbar from './Layout/Navbar';
 import PostForm from './Pages/Post/PostForm';
 import Feed from './Pages/Feed/Feed';
 import BirdMap from './Pages/BirdMap/BirdMap';
-// import Landing2 from './Pages/Landing/Landing2';
 import Landing from './Pages/Landing/Landing'
 import Account2 from './Pages/Account/Account2';
 import Login from './Pages/Landing/Login';

@@ -85,7 +85,7 @@ function MapComp({posts, bounds}) {
             <Map
                 ref={mapRef}
                 mapboxAccessToken={mapboxApiKey}
-                initialViewState={postLocation.longitude ? postLocation : { longitude: -98.5795, latitude: 39.8283,  zoom: 2.3 } }
+                initialViewState={postLocation.longitude ? postLocation : { longitude: -98.5795, latitude: 39.8283,  zoom: 2} }
                 mapStyle="mapbox://styles/mapbox/streets-v11"
                 style={{ 
                     height: '85vh', 
