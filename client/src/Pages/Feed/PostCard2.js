@@ -11,7 +11,7 @@ function PostCard2({post}) {
 
     return ( 
 
-        <div id={post.id} className='max-w-[1050px] '>
+        <div id={post.id} className='max-w-[1050px] animate-fade-in'>
 
             <div className='max-h-[600px] max-w-[600px]  m-auto '>
                 <img className='sm:rounded-t-3xl' alt='' src={post?.image_url} />
@@ -48,10 +48,7 @@ function PostCard2({post}) {
                         <button onClick={()=>navigateTo(`/map/${post.id}`)} className='text-left text-[10px] uppercase font-semibold underline overflow-hidden truncate w-[80vw] max-w-[500px]'>{post?.place?.address}</button>
 
                     </div>
-
-       
-
-                
+                       
                 </div>
 
                 <div id='caption'
