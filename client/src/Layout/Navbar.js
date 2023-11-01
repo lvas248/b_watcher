@@ -31,7 +31,7 @@ function Navbar(){
                 </button>
                 
                 <div className='md:hidden pr-[3svw]'>
-                    <Hamburger toggled={isOpen} toggle={setIsOpen}  />
+                    <Hamburger toggled={isOpen} toggle={setIsOpen} size={25}  />
                 </div>
 
                 <div className={`absolute top-[8svh] w-full bg-slate-200 z-50 font-bold flex flex-col divide-y divide-slate-300 md:mediumDropDown transform-h duration-300  ${isOpen ? ' border-b border-black max-h-[100svh]': 'max-h-0 overflow-hidden md:flex md:max-h-fit' } `}
