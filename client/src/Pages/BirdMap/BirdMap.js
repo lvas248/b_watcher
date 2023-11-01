@@ -10,7 +10,7 @@ function BirdMap() {
  
     return ( 
     
-        <div className='page p-10'>
+        <div className='page'>
             
             <MapComp posts={posts} bounds={bounds}/>
 
