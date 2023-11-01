@@ -69,7 +69,7 @@ function Account2() {
     
     return ( 
 
-     <div className='page p-10 flex flex-col gap-5'>
+     <div className='page form'>
 
         <h1 className='pageTitle'>Account</h1>
 

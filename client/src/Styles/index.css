@@ -12,7 +12,7 @@
   /* Forms */
 
   .form{
-    @apply m-auto text-lg p-10 flex flex-col gap-5
+    @apply m-auto text-lg p-4 sm:p-10 flex flex-col gap-5
   }
 
   .formSection{
@@ -21,7 +21,6 @@
 
   .formSectionTitleContainer{
     @apply text-2xl flex justify-between items-center border-b border-slate-300 py-[12px] px-[20px]
-
   }
   
   .formSectionInputContainer{

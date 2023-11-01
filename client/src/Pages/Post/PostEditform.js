@@ -72,7 +72,7 @@ function PostEditForm(){
    
     return ( 
     
-        <form onSubmit={submitUpdate} className='overflow-auto page p-10'>
+        <form onSubmit={submitUpdate} className='form'>
   
             <div className='formSectionTitleContainer'>
 

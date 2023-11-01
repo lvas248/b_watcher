@@ -106,8 +106,8 @@ function MapComp({posts, bounds}) {
 
                 <div id='customButtons' 
                     className='absolute bottom-2 right-20 flex gap-2 z-10 font-bold '>
-                    <button onClick={zoomeToBounds} className=' border p-1 rounded bgBlue text-white drop-shadow-md' >View All Birds</button>
-                    <button onClick={zoomInOnSelection} className={`${!post && 'hidden'} border p-1 rounded drop-shadow-md bgBlue text-white`}>Zoom on Selected</button>
+                    <button onClick={zoomeToBounds} className=' border p-1 rounded bg-black  text-white drop-shadow-lg' >View All Birds</button>
+                    <button onClick={zoomInOnSelection} className={`${!post && 'hidden'} border p-1 rounded  bg-black drop-shadow-lg bgBlue text-white`}>Zoom on Selected</button>
                 </div>
 
                 {renderMarkers}

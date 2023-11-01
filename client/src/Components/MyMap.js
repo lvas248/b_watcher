@@ -38,7 +38,7 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
     }, [currentLocation])
 
     return ( 
-        <div className={`${!display && 'hidden'} h-full m-auto relative w-[400px]`}>
+        <div className={`${!display && 'hidden'} h-full m-auto relative max-w-[400px]`}>
 
 
             <Map
@@ -51,8 +51,7 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
                   }}
                 mapStyle="mapbox://styles/mapbox/streets-v11"
                 style={{ 
-                    height: '300px', 
-                    width: 'auto',
+                    height: '300px',
                     margin: 'auto',
                     border: '1px solid black'
                 }}                
@@ -87,8 +86,8 @@ function MyMap({display, toggleMap, setPlace, currentLocation=false}){
 
 
                 <div className='absolute bottom-2 z-50 w-full flex items-center'>
-                    <button onClick={toggleMap} type='button' className=' bg-white border border-black p-2 w-[50%] max-w-[200px] m-auto'>Back</button>
-                    <button onClick={handleLocationSelect} type='button' className=' bg-slate-300 border border-black p-2 w-[50%] max-w-[200px] m-auto'>Select</button>
+                    <button onClick={toggleMap} type='button' className='submitButton bg-slate-100'>Back</button>
+                    <button onClick={handleLocationSelect} type='button' className='submitButton '>Select</button>
                 </div>
 
             </Map>
