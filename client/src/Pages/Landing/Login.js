@@ -48,7 +48,10 @@ function Login({toggle}){
     }
 
     return (    
-        <div className='h-[92svh] mt-[8svh] w-full flex'>
+        <div className='page w-full flex p-10'>
+
+            <h1 className='uppercase font-bold text-xl'>login</h1>
+
             <form 
                 onSubmit={submitLogin}
                 className='form' >

@@ -50,6 +50,14 @@
     @apply w-1/2 p-2 border max-w-[250px]
   }
 
+  .mediumDropDown{
+    @apply static pr-[3svw] w-fit pt-0 flex-row gap-5 border-none divide-none
+  }
+
+  .page{
+    @apply h-[92svh] max-w-[1200px] mx-auto
+  }
+
 }
 
 

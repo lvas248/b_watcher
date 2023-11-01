@@ -31,12 +31,12 @@ function FilterBar({postListRef}){
 
     return ( 
 
-        <div className='h-[10svh] bg-white w-full max-w-[1050px] whitespace-nowrap overflow-x-auto drop-shadow-xl place-content-center'>
+        <div className='h-fit p-1 bg-white w-full max-w-[1050px] whitespace-nowrap overflow-x-auto overflow-y-hidden drop-shadow-xl place-content-center'>
 
             {
                 birds && [ 
                     <button onClick={()=>history.push('/feed')} key='0' className=' overflow-hidden inline-block align-middle mr-4 p-1 drop-shadow-md ' >
-                        <img className='bg-cover rounded-full h-[55px] hover:sm:animate-scale-up drop-shadow-md' alt='bird' src={bird} />
+                        <img className='bg-cover rounded-full h-[50px] hover:sm:animate-scale-up drop-shadow-md' alt='bird' src={bird} />
                         <p className='text-center text-[10px]'>All Birds</p>
                     </button>,
                     ...renderBirds

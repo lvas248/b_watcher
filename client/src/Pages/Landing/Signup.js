@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { clearSessionErrors, signupUser } from '../../Redux/Slices/sessionSlice'
 import SubmitButton from '../../Components/SubmitButton'
 
-function Login({toggle}){
+function Signup(){
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -49,8 +49,10 @@ function Login({toggle}){
     }
 
     return (  
-        <div className='h-[92svh] mt-[8svh] w-full flex'>
-  
+        <div className='page w-full p-10 flex'>
+
+            <h1 className='uppercase font-bold text-xl'>signup</h1>
+
             <form 
                 onSubmit={submitSignup}
                 className='form' >
@@ -103,4 +105,4 @@ function Login({toggle}){
     );
 }
 
-export default Login;
+export default Signup;

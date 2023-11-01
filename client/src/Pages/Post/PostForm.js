@@ -91,17 +91,14 @@ function PostForm() {
         return <option key={b.id} value={b.id}>{b.name}</option>
     })
 
-    console.log(postObj)
-
-
     return ( 
 
-        <div className='h-screen pt-[8svh] w-full max-w-[1000px] mx-auto overflow-auto '>
+        <div className='page overflow-auto '>
 
     
             <form onSubmit={submitForm} className='m-auto text-lg p-10 flex flex-col gap-5'>
 
-                <h3>New Post</h3>
+            <h1 className='uppercase font-bold text-xl'>New post</h1>
 
                 <div className='flex flex-col md:flex-row  gap-5'>
 
