@@ -37,7 +37,7 @@ function PostCard2({post}) {
                 </div>
 
                 <div id='location'
-                    className='flex flex-col gap-5 items-center'
+                    className='flex flex-col gap-5 items-center '
                 >
                     <div className='flex place-self-start items-center'>
 
@@ -45,7 +45,7 @@ function PostCard2({post}) {
                             <img className='bg-cover' alt='bird' src={pinIcon} />
                         </div>
 
-                        <button onClick={()=>navigateTo(`/map/${post.id}`)} className='text-left text-[10px] uppercase font-semibold underline overflow-hidden truncate w-[85vw]'>{post?.place?.address}</button>
+                        <button onClick={()=>navigateTo(`/map/${post.id}`)} className='text-left text-[10px] uppercase font-semibold underline overflow-hidden truncate w-[80vw] max-w-[500px]'>{post?.place?.address}</button>
 
                     </div>
 
