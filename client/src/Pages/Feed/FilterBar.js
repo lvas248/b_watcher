@@ -31,7 +31,7 @@ function FilterBar({postListRef}){
 
     return ( 
 
-        <div className='pt-[8svh] p-1 bg-white w-full max-w-[1050px] whitespace-nowrap overflow-x-auto drop-shadow-xl place-content-center'>
+        <div className='h-[10svh] bg-white w-full max-w-[1050px] whitespace-nowrap overflow-x-auto drop-shadow-xl place-content-center'>
 
             {
                 birds && [ 

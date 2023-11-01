@@ -91,6 +91,8 @@ function PostForm() {
         return <option key={b.id} value={b.id}>{b.name}</option>
     })
 
+    console.log(postObj)
+
 
     return ( 
 
