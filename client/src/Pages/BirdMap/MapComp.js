@@ -80,15 +80,13 @@ function MapComp({posts, bounds}) {
     return ( 
         <div className='p-5 max-w-[1050px] m-auto'>
 
-            {/* <Geosearch mapboxApiKey={mapboxApiKey} zoomToSelectedResult={zoomToSelectedResult} /> */}
-
             <Map
                 ref={mapRef}
                 mapboxAccessToken={mapboxApiKey}
                 initialViewState={postLocation.longitude ? postLocation : { longitude: -98.5795, latitude: 39.8283,  zoom: 2} }
                 mapStyle="mapbox://styles/mapbox/streets-v11"
                 style={{ 
-                    height: '80svh', 
+                    height: '87svh', 
                     width: 'auto',
                     margin: 'auto',
                     border: '2px solid black'
@@ -115,7 +113,7 @@ function MapComp({posts, bounds}) {
                 {renderMarkers}
 
                 <div id='blurb'
-                    className={`${( !displayBlurb || (post === undefined) ) && 'hidden'} absolute bottom-[5%] left-[50%] transform -translate-x-1/2 w-[80%] text-xs bg-white p-2 rounded-lg animate-fade-in drop-shadow-md`}
+                    className={`${( !displayBlurb || (post === undefined) ) && 'hidden'} absolute bottom-[10%] left-[50%] transform -translate-x-1/2 w-[80%] text-xs bg-white p-2 rounded-lg animate-fade-in drop-shadow-md`}
                 >
                     <button onClick={()=>setDisplayBlurb(false)} className='float-right w-fit h-fit p-2 text-center'>X</button>
                     

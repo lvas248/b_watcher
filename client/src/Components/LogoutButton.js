@@ -20,7 +20,7 @@ function LogoutButton({toggleOpen}){
     }
 
     return ( 
-        <button onClick={logout}>
+        <button className='navItem' onClick={logout}>
             { sessionStatus=== 'pending' ? <LoadingIcon status={sessionStatus}/> : 'LOGOUT' }
         </button>
      );

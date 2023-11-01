@@ -3,59 +3,120 @@
 @tailwind utilities;
 
 @layer base {
+
   .error{
     @apply text-red-500 block text-xs
   }
 
-  .verticalBar{
-    @apply  duration-300  flex-col overflow-hidden
-  }
-
-  .navbar{
-    @apply fixed top-0 left-1/2 transform -translate-x-1/2 m-auto bg-slate-200 border-b border-black w-full
-  }
-  .bgBlue{
-    @apply bg-[#3A9BDC]
-  }
+ 
+  /* Forms */
 
   .form{
-    @apply w-[80vw] max-w-[500px] grid gap-2 p-5  m-auto mt-[10vh]
+    @apply m-auto text-lg p-10 flex flex-col gap-5
   }
 
-  .formInput{
-    @apply border border-black p-1 text-black
-  }
-
-  .formButton{
-    @apply bgBlue border-black border p-2 
-  }
-
-  .formLabel{
-    @apply text-xs font-bold
-  }
-
-  .skeleton-text{
-    @apply w-[100%] h-[20px] bg-[#ccc] 
-  }
-
-  .image{
-    @apply h-full w-full object-cover
-  }
-
-  .accountSection{
+  .formSection{
     @apply border border-slate-300 w-full max-w-[1100px] mx-auto
   }
 
-  .accountButton{
-    @apply w-1/2 p-2 border max-w-[250px]
+  .formSectionTitleContainer{
+    @apply text-2xl flex justify-between items-center border-b border-slate-300 py-[12px] px-[20px]
+
   }
+  
+  .formSectionInputContainer{
+    @apply p-[20px]
+  }
+
+  .formInput{
+    @apply border border-black text-left text-xs  py-[6px] px-[12px] w-full bg-white
+  }
+
+  .formImageSection{
+    @apply w-full aspect-square m-auto p-[20px]
+  }
+
+  .formImageContainer{
+    @apply grid place-content-center h-full w-full bg-white border border-black
+  }
+
+  .formImage{
+    @apply object-cover h-full w-full border border-black
+  }
+
+  .submitButton{
+    @apply w-full border border-black py-[6px] px-[12px] bg-slate-300
+  }
+ 
+
+  /* Pages */
+
+  .page{
+    @apply h-[92svh] max-w-[1200px] mx-auto
+  }
+
+  .pageTitle{
+    @apply uppercase font-bold text-xl
+  }
+
+  /* Nav */
 
   .mediumDropDown{
     @apply static pr-[3svw] w-fit pt-0 flex-row gap-5 border-none divide-none
   }
 
-  .page{
-    @apply h-[92svh] max-w-[1200px] mx-auto
+  .navContainer{
+    @apply flex w-full justify-between items-center font-bold border-b border-black h-[8svh] max-w-[1200px] m-auto
+  }
+
+  .navItem{
+    @apply m-auto py-5 w-full text-center hover:underline text-sm
+  }
+
+  .active{
+    @apply underline
+  }
+
+  .logo{
+    @apply flex gap-1 items-center pl-[3svw] font-serif 
+  }
+
+  /* Landing */
+
+  .landingContainer{
+    @apply h-[92svh] py-[10svh] overflow-auto
+  }
+
+  .landingTitle{
+    @apply text-[48px] font-bold text-center animate-glide-up-delayed h-fit font-serif 
+  }
+
+  .landingSubtext{
+    @apply text-[18px] text-center animate-fade-in
+  }
+
+  .landingButton{
+    @apply m-auto mt-[5svh] w-[150px] p-[20px] rounded-full text-sm border bg-black text-white
+  }
+
+  .landingSection{
+    @apply pt-[40px] pb-[24px] overflow-hidden flex flex-col gap-4
+  }
+
+  .landingSectionTitle{
+    @apply text-[32px] text-center animate-glide-up-delayed h-fit 
+  }
+
+  .landingSectionText{
+    @apply max-w-[550px] m-auto text-[18px] text-center animate-fade-in
+  }
+
+  .landingSectionImageContainer{
+    @apply m-auto max-w-[600px]
+  }
+
+  .landingSectionImage{
+    @apply object-cover border border-black
   }
 
 }

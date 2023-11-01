@@ -96,19 +96,22 @@ function PostForm() {
         <div className='page overflow-auto '>
 
     
-            <form onSubmit={submitForm} className='m-auto text-lg p-10 flex flex-col gap-5'>
+            <form onSubmit={submitForm} className='form'>
 
-            <h1 className='uppercase font-bold text-xl'>New post</h1>
+                <h1 className='pageTitle'>New post</h1>
+
 
                 <div className='flex flex-col md:flex-row  gap-5'>
 
                     <div className='flex flex-col gap-5 md:w-[50%]'>
-                        <div id='birdSelect' 
-                            className='accountSection'>
 
-                            <div className='flex justify-between items-center border-b border-slate-300 py-[12px] px-[20px]'>
 
-                                <h3 className='text-2xl'>Bird</h3>
+                        <div id='bird' 
+                            className='formSection'>
+
+                            <div className='formSectionTitleContainer'>
+
+                                <h3>Bird</h3>
 
 
 
@@ -135,12 +138,12 @@ function PostForm() {
 
                             </div>
 
-                            <div className='p-[20px]'>
+                            <div className='formSectionInputContainer'>
 
                                 <div id='select' 
                                     className='grid'
                                 >
-                                    <select name='bird_id' onChange={updatePostObj} className={`${radio !== 'select' && 'hidden'} border border-black text-center text-xs py-[6px] px-[12px]`}>
+                                    <select name='bird_id' onChange={updatePostObj} className={`${radio !== 'select' && 'hidden'} formInput`}>
                                         {[<option key='0' value=''>Bird Select</option>, ...renderBirdOptions]}
                                     </select>
                                 </div>
@@ -149,38 +152,45 @@ function PostForm() {
                                     className={`${ radio !== 'create' && 'hidden'} grid gap-4`}
                                 >
                                     <div className='flex flex-col gap-1'>
+
                                         <div className='flex justify-between'>
                                             <p className='text-sm'>New Bird Name: </p>
                                             <p className='error'>{errors?.errors['bird.name']}</p>
                                         </div>
-                                        <input name='name' value={postObj.bird_attributes?.name} onChange={updateBirdAttributes} className='formInput text-xs border border-black px-2'/>
+
+                                        <input name='name' value={postObj.bird_attributes?.name} onChange={updateBirdAttributes} className='formInput '/>
                                     </div>
 
                                     <div className='flex flex-col gap-1'>
+
                                         <div className='flex justify-between'>
                                             <p className='text-sm'>Description: </p>
                                             <p className='error'>{errors?.errors['bird.description']}</p>
                                         </div>
-                                        <textarea name='description' value={postObj.bird_attributes?.description} onChange={updateBirdAttributes} className='formInput text-xs border border-black px-2 h-[5svh]'/>
+
+                                        <textarea name='description' value={postObj.bird_attributes?.description} onChange={updateBirdAttributes} className='formInput h-[5svh]'/>
+                                   
                                     </div>
+
                                 </div>
                             </div>
 
                         </div>
 
                         <div id='address'
-                            className='accountSection'
+                            className='formSection'
                         >
-                            <div className='flex justify-between items-center border-b border-slate-300 py-[12px] px-[20px]'>
+                            <div className='formSectionTitleContainer'>
 
-                                <h3 className='text-2xl'>Address</h3>
+                                <h3>Address</h3>
 
                                 <p className='error'>{errors?.errors['place.longitude']}</p>
 
                             </div>
 
-                            <div className='p-[20px]'>
-                                <button onClick={toggleMap} type='button' className={`${displayMap && 'hidden'} bg-white border border-black text-xs w-full px-[12px] py-[6px] hover:bg-black hover:text-white`}>{ postObj.place_attributes.latitude ? 'Location Selected' : 'Select Location'}</button>
+                            <div className='formSectionInputContainer'>
+
+                                <button onClick={toggleMap} type='button' className={`${displayMap && 'hidden'} formInput bg-white text-center hover:bg-black hover:text-white`}>{ postObj.place_attributes.latitude ? 'Location Selected' : 'Select Location'}</button>
                             
                                 <MyMap display={displayMap} toggleMap={toggleMap} setPlace={setPlace} currentLocation/>
                                 
@@ -190,17 +200,16 @@ function PostForm() {
                         </div>
 
                         <div id='caption'
-                            className='accountSection'
+                            className='formSection'
                         >
                             <div className='flex justify-between items-center border-b border-slate-300 py-[12px] px-[20px]'>
                                 <h3 className='text-2xl'>Caption</h3>
                                 <p className='error'>{errors?.errors?.caption}</p>
                             </div>
 
-                            <div className='p-[20px]'>
-                                <textarea  id='caption' name='caption' value={postObj.caption} onChange={updatePostObj} className='border border-black text-xs py-[6px] px-[12px] w-full min-h-[100px]' />
+                            <div className='formSectionInputContainer'>
+                                <textarea  id='caption' name='caption' value={postObj.caption} onChange={updatePostObj} className='formInput min-h-[100px]' />
                             </div>
-
 
                         </div>
 
@@ -208,7 +217,7 @@ function PostForm() {
                     </div>
 
                     <div id='image'
-                        className='accountSection md:w-[50%]'
+                        className='formSection md:w-[50%]'
                     >
                         <div className='flex justify-between items-center border-b border-slate-300 py-[12px] px-[20px]'>
                             <h3 className='text-2xl'>Image</h3>
@@ -217,17 +226,18 @@ function PostForm() {
 
                         <div className='p-[20px]'>
 
-                            <input required className='text-xs w-full border border-black py-[6px] px-[12px] bg-white' type='file' onChange={handleFileChange}/>
+                            <input required className='formInput' type='file' onChange={handleFileChange}/>
 
                         </div>
 
-                        <div className='col-span-2 w-full aspect-square  m-auto p-[20px]'>
+
+                        <div className='col-span-2 formImageSection'>
 
 
-                            <img className={` ${!imgPreview && 'hidden'} object-cover h-full w-full border border-black`} alt='bird' src={imgPreview} />
+                            <img className={` ${!imgPreview && 'hidden'} formImage`} alt='bird' src={imgPreview} />
 
-                            <div className={`${imgPreview && 'hidden'} grid place-content-center h-full w-full bg-white border border-black`}>
-                                <img alt='bird' src={ imgPreview || bird} className='col-span-2 object-cover object-center w-full h-full' />
+                            <div className={`${imgPreview && 'hidden'} formImageContainer`}>
+                                <img alt='bird' src={ imgPreview || bird} className='col-span-2 formImage border-none' />
                             </div>
 
                         </div>

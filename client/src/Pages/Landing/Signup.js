@@ -48,60 +48,84 @@ function Signup(){
         history.push(`/${path}`)
     }
 
-    return (  
-        <div className='page w-full p-10 flex'>
+    return ( 
+        
+        <div className='page w-full '>
 
-            <h1 className='uppercase font-bold text-xl'>signup</h1>
+        <form 
+            onSubmit={submitSignup}
+            className='form max-w-[600px]' >
 
-            <form 
-                onSubmit={submitSignup}
-                className='form' >
+            <div className='formSection border-none'>
 
-                <div className='flex justify-between'>
-                    <label className='formLabel'>EMAIL</label>
-                    <p className='error'>{error?.email}</p>
+                <div className='formSectionTitleContainer border-none'>
+                    <h1>Sign Up</h1>
+                </div>  
+
+                <div className='formSectionInputContainer'>
+
+                    <div className='flex justify-between'>
+                        <h1 className='text-sm'>Email</h1>
+                        <p className='error'>{error?.email[0]}</p>
+                    </div>                    
+                    
+                    <input 
+                            className='formInput' 
+                            type='email' 
+                            name='email' 
+                            value={submitObj.email} 
+                            onChange={updateSubmitObj}
+                    />        
+
                 </div>
 
-                <input 
-                    className='formInput' 
-                    type='email' 
-                    name='email' 
-                    value={submitObj.email} 
-                    onChange={updateSubmitObj}
-                />
+                <div className='formSectionInputContainer'>
 
-                <div className='flex justify-between'>
-                    <label className='formLabel'>PASSWORD</label>
-                    <p className='error'>{error?.password}</p>
-                </div>            
+                    <div className='flex justify-between'>
+                        <h1 className='text-sm'>Password</h1>
+                        <p className='error'>{error?.password}</p>
+                    </div>                    
+                    
+                    <input 
+                        className='formInput' 
+                        type='password' 
+                        name='password'
+                        value={submitObj.password} 
+                        onChange={updateSubmitObj}
+                    />
+
+                </div>
+
+                <div className='formSectionInputContainer'>
+
+                    <div className='flex justify-between'>
+                        <h1 className='text-sm'>Confirm Password</h1>
+                        <p className='error'>{error?.password_confirmation}</p>
+                    </div>
+
+                    <input 
+                        className='formInput' 
+                        type='password' 
+                        name='password_confirmation'
+                        value={submitObj.password_confirmation} 
+                        onChange={updateSubmitObj}
+                    />
+
+                </div>
+
+            </div>
+
+
                 
-                <input 
-                    className='formInput' 
-                    type='password' 
-                    name='password'
-                    value={submitObj.password} 
-                    onChange={updateSubmitObj}
-                />
+            <button onClick={()=>navigateTo('login')} type='button' className='text-xs underline text-right'>or login</button>
 
-                <div className='flex justify-between'>
-                    <label className='formLabel'>PASSWORD CONFIRMATION</label>
-                    <p className='error'>{error?.password_confirmation}</p>
-                </div>            <input 
-                    className='formInput' 
-                    type='password' 
-                    name='password_confirmation'
-                    value={submitObj.password_confirmation} 
-                    onChange={updateSubmitObj}
-                />
 
-                <SubmitButton label='SIGN UP' status={sessionStatus}/>
+            <SubmitButton label='sign up' status={sessionStatus}/>
 
-                <button onClick={()=>navigateTo('login')} type='button' className='text-xs underline text-right'>or login</button>
+        </form> 
 
-                
-            </form> 
+    </div>
 
-        </div>
     );
 }
 

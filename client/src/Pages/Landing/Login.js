@@ -48,37 +48,52 @@ function Login({toggle}){
     }
 
     return (    
-        <div className='page w-full flex p-10'>
-
-            <h1 className='uppercase font-bold text-xl'>login</h1>
+        <div className='page w-full '>
 
             <form 
                 onSubmit={submitLogin}
-                className='form' >
+                className='form max-w-[600px]' >
 
-                <label className='formLabel'>EMAIL</label>
-                <input 
-                    className='formInput' 
-                    type='email' 
-                    name='email' 
-                    value={loginObj.email} 
-                    onChange={updateLoginObj}
-                />
-                <label className='formLabel'>PASSWORD</label>
-                <input 
-                    className='formInput' 
-                    type='password' 
-                    name='password'
-                    value={loginObj.password} 
-                    onChange={updateLoginObj}
-                />
+                <div className='formSection border-none'>
+
+                    <div className='formSectionTitleContainer border-none'>
+                        <h1>Login</h1>
+                    </div>  
+
+                    <div className='formSectionInputContainer'>
+
+                        <h1 className='text-sm'>Email</h1>
+                        <input 
+                                className='formInput' 
+                                type='email' 
+                                name='email' 
+                                value={loginObj.email} 
+                                onChange={updateLoginObj}
+                            />                        
+                    </div>
+
+                    <div className='formSectionInputContainer'>
+                        <h1 className='text-sm'>Password</h1>
+                        <input 
+                            className='formInput' 
+                            type='password' 
+                            name='password'
+                            value={loginObj.password} 
+                            onChange={updateLoginObj}
+                        />
+
+                    </div>
+
+                </div>
+
+                <div className='flex justify-between'>
+                    <p className='error'>{error?.error}</p>                
+                    <button onClick={()=>navigateTo('signup')} type='button' className='text-xs underline text-right'>or signup</button>
+                </div>
+
 
                 <SubmitButton label='Login' status={sessionStatus}/>
 
-                <p className={`${!error && 'invisible'} error`}>{error?.error}</p>
-
-                <button onClick={()=>navigateTo('signup')} type='button' className='text-xs underline text-right'>or signup</button>
-                
             </form> 
 
         </div>

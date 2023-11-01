@@ -72,44 +72,51 @@ function PostEditForm(){
    
     return ( 
     
-        <form onSubmit={submitUpdate} className='mt-[8svh] p-[40px] h-[92svh]  gap-5 overflow-auto max-w-[1200px] m-auto'>
+        <form onSubmit={submitUpdate} className='overflow-auto page p-10'>
   
-            <div className='flex justify-between mb-[5svh] items-center'>
-                <h1 className='text-2xl font-bold'>Edit Post </h1>
-                <button onClick={submitDelete} type='button' className='py-[6px] underline'>{postStatus === 'idle' ? 'delete post' : <LoadingIcon />} </button>
+            <div className='formSectionTitleContainer'>
+
+                <h1 className='pageTitle'>Edit Post </h1>
+                <button onClick={submitDelete} type='button' className='py-[6px] text-xs underline'>{postStatus === 'idle' ? 'delete post' : <LoadingIcon />} </button>
+
             </div>
 
             <div className='flex flex-col md:flex-row  gap-5'>
+                
 
-                <div className='accountSection md:w-1/2'>
+                <div className='formSection md:w-1/2'>
 
                     <div
-                        className='py-[12px] px-[20px] border-b border-slate-300'
+                        className='formSectionTitleContainer'
                     >
-                        <h3 className='text-2xl'>Image</h3>
+                        <h3>Image</h3>
                     </div>
 
-                    <div
-                        className='aspect-square w-full p-[20px] my-auto'
-                    >
-                        <img className='object-cover border border-black' alt='bird' src={post?.image_url}/>
+                    <div className='formImageSection'>
 
-                    </div>                    
+                        <div className='formImageContainer'
+                            >
+                             <img className='formImage' alt='bird' src={post?.image_url}/>
+
+                        </div>                          
+                    </div>
+
+                   
                 </div>
 
             
                 <div className='md:w-1/2 flex flex-col gap-5'>
 
                     <div id='bird'
-                        className='accountSection'>
+                        className='formSection'>
 
-                        <div className='border-b border-slate-300 py-[12px] px-[20px]'>
-                            <h3 className='text-2xl'>Bird</h3>
+                        <div className='formSectionTitleContainer'>
+                            <h3>Bird</h3>
                         </div>
 
-                        <div className='p-[20px]'>
+                        <div className='formSectionInputContainer'>
 
-                            <select name='bird_id' value={editObj?.bird_id} onChange={updateEditObj} className=' border-black border px-[12px] py-[6px] w-full text-center' >{renderBirdOptions}</select>
+                            <select name='bird_id' value={editObj?.bird_id} onChange={updateEditObj} className='formInput text-center' >{renderBirdOptions}</select>
 
                         </div>
 
@@ -117,16 +124,15 @@ function PostEditForm(){
                     </div>
 
                     <div id='location'
-                        className='accountSection'>
+                        className='formSection'>
 
-                        <div className='border-b border-slate-300 py-[12px] px-[20px]'>
-                            <h3 className='text-2xl'>Address</h3>
+                        <div className='formSectionTitleContainer'>
+                            <h3>Address</h3>
                         </div>
 
+                        <div className='formSectionInputContainer'>
 
-                        <div className='p-[20px]'>
-
-                            <button onClick={toggleMap} type='button' className={`${displayMap && 'hidden'} bg-white border border-black text-sm w-full px-[12px] py-[6px] hover:bg-black hover:text-white`}>{ editObj?.place_attributes?.latitude ? 'Location Selected' : 'Select Location'}</button>
+                            <button onClick={toggleMap} type='button' className={`${displayMap && 'hidden'} formInput text-center hover:bg-black hover:text-white`}>{ editObj?.place_attributes?.latitude ? 'Location Selected' : 'Select Location'}</button>
                         
                             <MyMap display={displayMap} toggleMap={toggleMap} setPlace={setPlace} currentLocation={{longitude: editObj?.place_attributes?.longitude, latitude: editObj?.place_attributes?.latitude}}/>
                                         
@@ -136,15 +142,15 @@ function PostEditForm(){
                     </div>
 
                     <div id='caption'
-                        className='accountSection'>
+                        className='formSection'>
 
-                        <div className='border-b border-slate-300 py-[12px] px-[20px]'>
-                            <h3 className='text-2xl'>Caption</h3>
+                        <div className='formSectionTitleContainer'>
+                            <h3>Caption</h3>
                         </div>
 
-                        <div className='p-[20px]'>
+                        <div className='formSectionInputContainer'>
 
-                            <textarea name='caption' value={editObj.caption} onChange={updateEditObj} className='w-full border border-black min-h-[100px] py-[6px] px-[12px]'/>
+                            <textarea name='caption' value={editObj.caption} onChange={updateEditObj} className='formInput min-h-[100px]'/>
                         
                         </div>
 

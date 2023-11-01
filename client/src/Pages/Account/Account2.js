@@ -71,28 +71,32 @@ function Account2() {
 
      <div className='page p-10 flex flex-col gap-5'>
 
-        <h1 className='uppercase font-bold text-xl'>Account</h1>
+        <h1 className='pageTitle'>Account</h1>
 
             <div id='profile' 
-                className='accountSection'>
+                className='formSection'>
 
-                <div className='border-b border-slate-300 flex justify-between py-[12px] px-[20px]'>
-                    <h3 className=' text-2xl '>Profile</h3>
+                <div className='formSectionTitleContainer flex justify-between '>
+
+                    <h3>Profile</h3>
+
                     <button onClick={toggleEdit} className={`${editBtnClicked && 'hidden'} text-xs underline`}>Edit</button>
+
                 </div>
 
                 <div className='p-[20px] text-sm'>
+
                     <p>Email</p>
 
                     <p className={`${editBtnClicked && 'hidden'}`}>{user.email}</p>
 
                     <div className={`${!editBtnClicked && 'hidden'} flex flex-col gap-2 text-sm`}>
                         
-                        <input className='py-[6px] px-[12px] w-full border border-black' value={editEmailObj.email} onChange={updateEmailObj} />
+                        <input className='formInput' value={editEmailObj.email} onChange={updateEmailObj} />
                         
-                        <div className='flex place-content-end m-auto w-full'>
-                            <button onClick={toggleEdit} className='accountButton border-slate-300'>back</button>
-                            <button onClick={submitEdit} className='accountButton bg-slate-300 '>submit</button>
+                        <div className='formInputContainer flex'>
+                            <button onClick={toggleEdit} className='submitButton border-slate-300 bg-slate-200 '>back</button>
+                            <button onClick={submitEdit} className='submitButton'>submit</button>
                         </div>
 
                     </div>
@@ -102,32 +106,37 @@ function Account2() {
             </div>
 
             <div id='posts'
-                className='accountSection'>
+                className='formSection'>
 
-                <div className='border-b border-slate-300 flex py-[12px] px-[20px]'>
-                    <h3 className=' text-2xl '>Posts</h3>
+                <div className='formSectionTitleContainer'>
+                    <h3>Posts</h3>
                 </div>
 
-                <div className=' text-xs sm:text-sm m-auto px-[12px] py-[6px] divide-y  divide-slate-300'>
+                <div className=' formSectionInputContainer text-xs sm:text-sm divide-y divide-slate-300'>
                     {renderPosts}
                 </div>
 
             </div>
 
             <div id='account-delete' 
-                className='accountSection'>
-                <div className='border-b border-slate-300 flex justify-between items-center py-[12px] px-[20px]'>
-                    <h3 className=' text-2xl '>Account</h3>
+                className='formSection'>
+
+                <div className='formSectionTitleContainer'>
+                    
+                    <h3>Account</h3>
 
                     <button onClick={toggleDelete} className={` ${deleteBtnClicked && 'hidden'} text-xs underline`} >Delete</button>
                     <p className={`${!deleteBtnClicked && 'hidden'} text-xs`}>Are you sure?</p>
                 
                 </div>
 
-                <div className={`${!deleteBtnClicked && 'hidden'} p-[20px] flex place-content-end text-sm py-[12px] px-[20px]`}>
-                    <button onClick={toggleDelete} className='accountButton border-slate-300'>back</button>
-                    <button onClick={submitDeleteAccount} className='accountButton bg-slate-300' >Delete Account</button>
+                <div className={`${!deleteBtnClicked && 'hidden'} formSectionInputContainer text-sm flex`}>
+
+                    <button onClick={toggleDelete} className='submitButton border-slate-300 bg-slate-200'>back</button>
+                    <button onClick={submitDeleteAccount} className='submitButton' >Delete Account</button>
+                
                 </div>
+
             </div>   
 
     </div> 
