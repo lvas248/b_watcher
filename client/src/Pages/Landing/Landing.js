@@ -14,7 +14,7 @@ function Landing() {
 
     return ( 
         <div id='landing'
-            className='landingContainer'>
+            className='landingContainer animate-fade-in'>
 
             <div className='px-[24px] flex flex-col'>
 

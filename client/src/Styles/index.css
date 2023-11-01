@@ -51,7 +51,7 @@
   /* Pages */
 
   .page{
-    @apply h-[92svh] max-w-[1200px] mx-auto
+    @apply h-[92svh] max-w-[1200px] mx-auto animate-fade-in
   }
 
   .pageTitle{

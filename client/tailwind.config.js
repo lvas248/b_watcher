@@ -34,7 +34,12 @@ module.exports = {
       marqueeLg: {
         '0%': { transform: 'translateX(0%)'},
         '100%': { transform: 'translateX(-200%)'},
-      }
+      }, 
+
+      glideIn:{
+        '0%': { transform: 'translateX(200%)'},
+        '100%': { transform: 'translateX(0%)'},
+      },
     },
 
     animation: {
@@ -46,9 +51,10 @@ module.exports = {
       'glide-up-delayed':'glideUp 800ms ease-out forwards',
       'marquee': 'marquee 20s linear infinite',
       'marquee-lg': 'marqueeLg 25s linear infinite',
-    },
+      'glide-in':'glideIn 200ms ease-out forwards'
   },
 },
   plugins: [],
 }
 
+}

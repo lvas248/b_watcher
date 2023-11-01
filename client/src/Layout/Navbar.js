@@ -34,7 +34,7 @@ function Navbar(){
                     <Hamburger toggled={isOpen} toggle={setIsOpen}  />
                 </div>
 
-                <div className={`absolute top-[8svh] w-full bg-slate-200 z-50 font-bold flex flex-col md:mediumDropDown ${isOpen ? 'divide-y divide-slate-300 border-b border-black': 'hidden md:flex' } `}
+                <div className={`absolute top-[8svh] w-full bg-slate-200 z-50 font-bold flex flex-col divide-y divide-slate-300 md:mediumDropDown transform-h duration-300  ${isOpen ? ' border-b border-black max-h-[100svh]': 'max-h-0 overflow-hidden md:flex md:max-h-fit' } `}
                 >
 
                     <NavLink 
