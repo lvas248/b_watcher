@@ -42,7 +42,7 @@ function Navbar(){
                         activeClassName='active'
                         className={`navItem ${!loggedIn && 'hidden'}`}
                         to={loggedIn ? '/feed': '/login'}
-                    >ENTIRIES</NavLink>
+                    >ENTRIES</NavLink>
 
                     <NavLink 
                         onClick={toggleOpen}
