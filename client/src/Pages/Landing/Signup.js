@@ -66,7 +66,7 @@ function Signup(){
 
                     <div className='flex justify-between'>
                         <h1 className='text-sm'>Email</h1>
-                        <p className='error'>{error?.email[0]}</p>
+                        <p className='error'>{error?.email}</p>
                     </div>                    
                     
                     <input 

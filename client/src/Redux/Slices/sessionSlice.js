@@ -118,10 +118,10 @@ const sessionSlice = createSlice({
                 state.error = action.payload.errors
                 state.entity = {}
             })
-            .addCase( signupUser.fulfilled, (state, action) =>{
+            .addCase( signupUser.fulfilled, (state ) =>{
                 state.status = 'idle'
                 state.error = null
-                state.entity = action.payload
+                state.loggedIn = true
             })
 
             .addCase( loginuser.pending, state => {

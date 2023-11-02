@@ -4,8 +4,7 @@ import { useHistory } from "react-router-dom";
 import { deletePost } from "../../Redux/Slices/postSlice";
 import { deleteAccount } from "../../Redux/Slices/userSlice";
 import { updateUserInfo } from "../../Redux/Slices/userSlice";
-
-
+import SubmitButton from '../../Components/SubmitButton'
 
 function Account2() {
 
@@ -13,6 +12,7 @@ function Account2() {
     const history = useHistory()
 
     const user = useSelector( state => state.user.entity)
+    const userStatus = useSelector( state => state.user.status)
     const posts = useSelector( state => state.post)
 
     const [ deleteBtnClicked, setDeleteBtn ] = useState(false)
@@ -60,7 +60,8 @@ function Account2() {
         })
     }
 
-    function submitDeleteAccount(){
+    function submitDeleteAccount(e){
+        e.preventDefault()
         dispatch(deleteAccount()).then(res => {
             if(res.meta.requestStatus === 'fulfilled') history.push('/')
         })
@@ -130,12 +131,10 @@ function Account2() {
                 
                 </div>
 
-                <div className={`${!deleteBtnClicked && 'hidden'} formSectionInputContainer text-sm flex`}>
-
-                    <button onClick={toggleDelete} className='submitButton border-slate-300 bg-slate-200'>back</button>
-                    <button onClick={submitDeleteAccount} className='submitButton' >Delete Account</button>
-                
-                </div>
+                <form onSubmit={submitDeleteAccount} className={`${!deleteBtnClicked && 'hidden'} formSectionInputContainer text-sm flex`}>
+                    <button onClick={toggleDelete} type='button' className='submitButton border-slate-300 bg-slate-200'>back</button>
+                    <SubmitButton label='Delete Account' status={userStatus} />
+                </form>
 
             </div>   
 

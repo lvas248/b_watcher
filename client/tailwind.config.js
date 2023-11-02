@@ -46,6 +46,7 @@ module.exports = {
       'scale-up':'scaleUp 200ms ease-out forwards',
       'scale-large':'scaleLarge 200ms ease-out forwards',
       'fade-in':'fadeIn 500ms ease-out',
+      'fade-in-slow':'fadeIn 2s ease-out',
       'scroll-right':'scroll 5s linear infinite',
       'glide-up':'glideUp 800ms ease-out ',
       'glide-up-delayed':'glideUp 800ms ease-out forwards',
