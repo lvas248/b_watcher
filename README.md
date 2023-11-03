@@ -97,12 +97,6 @@ REACT_APP_MAPBOX_ACCESS_TOKEN= your_mapbox_api_key
 #### 5. Responsive Design
 - Enjoy a user friendly expereience on any device
 
-![desktop](./media/image/laptop.png)
-<img src={./media/image/laptop.png} alt="desktop" height="150">
-
-
-![mobile](./media/image/mobile.png)
-
 ## Backend
 
 ### API Endpoints
