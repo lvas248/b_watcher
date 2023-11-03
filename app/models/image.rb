@@ -1,7 +1,5 @@
 class Image < ApplicationRecord
 
-    
-    
     belongs_to :imageable, polymorphic: true
 
     before_destroy :delete_cloud_image
