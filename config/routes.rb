@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   
 
-  post '/locate', to: 'place#geolocate' 
   get '/birds', to: 'birds#index'
 
   post '/post', to: 'posts#create'
@@ -12,6 +11,7 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'
   patch '/update_user', to: 'users#update'
+  
   delete '/delete_account', to: 'users#destroy'
 
   post '/login', to: 'sessions#create'
